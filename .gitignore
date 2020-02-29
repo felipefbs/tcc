@@ -4,3 +4,5 @@ document.fls
 document.log
 document.synctex.gz
 document.pdf
+document.lof
+document.lot
