@@ -30,7 +30,8 @@
 \usepackage{microtype} 			                % para melhorias de justificação
 % Pacotes de citações
 \usepackage[brazilian,hyperpageref]{backref}	% Paginas com as citações na bibl
-\usepackage[alf]{abntex2cite}	                % Citações padrão ABNT
+\usepackage[alf]{abntex2cite}
+\usepackage{customizacao}	                % Citações padrão ABNT
 
 % CONFIGURAÇÕES DE PACOTES
 % Configurações do pacote backref
@@ -96,5 +97,7 @@
 
 \begin{document}
 
-    Texto
+	%Elementos Pré Textuais
+	\pretextual
+	\imprimircapa
 \end{document}
