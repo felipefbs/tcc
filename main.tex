@@ -101,6 +101,7 @@
 \makeindex  % Compila o índice
 
 \newcommand{\rd}[1]{{\color{green}[RD] #1}}
+\newcommand{\ff}[1]{{\color{red}[FF] #1}}
 
 % ---
 % Início do documento
@@ -114,14 +115,14 @@
 \imprimircapa
 \imprimirfolhaderosto*
 
-\input{./sections/preTextual/catalog.tex}       % Ficha bibliográfica
-\input{./sections/preTextual/errata.tex}        % Errata
-\input{./sections/preTextual/approval.tex}      % Folha de aprovação
-\input{./sections/preTextual/dedication.tex}    % Dedicatória
-\input{./sections/preTextual/thanks.tex}        % Agradecimentos
-\input{./sections/preTextual/epigraph.tex}      % Epígrafe
-\input{./sections/preTextual/abstracts.tex}     % Resumos
-\input{./sections/preTextual/lists.tex}         % Listas
+% \input{./sections/preTextual/catalog.tex}       % Ficha bibliográfica
+% \input{./sections/preTextual/errata.tex}        % Errata
+% \input{./sections/preTextual/approval.tex}      % Folha de aprovação
+% \input{./sections/preTextual/dedication.tex}    % Dedicatória
+% \input{./sections/preTextual/thanks.tex}        % Agradecimentos
+% \input{./sections/preTextual/epigraph.tex}      % Epígrafe
+% \input{./sections/preTextual/abstracts.tex}     % Resumos
+% \input{./sections/preTextual/lists.tex}         % Listas
 
 % ---
 % Sumario
@@ -138,7 +139,7 @@
 % Introdução (exemplo de capítulo sem numeração, mas presente no Sumário)
 \input{sections/textual/introduction.tex}
 
-\input{sections/textual/chapters.tex} % Capítulos
+% \input{sections/textual/chapters.tex} % Capítulos
 
 % ---
 % Finaliza a parte no bookmark do PDF
@@ -149,7 +150,7 @@
 %\phantompart
 
 % Conclusão (outro exemplo de capítulo sem numeração e presente no sumário)
-\input{sections/textual/conclusion.tex}
+% \input{sections/textual/conclusion.tex}
 
 % ---
 % ELEMENTOS PÓS-TEXTUAIS
@@ -164,8 +165,8 @@
 % Consulte o manual da classe abntex2 para orientações sobre o glossário.
 % \glossary
 
-\input{./sections/postTextual/appendixes.tex}   % Apêndices
-\input{./sections/postTextual/annexes.tex}      % Anexos
+% \input{./sections/postTextual/appendixes.tex}   % Apêndices
+% \input{./sections/postTextual/annexes.tex}      % Anexos
 
 %---
 % ÍNDICE REMISSIVO
