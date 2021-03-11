@@ -23,5 +23,41 @@ Redes de longa distâncias que abrangem uma grande área geográfica, também se
 Dispositivos que implementam redes de baixo consumo energético ganharam popularidade na industria e nas comunidades de pesquisa pois podem estabelecer comunicação sem fio de longas distâncias, de 10 a 40 km em zonas rurais e 1 a 5 km em zonas urbanas com baterias que podem durar mais de 10 anos com uma única carga \cite{mekki2019comparative}. A utilização deste tipo de rede se tornou fundamental para a implementação de RSSFs, oferecendo confiabilidade e baixo custo de implantação e manutenção para redes sem fio. Abaixo serão apresentadas os principais padrões utilizados.
 
 
+\section{Padrões e tecnologias de comunicação para redes LPWAN}
+\label{padrõesSF}
+Segundo Tanembaum em \cite{tanembaum2011}, sem coordenação e cooperação entre as fabricantes de dispositivos haveria o caos completo onde não seria possível a interoperabilidade de sistemas. Sistemas IoT, como demonstrado em \cite{sotres2017practical}, podem ter apresentar sistemas diferentes com vários dispositivos. Portanto a padronização das telecomunicações são imprescindíveis atualmente. Permitindo dispositivos de diferentes fabricantes consigam se comunicar, não importando quem produziu a placa de rede, os cabos, roteadores ou comutadores.
+
+\subsection{LoRa}
+LoRa, abreviação para Long Range, é uma tecnologia que utiliza o padrão LoRaWAN e um protocolo de acesso ao meio de mesmo nome. Modula sinais sub-GHz na faixa ISM utilizando uma técnica de modulação  privada chamada Chirp Spread Spectrum. que espalha um sinal de banda curta por todo um canal de banda larga, esta técnica possibilita uma maior resistência a interferências e torna mais difícil detectar ou obstruir o canal de comunicação. A taxa de transferência pode variar de 300 bits/s a até 50 kbits/s, dependendo do fator de espalhamento utilizado na comunicação. O payload máximo de uma mensagem é 243 bytes \cite{mekki2019comparative}.
+
+A tecnologia LoRa é desenvolvida pela empresa estadunidense SemTech e o padrão LoRaWAN é mantido pelo consorcio de empresas chamado LoRa Alliance.
+
+\subsection{NB-IoT}
+NarrowBand IoT é uma tecnologia especificada na versão 13 do 3GPP. Esta tecnologia opera na faixa de frequência celular(LTE e GSM), modulando os sinais utilizando a técnica QPSK. Utiliza faixas de frequência não ocupadas da faixa de frequência LTE. Seu protocolo é baseado em uma versão simplificada do protocolo LTE, que reduz as funcionalidades do LTE para melhor se adequar sua utilização para IoT, por exemplo, funções como monitoramento da qualidade do sinal ou conectividade dupla não são utilizadas, visando diminuir o uso de energia e aumentar a vida util da bateria. Possui taxa transferência máxima de 200 kbits/s e seu payload máximo é de 1600 bytes.
+
+\subsection{SigFox}
+SigFox é uma tecnologia que não possui padronização oficial e é mantida pela empresa de homônima. Os nós finais conectados a esta rede enviam para as estações radio-base mensagens utilizando a modulação BPSK utilizando bandas de frequência ultra-estreitas, até 100 Hz, na faixa de frequência ISM. Como utiliza uma faixa de frequência é bastante eficiente energeticamente e bastante resistente a interferência. Porém, não pode oferecer taxas de transferência acima de 100 bp/s.
+
+A empresa SigFox oferece uma solução com conectividade ponta a ponta, o que significa que os dados entre o nó final são transmitidos para as estações rádio-base e vão diretamente para os servidores da empresa. Sendo possível apenas o envio de 140 mensagens por dia e cada mensagem enviada pode ter um payload máximo de 12 bytes.
+
+\subsection{IEEE 802.15.4}
+O padrão IEEE 802.15.4 define em seu texto, camadas físicas e de acesso ao meio utilizando a faixa ISM sub-GHz e 2.4 GHz, utilizando, respectivamente, as modulações BPSK e O-QPSK. Possuindo uma taxa de transferência máxima de 250 kbits/s utilizando a faixa de frequência de 2.4 GHz com um tamanho máximo de payload de 127 bytes \cite{munoz2018overview}\cite{gomes2017estimaccao}. Este padrão é utilizado como base para a utilização do ZigBee.
+
+\subsection*{Emenda 'g'}
+Em 2015 foi proposto uma revisão que incorpora uma novo esquema de modulações para permitir uma melhor volatilidade entre a faixa de comunicação, ocupação da largura de banda, taxa de transferência de dados e confiabilidade da comunicação para melhor se adequar com a aplicação. O padrão então foi adotado como uma emenda ao padrão de 2003, definindo assim o padrão IEEE 802.15.4g que incluia as modulações SUN(Redes de Utilidades Inteligentes, Smart Utility Network)\cite{tuset2020reliability}.
+A seguir uma visão geral das modulações SUN de acordo apresentado em \cite{tuset2020reliability}:
+\subsubsection*{FSK-SUN}
+Foi incluída no padrão devido a sua eficiência e compatibilidade com sistemas legado. Possui 3 modos de operação para cada uma das faixas de frequência definidas no padrão e possui parâmetros de canal e de modulação, nos quais é possível definir o tipo de modulação, o espaçamento do canal e o índice de modulação. Estes parâmetros definem uma faixa de taxa de transferência de 50 kbits/s a até 50 kbits/s.
+\subsubsection*{OQPSK-SUN}
+Esta modulação está presente no texto original do padrão e foi estendida nesta emenda para adicionar bandas de frequência e suportar diferentes fatores de espalhamentos para conseguir atingir taxas de transferência entre 6.25 kbits/s a até 500 kbits/s.
+\subsubsection*{OFDM-SUN}
+Esta modulação consegue prover altas taxas de transferência e maiores faixas de comunicação, enquanto consegue lidar com interferência e propagação por multi-caminho. Utiliza diferentes Esquemas de Modulação e Codificação para alternar em modulações, como BPSK, QPSK e 16-QAM, e esquemas de repetição de frequência para prover uma faixa de taxa de transferência entre 50 kbits/s a até 800 kbits/s em um canal com a largura de banda que varia entre 200kHz e 1.2MHz.
+
+\subsubsection*{Diversidade de Modulação}
+
+
+
+\section{Parâmetros do Enlace Sem Fio}
+\label{paramSF}
 
 
