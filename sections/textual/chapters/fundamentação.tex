@@ -58,5 +58,9 @@ Em \cite{gomes2020improving} os autores propõem a utilização das três modula
 
 \section{Parâmetros do Enlace Sem Fio}
 \label{paramSF}
+Algumas métricas são utilizadas para medir a qualidade de um enlace sem fio, algumas estão mais relacionadas a camada física, como RSSI, e outras estão mais relacionadas a camada de aplicação como PDR. Estas serão melhor detalhadas abaixo.
+\subsection*{RSSI}
+Received Signal Strength Indicator, Indicador da Força do Sinal Recebido em tradução livre, é uma medida da energia total presente em um sinal de rádio recebido. RSSI é um valor relativo e pode variar de acordo com a fabricante do transceptor de rádio\cite{UNDERSTANDING_RSSI}. Geralmente o valor de RSSI é apresentado em números negativos que vão de -100 até 0, onde valores próximos de -100 são sinais de baixa qualidade e sinais com valores próximos a 0 são de ótima qualidade.
 
-
+\subsection*{PDR}
+Packed Delivery Ratio, Taxa de Entrega de Pacotes, é um indicador de camada de aplicação que relaciona a quantidade de pacotes recebidos pelo receptor pela quantidade de pacotes enviados pelo transmissor. O PDR pode ser um valor importante para medir um enlace de dados, pois dependendo da aplicação há uma taxa minima de entrega de pacotes, por exemplo, algumas aplicações industriais necessitam de um PDR superior a 99.9\%
