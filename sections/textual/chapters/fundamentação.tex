@@ -1,6 +1,6 @@
 \chapter{Fundamentação Teórica}
 \label{fundamentacao}
-Na fundamentação deste trabalho, será abordado como é dado a categorização de redes de telecomunicação, bem como as topologias de redes. Em seguida será apresentado alguns padrões e tecnologias de comunicação sem fio destacando os mais utilizados em RSSFs atualmente. E então, será apresentado parâmetros de comunicação sem fio, que foram utilizados neste projeto, para medição de eficacia e a eficiência de um enlace sem fio.
+Na fundamentação deste trabalho, será abordado como é dado a categorização de redes de telecomunicação. Em seguida será apresentado alguns padrões e tecnologias de comunicação sem fio para dispositivos de baixa potência. E então, será apresentado parâmetros de comunicação sem fio, que foram utilizados neste projeto, para medição de eficacia e a eficiência de um enlace sem fio.
 
 % eficacia é um booleano para dizer se algo funciona ou não
 % eficiência é uma escala para medir % de funcionamento.
@@ -10,17 +10,17 @@ Na fundamentação deste trabalho, será abordado como é dado a categorização
 Segundo Tanembaum em \cite{tanembaum2011}, redes de telecomunicação são classificadas, comumente, de acordo com sua escala de abrangência.
 \subsection{Classificação de redes: escala de abrangência}
 
-\subsection{Redes Pessoais - PAN}
+\subsubsection*{Redes Pessoais - PAN}
 Redes de área pessoal, ou redes de alcance limitado, são redes, geralmente sem fio, utilizadas para conexão entre sistemas pessoais. Por exemplo conexão de um fone de ouvido a um smartphone utilizando o Bluetooth. Aplicações de redes PAN vão além de conexão de dispositivos sem fio como mouses, teclados e fone. Também são utilizados em Sistemas Monitoração de Saúde onde no paciente há dispositivos coletando e enviando dados para o smartphone.
 
-\subsubsection{Redes locais - LAN}
+\subsubsection*{Redes locais - LAN}
 Redes de área local, são redes privadas contidas dentro de um prédio, casa ou escritório. É formada pela conexão de computadores em uma rede de tamanho restrito, normalmente conectando os computadores através de um comutador(switch) por meio de cabos de par trançado utilizando uma topologia estrela. Atualmente é comum a utilização do Wi-Fi para conexão de redes locais, conhecidas como WLAN.
 
-\subsubsection{Redes geograficamente distribuídas - WAN}
+\subsubsection*{Redes geograficamente distribuídas - WAN}
 Redes de longa distâncias que abrangem uma grande área geográfica, também se refere a redes que conectam países ou continentes. Por exemplo a Rede Nacional de Ensino e Pesquisa(RNP) que conecta diversas instituições de ensino superior do Brasil.
 
-\subsubsection{Redes de loga distância com baixo consumo energético - LPWAN}
-Dispositivos que implementam redes de baixo consumo energético ganharam popularidade na industria e nas comunidades de pesquisa pois podem estabelecer comunicação sem fio de longas distâncias, de 10 a 40 km em zonas rurais e 1 a 5 km em zonas urbanas com baterias que podem durar mais de 10 anos com uma única carga \cite{mekki2019comparative}. A utilização deste tipo de rede se tornou fundamental para a implementação de RSSFs, oferecendo confiabilidade e baixo custo de implantação e manutenção para redes sem fio. Abaixo serão apresentadas os principais padrões utilizados.
+\subsubsection*{Redes de loga distância com baixo consumo energético - LPWAN}
+Dispositivos que implementam redes de baixo consumo energético ganharam popularidade na industria e nas comunidades de pesquisa pois podem estabelecer comunicação sem fio de longas distâncias, de 10 a 40 km em zonas rurais e 1 a 5 km em zonas urbanas com baterias que podem durar mais de 10 anos com uma única carga \cite{mekki2019comparative}. A utilização deste tipo de rede se tornou fundamental para a implementação de RSSFs, oferecendo confiabilidade e baixo custo de implantação e manutenção para redes sem fio. Abaixo serão apresentadas os principais padrões e tecnologias utilizadas.
 
 
 \section{Padrões e tecnologias de comunicação para redes LPWAN}
@@ -64,3 +64,4 @@ Received Signal Strength Indicator, Indicador da Força do Sinal Recebido em tra
 
 \subsection*{PDR}
 Packed Delivery Ratio, Taxa de Entrega de Pacotes, é um indicador de camada de aplicação que relaciona a quantidade de pacotes recebidos pelo receptor pela quantidade de pacotes enviados pelo transmissor. O PDR pode ser um valor importante para medir um enlace de dados, pois dependendo da aplicação há uma taxa minima de entrega de pacotes, por exemplo, algumas aplicações industriais necessitam de um PDR superior a 99.9\%
+
