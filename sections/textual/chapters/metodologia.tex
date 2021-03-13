@@ -1,10 +1,11 @@
 \chapter{Experimento}
 \label{experimento}
-Nesta seção será detalhado como foi realizado o experimento realizado. O experimento aconteceu em um dos prédios do campus Campina Grande do Instituto Federal da Paraíba(IFPB). O prédio é constituído de diversas salas utilizadas pelos professores da instituição e de alguns laboratórios, possui 4 andares separados por grossos pisos de concreto armado. Este cenário é particularmente desafiador para um enlace sem fio pois não é possível ter uma linha de visada entre o transmissor e o receptor além de apresentar muito ocorrência de propagação por multi-caminho e pode apresentar fácilmente áreas de sombreamentos de sinais.
 
+Neste trabalho, foi realizado um experimento em um ambiente de Smart Building, utilizando o padrão IEEE 802.15.4g SUN. A finalidade deste experimento é avaliar as performance da RSSF analisando valores de RSSI e PDR obtidos considerando uma rede formada por 11 dispositivos transmissores, denominados neste texto como Tx, e 3 dispositivos receptores, denominados neste texto como Rx.
 
+O experimento foi realizado em um dos prédios do campus Campina Grande do Instituto Federal da Paraíba(IFPB). Sendo este constituído principalmente de salas de escritório e de alguns laboratórios, possuindo 4 andares separados por grossos pisos de concreto. Este cenário é particularmente desafiador para um enlace sem fio pois não é possível ter uma linha de visada entre o transmissor e o receptor além de apresentar muito ocorrência de propagação por multi-caminho e pode apresentar fácilmente áreas de sombreamentos de sinais.
 
-De forma geral, o experimento foi realizado utilizando ao total onze dispositivos transmissores enviando mensagens nas modulações SUN para três dispositivos receptores, um para cada modulação em uma topologia estrela. Os nós transmissores, denominados neste texto como Tx, foram espalhados nos quatro andares prédio, posicionados em canaletas e no interior de salas. Os nós receptores, denominados neste texto como Rx, foram posicionados no laboratório do GComPI presente no primeiro piso do prédio.
+Os dispositivos Tx foram espalhados pelos quatro andares do prédio, posicionados em canaletas e no interior de uma sala. Enquanto que os dispositivos Rx foram colocados no interior do laboratório GComPI, presente no primeiro piso do prédio. Os Tx enviavam mensagens nas três modulações SUN e cada Rx foi programado para receber mensagens de apenas uma modulação SUN. Sendo assim os 11 dispositivos Tx enviavam mensagens para cada um dos Rx que encaminhavam as mensagens e as informações de RSSI da mensagem para a porta serial que estavam conectados. Um script python rodando em um sistema operacional Linux captava as mensagens seriais, formatava e persistia estes dados em um banco de dados. Na seção \ref{funcionamento} será detalhada melhor o funcionamento de cada componente do experimento.
 
 Abaixo esta descrito os materiais(hardware e software) utilizados neste projeto bem como o detalhamento do experimento.
 
@@ -12,11 +13,5 @@ Abaixo esta descrito os materiais(hardware e software) utilizados neste projeto 
 \subsection*{Openmote-B}
 \subsection*{InfluxDB}
 
-% \section{Dispositivos}
-% \subsection{Transmissor}
-% \subsubsection{Ciclo de envio de mensagens}
-% \subsubsection{Conteudo das mensagens}
-% \subsection{Receptor}
-% \subsection{Gateway}
-% \subsubsection{Leitor serial}
-% \subsubsection{Persistência dos dados}
+\section{Funcionamento da Rede}
+\label{funcionamento}
