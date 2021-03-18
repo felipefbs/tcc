@@ -1,25 +1,39 @@
 \chapter{Fundamentação Teórica}
 \label{fundamentacao}
-Na fundamentação deste trabalho, será abordado como é dada a categorização de redes de telecomunicações de acordo com sua área de abrangência. Logo após serão apresentados os conceitos básicos sobre camadas física e de acesso ao meio presentes no modelo OSI. Uma breve introdução a alguns dos principais problemas decorrentes da comunicação sem fio. Em seguida serão apresentados alguns padrões e tecnologias de comunicação sem fio para dispositivos de baixa potência. E então, serão apresentados parâmetros de comunicação sem fio, que foram utilizados neste projeto, para avaliação de confiabilidade de um enlace sem fio.
+\todo{Texto inicial do capitulo}
 
 \section{Classificação de redes}
 \label{classRedes}
-Segundo Tanembaum em \cite{tanembaum2011}, redes de telecomunicações são classificadas, comumente, de acordo com sua escala de abrangência. Esta classificação é importante pois diferentes tecnologias e padrões são criados para atacar problemas específicos destas redes.
-\subsection{Classificação de redes: escala de abrangência}
+Segundo Tanembaum em \cite{tanembaum2011}, redes de telecomunicações são classificadas, comumente, de acordo com sua escala de abrangência. Esta classificação é importante pois diferentes tecnologias e padrões são criados para atacar problemas específicos destas redes. Abaixo serão apresentadas as classificações mais relevantes para o escopo deste trabalho de acordo Rochol em \cite{rochol2018sistemas}.
 
 \todo{imagem das redes PAN, LAN, WAN etc}
 
-\subsubsection*{Redes Pessoais - PAN}
-Redes de área pessoal, ou redes de alcance limitado, são redes, geralmente sem fio, utilizadas para conexão entre sistemas pessoais. Por exemplo conexão de um fone de ouvido a um smartphone utilizando o Bluetooth. Aplicações de redes PAN vão além de conexão de dispositivos sem fio como mouses, teclados e fone. Também são utilizados em Sistemas Monitoração de Saúde onde no paciente há dispositivos coletando e enviando dados para o smartphone.
+\subsection{Classificação de redes sem fio: escala de abrangência}
+\subsubsection*{Redes sem fio pessoais - WPAN}
+Inicialmente estas redes foram definidas para possuir alcance limitado com a principal função de facilitar a conectividade de dispositivos periféricos ao computador ou telefone celular através de uma conexão sem fio. O padrão IEEE 802.15 especifica a arquitetura destas redes sem fio, também denominadas, piconets. A principal  tecnologia comercial de redes WPANs é o Bluetooth, baseado no padrão IEEE 802.15.1.
 
-\subsubsection*{Redes locais - LAN}
-Redes de área local, são redes privadas contidas dentro de um prédio, casa ou escritório. É formada pela conexão de computadores em uma rede de tamanho restrito, normalmente conectando os computadores através de um comutador(switch) por meio de cabos de par trançado utilizando uma topologia estrela. Atualmente é comum a utilização do Wi-Fi para conexão de redes locais, conhecidas como WLAN.
+O conceito de redes WPAN foi expandido para designar qualquer tipo de rede sem fio que atua em área restrita interconectando dispositivos, periféricos, atuadores ou um conjunto de sensores, geralmente com a capacidade de se auto-organizarem. E a partir dessa expansão é possível aplicações como redes de sensores sem fio, sistemas de anticolisão e de condução automática em veículos, automação industrial, prédios inteligentes, monitoração de pacientes entre várias outras.
 
-\subsubsection*{Redes geograficamente distribuídas - WAN}
-Redes de longa distâncias que abrangem uma grande área geográfica, também se refere a redes que conectam países ou continentes. Por exemplo a Rede Nacional de Ensino e Pesquisa(RNP) que conecta diversas instituições de ensino superior do Brasil.
+Então, basicamente temos redes WPAN para interconexão de dispositivos onde o Bluetooth é a tecnologia mais proeminente no mercado. E Redes de Sensores Sem Fio WPAN implementadas, principalmente, com a tecnologia ZigBee, que implementa a camada física padronizada pela IEEE 802.15.4.
+
+
+\subsubsection*{Redes sem fio locais - WLAN}
+São redes com a finalidade de conectar computadores de casas, escritório ou prédio em uma rede privada. Neste tipo de rede, a tecnologia Wi-Fi se tornou extremamente popular sendo adotado praticamente em todo computador e dispositivos moveis como \emph{smartphones} e \emph{tablets}. O Wi-Fi é baseado no padrão IEEE 802.11.
+
+Inicialmente, foi definido no padrão a utilização da faixa de frequência ISM de 2.4GHz. Com novas emendas do padrão IEEE 802.11 foi adicionado a faixa de frequência ISM 5GHz possibilitando maiores taxas de transferência para dispositivos próximos. Como utiliza uma faixa de frequência livre, é comum ter interferência com outras redes Wi-Fi e com redes formadas por outras tecnologias que atuam na mesma faixa de frequência, como é o caso do Bluetooth e ZigBee que atuam na faixa de frequência de 2.4GHz.
+
+\subsubsection*{Redes celulares de telefonia e dados}
+Estas redes compreendem diversos sistemas de telefonia conectados e ganharam bastante popularidade nas ultimas décadas devido, principalmente pela redução de custos e aumento nas taxas de transferência oferecidas pelas operadoras. Exemplos mais recentes de telefonia celular são GSM, EDGE e LTE que fornecem a segunda, terceira e quarta geração(2G, 3G e 4G) de telefonia celular.
+
+Como será abordado na seção \ref{padrõesSF} há aplicações que se utilizam da infraestrutura GSM e LTE para aplicações de RSSF.
+
 
 \subsubsection*{Redes de loga distância com baixo consumo energético - LPWAN}
-Dispositivos que implementam redes de baixo consumo energético ganharam popularidade na indústria e nas comunidades de pesquisa pois podem estabelecer comunicação sem fio de longas distâncias, de 10 a 40 km em zonas rurais e 1 a 5 km em zonas urbanas com baterias que podem durar mais de 10 anos com uma única carga \cite{mekki2019comparative}. A utilização deste tipo de rede se tornou fundamental para a implementação de RSSFs, oferecendo confiabilidade e baixo custo de implantação e manutenção para redes sem fio. Abaixo serão apresentadas os principais padrões e tecnologias utilizadas.
+Algumas aplicações IoT possuem requisitos muito específicos como atuação por uma grande extensão, dispositivos que possam passar longos períodos utilizando baterias e um bom custo beneficio. Tecnologias como ZigBee e Bluetooth não apresentam ua grande área de cobertura. Aplicações de telefonia celular apesar de conseguirem abranger uma grande área, possuem um consumo energético excessivo. Então, estas aplicações IoT impulsionaram a criação de novos padrões e tecnologia para um novo tipo de rede denominada de redes de longa distância com baixo consumo energético ou Low Power Wide Area Network(LPWAN).
+
+Dispositivos que implementam redes de baixo consumo energético ganharam popularidade na indústria e nas comunidades de pesquisa pois estabelecem comunicação sem fio de longas distâncias, cerca de até alguns quilômetros, com baterias que podem durar anos com uma única carga \cite{mekki2019comparative}.
+
+A utilização deste tipo de rede se tornou fundamental para a implementação de RSSFs, oferecendo confiabilidade e baixo custo de implantação e manutenção para redes sem fio. Na seção \ref{padrõesSF} serão apresentadas alguns dos principais padrões e tecnologias utilizadas nestas redes.
 
 \section{Modelo de camadas OSI}
 \label{osi}
