@@ -37,8 +37,48 @@ A utilização deste tipo de rede se tornou fundamental para a implementação d
 
 \section{Modelo de camadas OSI}
 \label{osi}
+O modelo de referência para Interconexão de Sistemas Abertos, \emph{Open Systems Interconnection}, ou apenas modelo OSI, foi um importante passo para a padronização de redes de computadores definindo como um sistema aberto a conexão de outros sistemas deve funcionar. O modelo possui sete camadas e cada uma possui uma função bem definida. A comunicação entre camadas é abstraída e se dá através de interfaces, ou seja, uma camada é cega para o que acontece nas camadas subjacentes, desde que a informação que chegue até ela obedeça o padrão pré-definido.
+
+\todo{imagem das camadas osi}
+
+Para este trabalho será mais relevante a apresentação apenas das camadas 1 e 2, física e de enlace respectivamente, e suas subcamadas do modelo OSI de forma generalizada de acordo o apresentado por Tanembaum em \cite{tanembaum2011} e por Rochol em \cite{rochol2018sistemas}.
+
 \subsection{Camada física}
-\subsection{Camada de controle de acesso ao meio}
+A camada física é uma abstração do meio físico de comunicação por onde trafegado os bits e define nas duas pontas da comunicação, por exemplo, o que deve ser considerado um bit 1 ou um bit 0; quantos nanosegundos é a duração total de um bit; se a transmissão pode ser realizada pelos dois lados ao mesmo tempo ou cada lado pode transmitir apenas quando o outro lado não transmitir; entre outras definições para se manter a conexão desta camada. Possui duas sub-camadas: sub-camada de convergência de transmissão do nível físico e a sub-camada dependente do meio.
+
+A sub-camada de convergência de transmissão é o responsável pela codificação do canal, para obter maior robustez e confiabilidade na transmissão dos dados em função mesmo considerando as características problemáticas do canal de rádio frequência. À está camada está incumbida algumas funções como:
+\begin{itemize}
+    \item Embaralhamento do fluxo de bits:
+
+          Garante que os bits 1 e 0 tenham a mesma probabilidade antes de serem enviados para transmissão. Ao realizar esta tarefa, a utilização do canal será otimizada.
+    \item Controle de erros:
+
+          Utilização de técnicas para detectar e corrigir erros da transmissão. Por exemplo, adicionando alguns bit à mensagem original é possível utiliza-los para detectar se algum bit da mensagem original foi modificado, podendo ser necessário uma retransmissão, ou talvez corrigir a mensagem original.
+    \item Entrelaçamento de bits:
+
+          Uma técnica que utiliza algorítimos de distribuição temporal dos bits da mensagem para espalhar a concentração de erros ao logo de todo o fluxo de dados. Tornando mais fácil a utilização das técnicas de controle de erros. Estes algorítimos são pré-definidos na fonte e destino.
+\end{itemize}
+
+A segunda sub-camada presente na camada física é a camada dependente dependente do meio e aqui é implementado as funcionalidades dos transceptores de dados. Os protocolos aplicados no nível físico podem ser um protocolo único, em dispositivos e aplicações mais simples, ou vários protocolos trabalhando em conjunto com vários sub-camadas internas no caso de aplicações mais complexas.
+
+Há várias técnicas de transmissão e recepção de dados, porém, forma geral, é possível agrupa-las em três grandes classes. Abaixo elas estão apresentadas em ordem crescente de complexidade:
+\begin{enumerate}
+    \item Técnicas de codificação por pulsos ou codificação de banda base;
+    \item Processos de modulação de um ou mais parâmetros de portadora eletromagnética única;
+    \item Processo de modulação e transmissão utilizando múltiplas portadoras. Estas portadoras podem ser caracterizadas no domínio da frequência, utilizando múltiplas portadoras do tipo OFDM, Multiplexação por divisão de Frequências Ortogonais. Ou podem ser caracterizadas no domínio do tempo como como ocorre no CDMA, Acesso Múltiplo por Divisão de Código, onde diferentes códigos ortogonais são aplicados simultaneamente sobre uma portadora digital gerando vários espectros ao redor de uma única portadora analógica, está técnica também é conhecido como espalhamento espectral.
+\end{enumerate}
+
+\subsection{Camada de enlace}
+A principal tarefa desta camada é transformar os bits brutos que trafegam na camada física em uma mensagem livre de erros de transmissão, para isso esta camada faz com que o transmissor separe os dados e transmita cada parte de forma sequencial. Caso algum destas partes, ou quadros, da mensagem apresente erro então esta parte pode ser retransmitida. A camada de enlace possui duas sub-camadas: a sub-camada de convergência de serviço e a sub-camada de acesso ao meio.
+
+A sub-camada de convergência de serviço é responsável por atender os requisitos de Qualidade de Serviço, \emph{Quality of Service}(QoS), da aplicação, como taxa de transferência, atraso máximo de pacotes, taxa de perda de pacotes entre outras exigências da aplicação.
+
+A sub-camada de de controle de acesso ao meio, ou \emph{Medium Access Control}(MAC), possui grande importância em comunicações sem fio. Esta sub-camada define como será dado o acesso ao meio de comunicação e, dependendo do protocolo utilizado, quem tem a vez de utilização do meio. Há, principalmente, duas famílias de protocolos MAC utilizados em comunicações sem fio, ALOHA e CSMA.
+
+O protocolo ALOHA puro define que quem possuir dados a ser enviados deve enviar, mesmo que isto cause colisões de pacotes, porém, ao transmitir, deverá escutar o canal durante a transmissão e retransmitir a mensagem, caso seja percebido por parte do transmissor, se houve colisão ou se o receptor da mensagem não confirmou o recebimento da mensagem. Uma variação deste protocolo, chamado de Slotted ALOHA foi desenvolvido com a intenção de diminuir a probabilidade de colisão dividindo o tempo em intervalos discretos de tempo, time slots. Para tal deveria ter uma sincronia entre todos os integrantes da rede para transmitir apenas nos intervalos de tempo certo.
+
+O protocolo CSMA, Acesso Múltiplo com Detecção de Portadora(\emph{Carrier Sense Multiple Access}), procura melhor utilizar o canal evitando a colisão de pacotes. Para tal o transmissor tem que escutar o canal antes de realizar uma transmissão. Caso o canal esteja livre a transmissão é realizada, caso o canal esteja ocupado o transmissor espera até o canal estiver livre para transmitir ou transmite após um intervalo aleatório de tempo.
+
 
 \section{Problemas enfrentados pela comunicação via rádio}
 
