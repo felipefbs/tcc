@@ -80,7 +80,28 @@ O protocolo ALOHA puro define que quem possuir dados a ser enviados deve enviar,
 O protocolo CSMA, Acesso Múltiplo com Detecção de Portadora(\emph{Carrier Sense Multiple Access}), procura melhor utilizar o canal evitando a colisão de pacotes. Para tal o transmissor tem que escutar o canal antes de realizar uma transmissão. Caso o canal esteja livre a transmissão é realizada, caso o canal esteja ocupado o transmissor espera até o canal estiver livre para transmitir ou transmite após um intervalo aleatório de tempo.
 
 
-\section{Problemas enfrentados pela comunicação via rádio}
+\section{Problemas da comunicação sem fio}
+Como já apresentado, redes sem fios apresentam diversas vantagens em relação à redes cabeadas. Porém o meio por onde as ondas de rádio são propagadas apresenta diversos desafios. O canal de radiofrequência pode apresentar, além do sinal do transmissor, sinais de estações transmissoras próximas, resíduos de transmissões passadas ou resíduos de efeitos térmicos do próprio transmissor, além, é claro, da forma como as ondas eletromagnéticas se propagam no meio pode ser um problema para uma recepção clara do sinal.
+
+Abaixo serão apresentados alguns dos principais problemas que dificultam a recepção de sinais de rádio de acordo apresentado pelos respectivos autores em \cite{gomes2017estimaccao}, \cite{rappaport2009} e \cite{rochol2018sistemas}:
+\subsection*{Ruido}
+Ruído é caracterizado como uma interferência eletromagnética aleatória causada pela agitação térmica das moléculas dos condutores. Ou seja, a elevação da energia térmica dos componentes do equipamento transmissor gera interferência na própria transmissão. Este ruído, em sistemas de comunicação sem fio, é chamado de Ruido gaussiano aditivo branco ou AWGN(\emph{Additive White Gaussian Noise}) pois este ruido é adicionado ao sinal da portadora e ao canal de radio.
+
+\subsection*{Interferência}
+Interferência é caracterizada como a ação de sinais eletromagnéticos de fontes externas sobre um canal de radiofrequência. Normalmente dispositivos, principalmente os focados na criação de RSSFs, utilizam as faixas de frequência abertas para aplicações industriais, científicas e médicas, as chamadas faixas de frequência ISM(\emph{Industrial, Scientific and Medical}), portanto estes dispositivos disputam as mesmas faixas de frequência. Em especial, na faixa de frequência ISM de 2.4GHz há uma sobrecarga pois as tecnologias como Bluetooth e Wi-Fi operam nesta faixa, além de interferência de dispositivos que não são para comunicação como fornos micro-ondas que geram muito barulho nesta faixa.
+
+Muitas vezes, como forma de regulamentar estas faixas de frequência, dispositivos são obrigados a operar com uma potência de transmissão menor ou devem operar sob um ciclo de trabalho reduzido.
+
+\subsection*{Propagação por múltiplos caminhos}
+Ao ser irradiado pela antena, a onda eletromagnética do sinal pode sofre inúmeras reflexões em obstáculos até chegar ao receptor. Este fenômeno denominado de propagação por multi-caminho, ou \emph{multi-path}, causa três efeitos no sinal eletromagnético: desvanecimento, espalhamento de atraso e espalhamento de Doppler.
+
+O desvanecimento é causado quando vários sinais chegam a antena receptora com diferenças de fase que fazem elas se somarem de forma destrutiva o que gera causa uma recepção de má qualidade do sinal original, este efeito pode também gerar areas de sombras do sinal. Os diversos sinais refletidos podem também se somar de forma construtiva melhorando a recepção do sinal em alguns pontos do espaço.
+
+Os múltiplos caminhos que o sinal percorre no ambiente devido as reflexões e espalhamentos fazem com que alguns sinais cheguem ao receptor em tempos diferentes realizando o efeito de espalhamento de atraso. O espalhamento de Doppler é análogo ao espalhamento de atraso de tempo porém no espectro da frequência e ocorre principalmente quando o receptor do sinal está em movimento.
+
+
+\subsection*{Sombreamento}
+O efeito de sombreamento é definido como areas onde sinal recebido possui uma baixa potência devido a obstruções entre o transmissor e o receptor. Onde a recepção dos sinais é dada principalmente por reflexões do sinal, sendo que os múltiplos caminhos que o sinal podem percorrer para chegar no local do receptor podem ter uma efeito negativo na recepção do sinal.
 
 
 \section{Padrões e tecnologias de comunicação para redes LPWAN}
