@@ -1,6 +1,12 @@
 \chapter{Fundamentação Teórica}
 \label{fundamentacao}
-\todo{Texto inicial do capitulo}
+Nesta seção será abordados os conceitos fundamentais que foram utilizados como base teórica para o desenvolvimento do projeto apresentado na seção \ref{experimento}.
+Primeiramente será apresentado como são categorizados as redes de telecomunicações sem fio de acordo a sua área de abrangência destacando no final uma nova categoria desenvolvida para melhor atender as especificações de aplicações IoT.
+Em seguida será exposto as camadas física e de enlace, e suas sub-camadas, de acordo o modelo OSI.
+Logo após será mostrado alguns problemas enfrentados na implementação de redes sem fio.
+Posteriormente será evidenciado os principais padrões e tecnologias desenvolvidas para as redes de baixa potencia e de longo alcance.
+Em seguida será apresentado os parâmetros utilizados no experimento para medir a confiabilidade do enlace sem fio.
+Por fim, será então mostrado trabalhos relacionados ao apresentado neste documento
 
 \section{Classificação de redes}
 \label{classRedes}
@@ -48,24 +54,24 @@ A camada física é uma abstração do meio físico de comunicação por onde tr
 
 A sub-camada de convergência de transmissão é o responsável pela codificação do canal, para obter maior robustez e confiabilidade na transmissão dos dados em função mesmo considerando as características problemáticas do canal de rádio frequência. À está camada está incumbida algumas funções como:
 \begin{itemize}
-    \item Embaralhamento do fluxo de bits:
+      \item Embaralhamento do fluxo de bits:
 
-          Garante que os bits 1 e 0 tenham a mesma probabilidade antes de serem enviados para transmissão. Ao realizar esta tarefa, a utilização do canal será otimizada.
-    \item Controle de erros:
+            Garante que os bits 1 e 0 tenham a mesma probabilidade antes de serem enviados para transmissão. Ao realizar esta tarefa, a utilização do canal será otimizada.
+      \item Controle de erros:
 
-          Utilização de técnicas para detectar e corrigir erros da transmissão. Por exemplo, adicionando alguns bit à mensagem original é possível utiliza-los para detectar se algum bit da mensagem original foi modificado, podendo ser necessário uma retransmissão, ou talvez corrigir a mensagem original.
-    \item Entrelaçamento de bits:
+            Utilização de técnicas para detectar e corrigir erros da transmissão. Por exemplo, adicionando alguns bit à mensagem original é possível utiliza-los para detectar se algum bit da mensagem original foi modificado, podendo ser necessário uma retransmissão, ou talvez corrigir a mensagem original.
+      \item Entrelaçamento de bits:
 
-          Uma técnica que utiliza algorítimos de distribuição temporal dos bits da mensagem para espalhar a concentração de erros ao logo de todo o fluxo de dados. Tornando mais fácil a utilização das técnicas de controle de erros. Estes algorítimos são pré-definidos na fonte e destino.
+            Uma técnica que utiliza algorítimos de distribuição temporal dos bits da mensagem para espalhar a concentração de erros ao logo de todo o fluxo de dados. Tornando mais fácil a utilização das técnicas de controle de erros. Estes algorítimos são pré-definidos na fonte e destino.
 \end{itemize}
 
 A segunda sub-camada presente na camada física é a camada dependente dependente do meio e aqui é implementado as funcionalidades dos transceptores de dados. Os protocolos aplicados no nível físico podem ser um protocolo único, em dispositivos e aplicações mais simples, ou vários protocolos trabalhando em conjunto com vários sub-camadas internas no caso de aplicações mais complexas.
 
 Há várias técnicas de transmissão e recepção de dados, porém, forma geral, é possível agrupa-las em três grandes classes. Abaixo elas estão apresentadas em ordem crescente de complexidade:
 \begin{enumerate}
-    \item Técnicas de codificação por pulsos ou codificação de banda base;
-    \item Processos de modulação de um ou mais parâmetros de portadora eletromagnética única;
-    \item Processo de modulação e transmissão utilizando múltiplas portadoras. Estas portadoras podem ser caracterizadas no domínio da frequência, utilizando múltiplas portadoras do tipo OFDM, Multiplexação por divisão de Frequências Ortogonais. Ou podem ser caracterizadas no domínio do tempo como como ocorre no CDMA, Acesso Múltiplo por Divisão de Código, onde diferentes códigos ortogonais são aplicados simultaneamente sobre uma portadora digital gerando vários espectros ao redor de uma única portadora analógica, está técnica também é conhecido como espalhamento espectral.
+      \item Técnicas de codificação por pulsos ou codificação de banda base;
+      \item Processos de modulação de um ou mais parâmetros de portadora eletromagnética única;
+      \item Processo de modulação e transmissão utilizando múltiplas portadoras. Estas portadoras podem ser caracterizadas no domínio da frequência, utilizando múltiplas portadoras do tipo OFDM, Multiplexação por divisão de Frequências Ortogonais. Ou podem ser caracterizadas no domínio do tempo como como ocorre no CDMA, Acesso Múltiplo por Divisão de Código, onde diferentes códigos ortogonais são aplicados simultaneamente sobre uma portadora digital gerando vários espectros ao redor de uma única portadora analógica, está técnica também é conhecido como espalhamento espectral.
 \end{enumerate}
 
 \subsection{Camada de enlace}
