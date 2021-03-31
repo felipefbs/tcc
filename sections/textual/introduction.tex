@@ -3,9 +3,16 @@
 
 IoT é um conceito que vem ganhado força ao longo dos anos, graças ao estudo, prototipação e desenvolvimento de diversas protocolos e tecnologias. Os pontos chave para o seu desenvolvimento foram a miniaturização de processadores e sensores; melhoramento de baterias e otimização do uso destas; definição de novos protocolos de rede; e aumento da robustez de protocolos de comunicação sem-fio.
 
-A Internet das Coisas, mais conhecida pelo seu acrônimo em inglês IoT(\textit{Internet of Things}), foi cunhada pelo engenheiro britânico Kevin Ashton no final dos anos 1990 onde ele, trabalhando para a P\&G, pensou na possibilidade de que os produtos da empresa estivessem munidos de identificadores e capazes de estabelecer comunicação através da internet, que na época estava se estabelecendo, criando assim uma internet onde as coisas estivessem conectadas \cite{KA_IOT}. Assim, os computadores se tornariam capazes de rastrear e identificar tudo, podendo reduzir desperdícios, minimizar custos e identificar o momento certo quando substituir ou reparar um produto \cite{lopezIOT}.
+A Internet das Coisas, representado na figura \ref{fig:iotimg}, mais conhecida pelo seu acrônimo em inglês IoT(\textit{Internet of Things}), foi cunhada pelo engenheiro britânico Kevin Ashton no final dos anos 1990 onde ele, trabalhando para a P\&G, pensou na possibilidade de que os produtos da empresa estivessem munidos de identificadores e capazes de estabelecer comunicação através da internet, que na época estava se estabelecendo, criando assim uma internet onde as coisas estivessem conectadas \cite{KA_IOT}. Assim, os computadores se tornariam capazes de rastrear e identificar tudo, podendo reduzir desperdícios, minimizar custos e identificar o momento certo quando substituir ou reparar um produto \cite{lopezIOT}.
 
-\todo{image IoT}
+\begin{figure}[ht]
+    \centering
+    \caption{Internet of Things (IoT)}
+    \includegraphics[width=10cm]{./sections/textual/chapters/images/intro_iot.jpg}\\
+    Retirado do site http://sentrybrasil.com.br/cursos/internet-das-coisas-vai-revolucionar-o-mercado/
+    \label{fig:iotimg}
+\end{figure}
+
 
 Atualmente há diversas aplicações de IoT, desde implementações em larga escala como cidades inteligentes conforme descrito em \cite{sotres2017practical}, onde em Santander na Espanha é implantado por toda a cidade nós com múltiplos sensores afim de disponibilizar uma plataforma de testes. Aplicações de smart campus como apresentada em \cite{wang2017performance} que mostra a aplicação de uma rede de sensores sem fio para verificar a qualidade do ar. Aplicações de saúde como em \cite{zhang2015remote}, onde é coletado e analisado em tempo real informações de pressão sanguínea e peso corporal do paciente, estes dados são utilizados então para verificar a probabilidade do paciente ter um evento de insuficiência cardíaca, utilizando técnicas de aprendizado de maquina.
 
@@ -13,11 +20,20 @@ Atualmente há diversas aplicações de IoT, desde implementações em larga esc
 
 A implementação de uma aplicação IoT necessita de uma rede de nó sensores distribuídas geralmente conectadas a um nó central, conhecido como nó gateway, que tem por finalidade encaminhar os dados coletados para processamento. Para tal implementação existem duas abordagens clássicas, conexões cabeadas entre os nós da rede e a utilização de redes sem fio \cite{gomes2017estimaccao}. Como vantagem em relação à redes sem fio, as conexões cabeadas apresentam maior confiabilidade na na conexão. Em contrapartida, a utilização de redes sem fio se destaca, em relação a redes cabeadas, nos quesitos de flexibilidade, custo de implantação, facilidade e rápidez na implementação e na manutenção \cite{gungor2009industrial}.
 
-As vantagens que Redes de Sensores Sem Fio, RSSF, apresentam fazem estas se destacarem na implementação de aplicações IoT, porém há ainda desafios para uma implementação robusta de comunicações sem fio, pois o meio de transmissão é caótico e pouco confiável. Interferências, ruídos, sombreamento e propagação por multi percurso no meio podem ocasionar altas taxas de perda de pacote e alta latência \cite{gomes2017estimaccao}.
+As vantagens que Redes de Sensores Sem Fio(RSSF), representado na figura \ref{fig:rssf} apresentam fazem estas se destacarem na implementação de aplicações IoT, porém há ainda desafios para uma implementação robusta de comunicações sem fio, pois o meio de transmissão é caótico e pouco confiável. Interferências, ruídos, sombreamento e propagação por multi percurso no meio podem ocasionar altas taxas de perda de pacote e alta latência \cite{gomes2017estimaccao}.
 
-Para contornar os desafios da comunicação sem fio, padrões e tecnologias foram desenvolvidos. Um dos principais órgãos na padronização em telecomunicações é o Instituto de Engenheiros Eletricistas e Eletronicos, Institute of Electrical and Electronics Engineers, mais conhecido pela sigla IEEE. Por exemplo, para redes locais o Wi-Fi, baseado no padrão IEEE 802.11, se tornou uma tecnologia confiável que pode apresentar altas taxas de transferência com uma latência baixa. Em redes de curto alcance, o Bluetooth, baseado no padrão IEEE 802.15.1, se tornou trivial na vida das pessoas através do uso para conexão de fones de ouvido, teclados e mouses sem fio. Estes padrões, apesar de já bem estabelecidos no mercado, possuem alguns problemas para o desenvolvimento de RSSF, que geralmente requerem múltiplos dispositivos espalhados e, principalmente, sem acesso fácil a uma fonte continua de energia.
+\begin{figure}[ht]
+    \begin{center}
+        \caption{RSSF - Topologia Estrela}
+        \includegraphics[width=10cm]{./sections/textual/chapters/images/intro_rssf.png}\\
+        Fonte autoral
+        \label{fig:rssf}
+    \end{center}
+\end{figure}
 
-Tendo em vista este problema energético, alguns padrões foram desenvolvidos para oferecer uma comunicação de qualidade e focando em eficiência energética para a utilização de baterias. Iniciativas de privadas desenvolveram, por exemplo, o SigFox e LoRa. O IEEE desenvolveu o padrão 802.15.4 e o aprimorou ao longo dos anos adicionando emendas, que foram responsáveis pelo desenvolvimento de aplicações como Zigbee e Wi-SUN. A 3rd Generation Partnership Project, Projeto de Parceria de terceira geração em tradução livre, desenvolveu a tecnologia NB-IoT, uma versão simplificada do LTE que visa utilizar a mesma infraestrutura porém com uma melhor eficiência energética. Estas tecnologias podem ser utilizadas para a implementação de redes classificadas como Redes de Longo Alance e Baixo Consumo Energético.
+Para contornar os desafios da comunicação sem fio, padrões e tecnologias foram desenvolvidos. Um dos principais órgãos na padronização em telecomunicações é o Instituto de Engenheiros Eletricistas e Eletrônicos, Institute of Electrical and Electronics Engineers, mais conhecido pela sigla IEEE. Por exemplo, para redes locais o Wi-Fi, baseado no padrão IEEE 802.11, se tornou uma tecnologia confiável que pode apresentar altas taxas de transferência com uma latência baixa. Em redes de curto alcance, o Bluetooth, baseado no padrão IEEE 802.15.1, se tornou trivial na vida das pessoas através do uso para conexão de fones de ouvido, teclados e mouses sem fio. Estes padrões, apesar de já bem estabelecidos no mercado, possuem alguns problemas para o desenvolvimento de RSSF, que geralmente requerem múltiplos dispositivos espalhados e, principalmente, sem acesso fácil a uma fonte continua de energia.
+
+Tendo em vista este problema energético, alguns padrões foram desenvolvidos para oferecer uma comunicação de qualidade e focando em eficiência energética para a utilização de baterias. Iniciativas de privadas desenvolveram, por exemplo, o SigFox e LoRa. O IEEE desenvolveu o padrão 802.15.4 e o aprimorou ao longo dos anos adicionando emendas, que foram responsáveis pelo desenvolvimento de aplicações como ZigBee e Wi-SUN. A 3rd Generation Partnership Project, Projeto de Parceria de terceira geração em tradução livre, desenvolveu a tecnologia NB-IoT, uma versão simplificada do LTE que visa utilizar a mesma infraestrutura porém com uma melhor eficiência energética. Estas tecnologias podem ser utilizadas para a implementação de redes classificadas como Redes de Longo Alcance e Baixo Consumo Energético.
 
 \section{Justificativa e Relevância do Trabalho}
 \label{sec:justificativa}
@@ -30,7 +46,7 @@ O cenário industrial apresenta diversos problemas, principalmente relacionados 
 
 \subsection{Objetivo Geral}
 \label{subsec:objGeral}
-Implantar uma RSSF para coletar as informações das transmissões realizadas através das modulações definidas pelo padrão IEEE 802.15.4g para analisar o comportamento destas no cenário de Smart Building.
+Implantar uma RSSF e coletar as informações das transmissões realizadas através das modulações definidas pelo padrão IEEE 802.15.4g e analisar o comportamento destas no cenário de Smart Building.
 
 % Coletar e analisar os dados experimentais de transmissões realizadas entre os dispositivos openmote que implementam as modulações definidas no padrão IEEE 802.15.4g SUN espalhados pelo prédio dos professores no campus Campina Grande.
 
