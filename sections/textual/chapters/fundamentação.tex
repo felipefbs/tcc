@@ -2,7 +2,7 @@
 \label{fundamentacao}
 Nesta seção será abordados os conceitos fundamentais que foram utilizados como base teórica para o desenvolvimento do projeto apresentado na seção \ref{experimento}.
 Primeiramente será apresentado como são categorizados as redes de telecomunicações sem fio de acordo a sua área de abrangência destacando no final uma nova categoria desenvolvida para melhor atender as especificações de aplicações IoT.
-Em seguida será exposto as camadas física e de enlace, e suas sub-camadas, de acordo o modelo OSI.
+Em seguida será exposto as camadas física e de enlace, e suas sub-camadas, do modelo OSI.
 Logo após será mostrado alguns problemas enfrentados na implementação de redes sem fio.
 Posteriormente será evidenciado os principais padrões e tecnologias desenvolvidas para as redes de baixa potencia e de longo alcance.
 Em seguida será apresentado os parâmetros utilizados no experimento para medir a confiabilidade do enlace sem fio.
@@ -132,16 +132,30 @@ O padrão IEEE 802.15.4 define em seu texto, camadas físicas e de acesso ao mei
 
 \subsection*{Emenda 'g'}
 Em 2015 foi proposto uma revisão que incorpora uma novo esquema de modulações para permitir uma melhor volatilidade entre a faixa de comunicação, ocupação da largura de banda, taxa de transferência de dados e confiabilidade da comunicação para melhor se adequar com a aplicação. O padrão então foi adotado como uma emenda ao padrão de 2003, definindo assim o padrão IEEE 802.15.4g que incluia as modulações SUN(Redes de Utilidades Inteligentes, Smart Utility Network) \cite{tuset2020reliability}.
+
 A seguir uma visão geral das modulações SUN de acordo apresentado em \cite{tuset2020reliability}:
+
 \subsubsection*{SUN-FSK}
+A técnica de modulação digital FSK ou Chaveamento de Mudança de Frequência, \emph{Frequency Shift Keying}, altera a frequência, mantendo a amplitude constante, da portadora de acordo com um sinal digital e os dígitos de informação são transmitidos através do chaveamento de diferentes frequências \cite{lathi2012}.
+
 Foi incluída no padrão devido a sua eficiência e compatibilidade com sistemas legado. Possui 3 modos de operação para cada uma das faixas de frequência definidas no padrão e possui parâmetros de canal e de modulação, nos quais é possível definir o tipo de modulação, o espaçamento do canal e o índice de modulação. Estes parâmetros definem uma faixa de taxa de transferência de 50 kbits/s a até 50 kbits/s.
+
 \subsubsection*{SUN-OQPSK}
+Originalmente no padrão IEEE 802.15.4 foi adicionado a técnica de modulação DSSS-OQPSK, Direct Sequence Spread Spectrum Offset Quadrature Phase Shift Keying, que se trata de uma técnica de modulação que utiliza do chaveamento de fase, em um angulo de 90º, do sinal da portadora para transmitir dois bits por vez e em seguida utilizando a técnica de espalhamento espectral de sequencia direta espalha o sinal em uma ampla faixa de frequência utilizando uma sequência aleatória de alta taxa de bits. Estas técnicas visam aumentar a taxa de transferência e aumentar a robustez da transmissão, principalmente tornando o sinal imune a interferência de faixa estreita, ruídos e diminuindo os efeitos de desvanecimento por múltiplos caminhos \cite{goldsmith2005wireless}.
+
 Esta modulação está presente no texto original do padrão e foi estendida nesta emenda para adicionar bandas de frequência e suportar diferentes fatores de espalhamentos para conseguir atingir taxas de transferência entre 6.25 kbits/s a até 500 kbits/s.
+
 \subsubsection*{SUN-OFDM}
+O esquema de modulação de OFDM ou Multiplexação Ortogonal por Divisão de Frequência, \emph{Orthogonal Frequency Division Multiplexing}, divide os dados a serem transmitidos em sub-canais ortogonais centrados em  sub-portadoras com frequências diferentes. Estas sub-portadoras são comprimidas em uma faixa de frequência podendo assim melhor utilizar a largura de banda disponível e como é possível enviar dados por cada uma das sub-portadoras é possível também ter uma elevada taxa de transferência. As frequência de cada sub-portadora se sobrepõem, porém cada uma destas estão ortogonais as suas subjacentes garantindo que não haja interferência entre si \cite{rappaport2009}\cite{goldsmith2005wireless}.
+
 Esta modulação consegue prover altas taxas de transferência e maiores faixas de comunicação, enquanto consegue lidar com interferência e propagação por multi-caminho. Utiliza diferentes Esquemas de Modulação e Codificação para alternar em modulações, como BPSK, QPSK e 16-QAM, e esquemas de repetição de frequência para prover uma faixa de taxa de transferência entre 50 kbits/s a até 800 kbits/s em um canal com a largura de banda que varia entre 200kHz e 1.2MHz.
 
 \subsubsection*{Diversidade de Modulação}
-Em \cite{gomes2020improving} os autores propõem a utilização das três modulações SUN em um esquema de diversidade de modulação como forma de aumentar a confiabilidade do enlace sem fio.
+Segundo Rappaport em \cite{rappaport2009}, diversidade é uma técnica utilizada para compensar os danos no canal de atenuação. Melhorando  a qualidade do enlace de comunicações sem fio sem alterar a interface de ar comum, sem aumentar a potencia ou a largura de banda transmitida.
+
+A ideia por trás de diversidade é que diferentes sinais serão enviados por diferentes caminhos e portanto, dificilmente, sofreram das mesmas complicações, aumentando assim a probabilidade de receber um sinal com menor quantidade de erros \cite{goldsmith2005wireless}. Normalmente, são utilizadas técnicas de diversidade aumentando o numero de antenas receptoras ou utilizando múltiplos canais de comunicação.
+
+Como demonstrado pelos autores em \cite{gomes2020improving} é possível utilizar as diferentes modulações do padrão IEEE 802.15.4g SUN para criar um esquema de diversidade de modulação, ou seja, utilizar as diferentes modulações do padrão para mensagens podendo utilizar modulações especificas de acordo com as variações do ambiente ou enviar repetições da mensagem em mais de uma modulação, então, podendo aumentar melhorar a qualidade do enlace.
 
 \section{Parâmetros para avaliação da confiabilidade do enlace sem fio}
 \label{paramSF}
@@ -153,6 +167,7 @@ Received Signal Strength Indicator, Indicador da Força do Sinal Recebido em tra
 Packed Delivery Ratio, Taxa de Entrega de Pacotes, é um indicador de camada de aplicação que relaciona a quantidade de pacotes recebidos pelo receptor pela quantidade de pacotes enviados pelo transmissor. O PDR pode ser um valor importante para medir um enlace de dados, pois dependendo da aplicação há uma taxa minima de entrega de pacotes, por exemplo, algumas aplicações industriais necessitam de um PDR superior a 99.9\%
 
 \subsection*{CCA}
+Clear Channel Assessment, Avaliação do Canal Limpo, é uma forma de verificar o canal antes da transmissão, afim de detectar se ele está em uso. Obtido através da verificação da energia presente no canal e é medido em dBm. Caso o valor medido esteja acima de um limiar pré-determinado o transmissor não pode transmitir e esperará um tempo aleatório em milissegundos para verificar novamente o canal. Este parâmetro faz parte do protocolo CSMA citado na seção \ref{osi}.
 
 \section{Trabalhos relacionados}
-Em \cite{tuset2020dataset} os autores do artigo realizaram um experimento para analisar o comportamento das modulações SUN do padrão IEEE 802.15.4g em um cenário industrial. Em  \cite{munoz2018overview} os autores realizaram um estudo aprofundado sobre a modulação SUN-OFDM no ambiente predial, demonstrando, entre outras coisas, que a modulação SUN-OFDM nas faixas de frequência sub-GHz se é mais vantajosa de utilizar que a modulação OQPSK do padrão IEEE 802.15.4.
+\refact{Em \cite{tuset2020dataset} os autores do artigo realizaram um experimento para analisar o comportamento das modulações SUN do padrão IEEE 802.15.4g em um cenário industrial. Em  \cite{munoz2018overview} os autores realizaram um estudo aprofundado sobre a modulação SUN-OFDM no ambiente predial, demonstrando, entre outras coisas, que a modulação SUN-OFDM nas faixas de frequência sub-GHz se é mais vantajosa de utilizar que a modulação OQPSK do padrão IEEE 802.15.4.}
