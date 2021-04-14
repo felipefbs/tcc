@@ -1,12 +1,16 @@
 {
     "cSpell.words": [
+        "ATMEL",
         "AWGN",
+        "BFSK",
         "BPSK",
         "CDMA",
         "CSMA",
         "DSSS",
+        "IFPB",
         "Indenta",
         "LPWAN",
+        "LPWANs",
         "OFDM",
         "OQPSK",
         "QPSK",
@@ -34,8 +38,7 @@
         "piconets",
         "prototipa",
         "prototipação",
-        "urlcolor",
-        "LPWANs"
+        "urlcolor"
     ],
     "files.exclude": {
         "**/.git": true,
