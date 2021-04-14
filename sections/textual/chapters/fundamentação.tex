@@ -1,173 +1,182 @@
 \chapter{Fundamentação Teórica}
 \label{fundamentacao}
-Nesta seção serão abordados os conceitos fundamentais que foram utilizados como base teórica para o desenvolvimento do projeto apresentado na seção \ref{experimento}.
-Primeiramente será apresentado como são categorizados as redes de telecomunicações sem fio de acordo a sua área de abrangência destacando no final uma nova categoria desenvolvida para melhor atender as especificações de aplicações IoT.
-Em seguida será exposto as camadas física e de enlace, e suas sub-camadas, do modelo OSI.
-Logo após será mostrado alguns problemas enfrentados na implementação de redes sem fio.
-Posteriormente será evidenciado os principais padrões e tecnologias desenvolvidas para as redes de baixa potencia e de longo alcance.
-Em seguida será apresentado os parâmetros utilizados no experimento para medir a confiabilidade do enlace sem fio.
-Por fim, será então mostrado trabalhos relacionados ao apresentado neste documento
+Nesta seção são abordados os conceitos fundamentais utilizados neste trabalho e necessários para melhor entendimento do experimento.
 
-\section{Classificação de redes}
+\section{Classificação de Redes}
 \label{classRedes}
-Segundo Tanembaum em \cite{tanembaum2011}, redes de telecomunicações são classificadas, comumente, de acordo com sua escala de abrangência. Esta classificação é importante pois diferentes tecnologias e padrões são criados para atacar problemas específicos destas redes. Abaixo serão apresentadas as classificações mais relevantes para o escopo deste trabalho de acordo Rochol em \cite{rochol2018sistemas}.
+Segundo Tanembaum, em \cite{tanembaum2011}, redes de telecomunicações são classificadas, comumente, de acordo com sua escala de abrangência. A seguir são apresentadas algumas das classificações de redes sem fio, figura \ref{fig:tecnologias_redes_semfiof}, mais relevantes para o escopo deste trabalho de acordo Rochol em \cite{rochol2018sistemas}.
 
-\todo{imagem das redes PAN, LAN, WAN etc}
+\begin{figure}[ht]
+      \begin{center}
+          \caption{Tecnologias de Redes Sem Fio}
+          \includegraphics[width=10cm]{./sections/textual/chapters/images/tecnologias_redes_semfio.png}\\
+          Imagem retirada do livro Sistemas de Comunicação Sem Fio \cite{rochol2018sistemas}.
+          \label{fig:tecnologias_redes_semfiof}
+      \end{center}
+  \end{figure}
 
-\subsection{Classificação de redes sem fio: escala de abrangência}
+\subsection{Classificação de Redes Sem Fio: Escala de Abrangência}
 \subsubsection*{Redes sem fio pessoais - WPAN}
-Inicialmente estas redes foram definidas para possuir alcance limitado com a principal função de facilitar a conectividade de dispositivos periféricos ao computador ou telefone celular através de uma conexão sem fio. O padrão IEEE 802.15 especifica a arquitetura destas redes sem fio, também denominadas, piconets. A principal  tecnologia comercial de redes WPANs é o Bluetooth, baseado no padrão IEEE 802.15.1.
+Inicialmente estas redes foram definidas para apresentar alcance limitado com a principal função de facilitar a conectividade de dispositivos periféricos ao computador ou telefone celular por uma conexão sem fio. O padrão IEEE 802.15 especifica a arquitetura destas redes sem fio, também denominadas \emph{piconets}. A principal  tecnologia comercial de redes WPAN é o Bluetooth (padrão IEEE 802.15.1).
 
-O conceito de redes WPAN foi expandido para designar qualquer tipo de rede sem fio que atua em área restrita interconectando dispositivos, periféricos, atuadores ou um conjunto de sensores, geralmente com a capacidade de se auto-organizarem. E a partir dessa expansão é possível aplicações como redes de sensores sem fio, sistemas de anticolisão e de condução automática em veículos, automação industrial, prédios inteligentes, monitoração de pacientes entre várias outras.
+O conceito de redes WPAN foi expandido para designar qualquer tipo de rede sem fio que atua em área restrita interconectando dispositivos, periféricos, atuadores ou um conjunto de sensores, geralmente com a capacidade de se auto-organizarem. E a partir dessa expansão é possível aplicações como redes de sensores sem fio, sistemas anticolisão e de condução automática em veículos, automação industrial, prédios inteligentes e monitoração de pacientes. Geralmente, estas redes utilizam a tecnologia ZigBee(IEEE 802.15.4) para a implementação da comunicação de rádio.
 
-Então, basicamente existem as redes WPAN para interconexão de dispositivos onde o Bluetooth é a tecnologia mais proeminente no mercado. E Redes de Sensores Sem Fio WPAN implementadas, principalmente, com a tecnologia ZigBee, que implementa a camada física padronizada pela IEEE 802.15.4.
+\subsubsection*{Redes Sem Fio Locais - WLAN}
+São redes com a finalidade de conectar computadores de domésticos, de escritórios ou prédios em uma rede privada. Nesse tipo de rede, a tecnologia Wi-Fi(padrão IEEE 802.11) se tornou popular sendo adotado praticamente em todo computador e dispositivos moveis como \emph{smartphones} e \emph{tablets}.
 
+Atualmente o padrão IEEE 802.11 utiliza de duas faixas de frequência não licenciada ISM, Industrial, Cientifica e Médica(Industrial, Scientific and Medic), as faixas em torno de 2,4GHz e 5GHz. Esta ultima faixa de frequência foi adicionada para garantir maiores taxas de transmissão. Como utiliza uma faixa de frequência não licenciada, é comum ocorrer interferência com outras redes Wi-Fi e com redes formadas por outras tecnologias que atuam na mesma faixa de frequências como Bluetooth e ZigBee.
 
-\subsubsection*{Redes sem fio locais - WLAN}
-São redes com a finalidade de conectar computadores de casas, escritório ou prédio em uma rede privada. Neste tipo de rede, a tecnologia Wi-Fi se tornou extremamente popular sendo adotado praticamente em todo computador e dispositivos moveis como \emph{smartphones} e \emph{tablets}. O Wi-Fi é baseado no padrão IEEE 802.11.
+\subsubsection*{Redes Celulares de Telefonia e Dados}
+Estas redes abrangem diversos sistemas de telefonia conectados e ganharam bastante popularidade nas últimas décadas devido, principalmente, à redução de custos e aumento nas taxas de transmissão oferecidas pelas operadoras. Exemplos mais recentes de telefonia celular são GSM, EDGE e LTE que fornecem a segunda, terceira e quarta geração(2G, 3G e 4G) de telefonia celular, respectivamente.
 
-Inicialmente, foi definido no padrão a utilização da faixa de frequência ISM de 2,4GHz. Com novas emendas do padrão IEEE 802.11 foi adicionado a faixa de frequência ISM 5GHz possibilitando maiores taxas de transferência para dispositivos próximos. Como utiliza uma faixa de frequência livre, é comum ocorrer interferência com outras redes Wi-Fi e com redes formadas por outras tecnologias que atuam na mesma faixa de frequência, como é o caso do Bluetooth e ZigBee que atuam na faixa de frequência de 2,4GHz.
-
-\subsubsection*{Redes celulares de telefonia e dados}
-Estas redes compreendem diversos sistemas de telefonia conectados e ganharam bastante popularidade nas ultimas décadas devido, principalmente pela redução de custos e aumento nas taxas de transferência oferecidas pelas operadoras. Exemplos mais recentes de telefonia celular são GSM, EDGE e LTE que fornecem a segunda, terceira e quarta geração(2G, 3G e 4G) de telefonia celular.
-
-Como será abordado na seção \ref{padrõesSF} há aplicações que se utilizam da infraestrutura GSM e LTE para aplicações de RSSF.
+Como abordado na seção \ref{padrõesSF}, há aplicações que utilizam infraestrutura GSM e LTE para aplicações de RSSF.
 
 
-\subsubsection*{Redes de loga distância com baixo consumo energético - LPWAN}
-Algumas aplicações IoT possuem requisitos muito específicos como atuação por uma grande extensão, dispositivos que possam passar longos períodos utilizando baterias e um bom custo beneficio. Tecnologias como ZigBee e Bluetooth não apresentam ua grande área de cobertura. Aplicações de telefonia celular apesar de conseguirem abranger uma grande área, possuem um consumo energético excessivo. Então, estas aplicações IoT impulsionaram a criação de novos padrões e tecnologia para um novo tipo de rede denominada de redes de longa distância com baixo consumo energético ou \emph{Low Power Wide Area Network}(LPWAN).
+\subsubsection*{Redes de Longa Distância com Baixo Consumo Energético - LPWAN}
+Em algumas aplicações IoT há requisitos muito específicos como atuação por uma grande extensão, dispositivos que possam passar longos períodos utilizando baterias e um bom custo beneficio. Tecnologias como ZigBee e Bluetooth não apresentam grande área de cobertura. Aplicações de telefonia celular apesar de grandes areas apresentam alto consumo energético.  Então, aplicações IoT impulsionaram a criação de novos padrões e tecnologia para um novo tipo de rede denominada de redes de longa distância com baixo consumo energético ou \emph{Low Power Wide Area Network}(LPWAN).
 
-Dispositivos que implementam redes de baixo consumo energético ganharam popularidade na indústria e nas comunidades de pesquisa pois estabelecem comunicação sem fio de longas distâncias, cerca de até alguns quilômetros, com baterias que podem durar anos com uma única carga \cite{mekki2019comparative}.
+Dispositivos que implementam redes de baixo consumo energético ganharam popularidade na indústria e nas comunidades de pesquisa pois estabelecem comunicação sem fio de longas distâncias, de centenas de metros até alguns poucos quilômetros, com baterias que podem durar anos com uma única carga \cite{mekki2019comparative}.
 
-A utilização deste tipo de rede se tornou fundamental para a implementação de RSSFs, oferecendo confiabilidade e baixo custo de implantação e manutenção para redes sem fio. Na seção \ref{padrõesSF} serão apresentadas alguns dos principais padrões e tecnologias utilizadas nestas redes.
+A utilização desse tipo de rede se tornou fundamental para a implementação de RSSFs, oferecendo confiabilidade e baixo custo de implantação e manutenção. Na seção \ref{padrõesSF} são apresentados alguns dos principais padrões e tecnologias utilizadas nessas redes.
 
-\section{Modelo de camadas OSI}
+\section{Modelo de Camadas OSI}
 \label{osi}
-O modelo de referência para Interconexão de Sistemas Abertos, \emph{Open Systems Interconnection}, ou apenas modelo OSI, foi um importante passo para a padronização de redes de computadores definindo como um sistema aberto a conexão de outros sistemas deve funcionar. O modelo possui sete camadas e cada uma possui uma função bem definida. A comunicação entre camadas é abstraída e se dá através de interfaces, ou seja, uma camada é cega para o que acontece nas camadas subjacentes, desde que a informação que chegue até ela obedeça o padrão pré-definido.
+O modelo de referência para Interconexão de Sistemas Abertos, \emph{Open Systems Interconnection}, ou apenas modelo OSI, foi um passo para a padronização de redes de computadores. No modelo há sete camadas funções bem definidas. A comunicação entre camadas é abstraída e se dá através de interfaces, ou seja, uma camada não tem acesso direto às camadas subjacentes, informação chega até ela no padrão pré-definido.
 
-\todo{imagem das camadas osi}
+Para este trabalho será mais relevante a apresentação apenas das camadas 1 e 2, figura \ref{fig:modelo_osi_1e2}, física e de enlace, respectivamente, e suas subcamadas do modelo OSI de forma generalizada de acordo o apresentado por Tanembaum em \cite{tanembaum2011} e por Rochol em \cite{rochol2018sistemas}.
 
-Para este trabalho será mais relevante a apresentação apenas das camadas 1 e 2, física e de enlace respectivamente, e suas subcamadas do modelo OSI de forma generalizada de acordo o apresentado por Tanembaum em \cite{tanembaum2011} e por Rochol em \cite{rochol2018sistemas}.
+\begin{figure}[ht]
+      \begin{center}
+          \caption{Camada Física e Camada de Enlace do Modelo OSI}
+          \includegraphics[width=10cm]{./sections/textual/chapters/images/modelo_osi_1e2.png}\\
+          Imagem retirada do livro Sistemas de Comunicação Sem Fio \cite{rochol2018sistemas}.
+          \label{fig:modelo_osi_1e2}
+      \end{center}
+  \end{figure}
 
-\subsection{Camada física}
-A camada física é uma abstração do meio físico de comunicação por onde trafegado os bits e define nas duas pontas da comunicação, por exemplo, o que deve ser considerado um bit 1 ou um bit 0; quantos nanosegundos é a duração total de um bit; se a transmissão pode ser realizada pelos dois lados ao mesmo tempo ou cada lado pode transmitir apenas quando o outro lado não transmitir; entre outras definições para se manter a conexão desta camada. Possui duas sub-camadas: sub-camada de convergência de transmissão do nível físico e a sub-camada dependente do meio.
 
-A sub-camada de convergência de transmissão é o responsável pela codificação do canal, para obter maior robustez e confiabilidade na transmissão dos dados em função mesmo considerando as características problemáticas do canal de rádio frequência. A está camada está incumbida algumas funções como:
+\subsection{Camada Física}
+A camada física é uma abstração do meio físico de comunicação por onde trafegam os sinais do transmissor para o receptor definindo que sinais utilizar para os \emph{bits} 0 e 1; a duração de um bit; se a transmissão pode ser realizada nos dois sentidos ao mesmo tempo ou um de cada vez. São consideradas duas sub-camadas: de convergência de transmissão do nível físico e a sub-camada dependente do meio.
+
+Na sub-camada de convergência de transmissão é feita a codificação de canal, para obter confiabilidade na transmissão dos dados mesmo considerando as características problemáticas do canal de rádio frequência. Algumas funções implementadas nessa camada são descritas a seguir:
 \begin{itemize}
-      \item Embaralhamento do fluxo de bits:
+      \item Embaralhamento do fluxo de \emph{bits}:
 
-            Garante que os bits 1 e 0 tenham a mesma probabilidade antes de serem enviados para transmissão. Ao realizar esta tarefa, a utilização do canal será otimizada.
+            Garante que os \emph{bits} 1 e 0 tenham a mesma probabilidade antes de serem enviados para transmissão. Ao realizar essa função, a utilização do canal é otimizada.
       \item Controle de erros:
 
-            Utilização de técnicas para detectar e corrigir erros da transmissão. Por exemplo, adicionando alguns bit à mensagem original é possível utiliza-los para detectar se algum bit da mensagem original foi modificado, podendo ser necessário uma retransmissão, ou talvez corrigir a mensagem original.
-      \item Entrelaçamento de bits:
+            Utilização de técnicas para detectar e corrigir erros da transmissão. Por exemplo, adicionando alguns \emph{bits} à mensagem original é possível utiliza-los para detectar se algum bit da mensagem original foi modificado, podendo ser necessário uma retransmissão, ou talvez corrigir a mensagem recebida.
+      \item Entrelaçamento de \emph{bits}:
 
-            Uma técnica que utiliza algorítimos de distribuição temporal dos bits da mensagem para espalhar a concentração de erros ao logo de todo o fluxo de dados. Tornando mais fácil a utilização das técnicas de controle de erros. Estes algorítimos são pré-definidos na fonte e destino.
+            Uma técnica que utiliza algorítimos de distribuição temporal dos \emph{bits} da mensagem para espalhar a concentração de erros ao longo da sequência de \emph{bits}. Tornando mais eficiente a utilização das técnicas de controle de erros. Esses algorítimos são pré-definidos no transmissor e no receptor.
 \end{itemize}
 
-A segunda sub-camada presente na camada física é a camada dependente dependente do meio e aqui é implementado as funcionalidades dos transceptores de dados. Os protocolos aplicados no nível físico podem ser um protocolo único, em dispositivos e aplicações mais simples, ou vários protocolos trabalhando em conjunto com vários sub-camadas internas no caso de aplicações mais complexas.
+A segunda sub-camada da camada física corresponde às funcionalidades do transceptor de dados que depende do meio em que são implementadas. Transceptores mais simples, como modems ou regeneradores de sinais, utilizam protocolos e modulações para a transmissão/recepção do sinal mais simples como a codificação por pulsos. E alguns transceptores mais complexos que permitem maiores taxas de transmissão, múltiplos usuários e maior robustez a efeitos negativos no sinal rádio, possuem sistemas, geralmente com vários subsistemas, mais complexos utilizando diversos esquemas de modulação ao mesmo tempo, por exemplo o esquema de modulação OFDM.
 
-Há várias técnicas de transmissão e recepção de dados, porém, forma geral, é possível agrupa-las em três grandes classes. Abaixo elas estão apresentadas em ordem crescente de complexidade:
+
+Há várias técnicas de transmissão e recepção de dados, porém, é possível agrupá-las em três classes, que são apresentadas a seguir em ordem crescente de complexidade:
 \begin{enumerate}
-      \item Técnicas de codificação por pulsos ou codificação de banda base;
-      \item Processos de modulação de um ou mais parâmetros de portadora eletromagnética única;
-      \item Processo de modulação e transmissão utilizando múltiplas portadoras. Estas portadoras podem ser caracterizadas no domínio da frequência, utilizando múltiplas portadoras do tipo OFDM, Multiplexação por divisão de Frequências Ortogonais. Ou podem ser caracterizadas no domínio do tempo como como ocorre no CDMA, Acesso Múltiplo por Divisão de Código, onde diferentes códigos ortogonais são aplicados simultaneamente sobre uma portadora digital gerando vários espectros ao redor de uma única portadora analógica, está técnica também é conhecido como espalhamento espectral.
+      \item Técnicas de codificação por pulsos(ou modulação de banda base);
+      \item Processos de modulação de um ou mais parâmetros de portadora única;
+      \item Processo de modulação e transmissão utilizando múltiplas portadoras. Essas portadoras podem ser caracterizadas no domínio da frequência, utilizando múltiplas portadoras do tipo OFDM, Multiplexação por Divisão em Frequências Ortogonais. Ou podem ser caracterizadas no domínio do tempo como como ocorre no CDMA, Acesso Múltiplo por Divisão em Código, em que diferentes códigos ortogonais são aplicados simultaneamente sobre uma portadora digital gerando vários espectros ao redor de uma única portadora analógica, técnica também conhecida como espalhamento espectral.
 \end{enumerate}
 
-\subsection{Camada de enlace}
-A principal tarefa desta camada é transformar os bits brutos que trafegam na camada física em uma mensagem livre de erros de transmissão, para isso esta camada faz com que o transmissor separe os dados e transmita cada parte de forma sequencial. Caso algum destas partes, ou quadros, da mensagem apresente erro então esta parte pode ser retransmitida. A camada de enlace possui duas sub-camadas: a sub-camada de convergência de serviço e a sub-camada de acesso ao meio.
+\subsection{Camada de Enlace}
+A principal função implementada nessa camada é aumentar a garantia de que os \emph{bits} trafeguem na camada física livre de erros de transmissão. Esta camada faz com que o transmissor separe os dados e transmita cada parte de forma sequencial. Caso algum destas partes, ou quadros, da mensagem apresente erro, então pode ser retransmitida. Na camada de enlace há duas sub-camadas: de convergência de serviço e de acesso ao meio.
 
-A sub-camada de convergência de serviço é responsável por atender os requisitos de Qualidade de Serviço, \emph{Quality of Service}(QoS), da aplicação, como taxa de transferência, atraso máximo de pacotes, taxa de perda de pacotes entre outras exigências da aplicação.
+A sub-camada de convergência de serviço estabelece os requisitos de Qualidade de Serviço, \emph{Quality of Service}(QoS), da aplicação, como taxa de transmissão, atraso máximo de pacotes e taxa minima de perda de pacotes.
 
-A sub-camada de de controle de acesso ao meio, ou \emph{Medium Access Control}(MAC), possui grande importância em comunicações sem fio. Esta sub-camada define como será dado o acesso ao meio de comunicação e, dependendo do protocolo utilizado, quem tem a vez de utilização do meio. Há, principalmente, duas famílias de protocolos MAC utilizados em comunicações sem fio, ALOHA e CSMA.
+A sub-camada de de controle de acesso ao meio, ou \emph{Medium Access Control}(MAC), define como é feito o acesso ao meio de comunicação e, dependendo do protocolo utilizado, quem tem prioridade de utilização do meio. Há, principalmente, duas famílias de protocolos MAC utilizados em comunicações sem fio, ALOHA e CSMA, Acesso Múltiplo com Detecção de Portadora(\emph{Carrier Sense Multiple Access}).
 
-O protocolo ALOHA puro define que quem possuir dados a ser enviados deve enviar, mesmo que isto cause colisões de pacotes, porém, ao transmitir, deverá escutar o canal durante a transmissão e retransmitir a mensagem, caso seja percebido por parte do transmissor, se houve colisão ou se o receptor da mensagem não confirmou o recebimento da mensagem. Uma variação deste protocolo, chamado de \emph{Slotted} ALOHA foi desenvolvido com a intenção de diminuir a probabilidade de colisão dividindo o tempo em intervalos discretos de tempo, time slots. Para tal deveria ter uma sincronia entre todos os integrantes da rede para transmitir apenas nos intervalos de tempo certo.
+O protocolo ALOHA define que os dados dos usuários devem ser transmitidos, mesmo que cause colisões de pacotes, porém, ao transmitir, o usuário deve sensorear o canal durante a transmissão e retransmitir a mensagem, caso seja percebido, por parte do transmissor, se houve colisão ou se o receptor da mensagem não confirmou o seu recebimento. Uma variação desse protocolo, chamado de \emph{Slotted} ALOHA foi desenvolvido com a intenção de diminuir a probabilidade de colisão dividindo o tempo em intervalos discretos de tempo, \emph{time slots}. Exigindo uma sincronia entre todos os integrantes da rede para transmitir apenas nos intervalos certos.
 
-O protocolo CSMA, Acesso Múltiplo com Detecção de Portadora(\emph{Carrier Sense Multiple Access}), procura melhor utilizar o canal evitando a colisão de pacotes. Para tal o transmissor tem que escutar o canal antes de realizar uma transmissão. Caso o canal esteja livre a transmissão é realizada, caso o canal esteja ocupado o transmissor espera até o canal estiver livre para transmitir ou transmite após um intervalo aleatório de tempo.
+O protocolo CSMA evita colisão de pacotes no canal. Para tal o transmissor tem que sensorear o canal antes de realizar uma transmissão. Caso o canal esteja livre, a transmissão é realizada. Caso o canal esteja ocupado, o transmissor espera até que esteja livre para transmitir ou transmite após um intervalo aleatório.
 
 
-\section{Problemas da comunicação sem fio}
-Como já apresentado, redes sem fios apresentam diversas vantagens em relação às redes cabeadas. Porém, o meio por onde as ondas de rádio são propagadas apresenta diversos desafios. O canal de radiofrequência pode apresentar, além do sinal do transmissor, sinais de estações transmissoras próximas, resíduos de transmissões passadas ou resíduos de efeitos térmicos do próprio transmissor, além, é claro, da forma como as ondas eletromagnéticas se propagam no meio pode ser um problema para uma recepção clara do sinal.
+\section{Problemas da Comunicação Sem Fio}
+Redes sem fios apresentam algumas vantagens em relação as redes cabeadas, por exemplo, facilidade de implementação e manutenção, flexibilidade, custos reduzidos e rápidez de implementação. Porém, o meio por onde as ondas de rádio são propagadas apresenta diversos desafios. O canal de radiofrequência pode apresentar, além do sinal do transmissor, sinais de estações transmissoras próximas, resíduos de transmissões passadas ou resíduos de efeitos térmicos do próprio transmissor, além, é claro, da forma como as ondas eletromagnéticas se propagam no meio, que pode ser um problema para recepção do sinal.
 
-Abaixo serão apresentados alguns dos principais problemas que dificultam a recepção de sinais de rádio de acordo apresentado pelos respectivos autores em \cite{gomes2017estimaccao}, \cite{rappaport2009} e \cite{rochol2018sistemas}:
+A seguir são apresentados alguns dos principais problemas para a recepção de sinais de rádio:
+
 \subsection*{Ruido}
-Ruído é caracterizado como uma interferência eletromagnética aleatória causada pela agitação térmica das moléculas dos condutores. Ou seja, a elevação da energia térmica dos componentes do equipamento transmissor gera interferência na própria transmissão. Este ruído, em sistemas de comunicação sem fio, é chamado de Ruido gaussiano aditivo branco ou AWGN(\emph{Additive White Gaussian Noise}) pois este ruido é adicionado ao sinal da portadora e ao canal de radio.
+Em \cite{rochol2018sistemas} é apresentado dois tipos de ruídos: ruído branco ou ruído térmico e ruído impulsivo. Ruído térmico é caracterizado como a agitação molecular nos condutores e dispositivos físicos que realizam o processamento do sinal até a antena. Este tipo de ruído é impossível de ser eliminado completamente e limita o canal de radiofrequência; Ruído impulsivo é gerado por descargas atmosféricas ou equipamentos elétricos, que não são dispositivos de comunicação via rádio, próximos ao transmissor ou receptor, é imprevisível e de difícil controle, por exemplo, maquinas industriais e fornos micro-ondas, este que gera ruídos na faixa de 2,4GHz. Este tipo de ruído gera sequências de erros na transmissão, mecanismos de controle de erro dificilmente irão corrigir devido a alta concentração de erros.
 
 \subsection*{Interferência}
-Interferência é caracterizada como a ação de sinais eletromagnéticos de fontes externas sobre um canal de radiofrequência. Normalmente dispositivos, principalmente os focados na criação de RSSFs, utilizam as faixas de frequência abertas para aplicações industriais, científicas e médicas, as chamadas faixas de frequência ISM(\emph{Industrial, Scientific and Medical}), portanto estes dispositivos disputam as mesmas faixas de frequência. Em especial, na faixa de frequência ISM de 2.4GHz há uma sobrecarga pois as tecnologias como Bluetooth e Wi-Fi operam nesta faixa, além de interferência de dispositivos que não são para comunicação como fornos micro-ondas que geram muito barulho nesta faixa.
+Interferência, segundo Rappaport em \cite{rappaport2009}, é o maior fator limitante no desempenho de sistemas de rádio. Há dois tipos principais de inferência geradas pelo próprio sistema de rádio que são a interferência co-canal e a interferência de canal adjacente. Há também a interferência externa, gerada por dispositivos comunicação que utilizam das mesmas faixas de frequência utilizados pelo sistema, por exemplo, na faixa ISM em torno das frequências 2,4GHz há uma sobrecarga pois as tecnologias como Bluetooth e Wi-Fi operam nesta faixa. Interferência co-canal, segundo \cite{rochol2018sistemas}, é gerada, principalmente, em sistemas com múltiplos usuários que utilizam o mesmo canal. No caso de sistemas telefônicos, isto pode resultar em ligações cruzadas, em que usuários podem receber as informações de outras chamadas \cite{rappaport2009}. A interferência de canal adjacente ocorre quando uma transmissão é realizada muito proxima de um receptor que está recebendo transmissões de um outro transmissor. A recepção é prejudicada podendo se tornar inviável durante a transmissão do transmissor proximo ao receptor \cite{rappaport2009}.
 
-Muitas vezes, como forma de regulamentar estas faixas de frequência, dispositivos são obrigados a operar com uma potência de transmissão menor ou devem operar sob um ciclo de trabalho reduzido.
 
-\subsection*{Propagação por múltiplos caminhos}
-Ao ser irradiado pela antena, a onda eletromagnética do sinal pode sofre inúmeras reflexões em obstáculos até chegar ao receptor. Este fenômeno denominado de propagação por multi-caminho, ou \emph{multi-path}, causa três efeitos no sinal eletromagnético: desvanecimento, espalhamento de atraso e espalhamento de Doppler.
+\subsection*{Propagação por Múltiplos Caminhos}
+Segundo Rochol em \cite{rochol2018sistemas} ao ser irradiado pela antena, a onda eletromagnética do sinal de rádio sofre inúmeras reflexões em obstáculos ao longo da sua trajetória até chegar ao receptor. Esse fenômeno, denominado de propagação por múltiplos caminhos. Este fenômeno explica três tipos de distorções observadas na transmissão por ondas de rádio: desvanecimento, espalhamento de atraso e espalhamento de Doppler.
 
-O desvanecimento é causado quando vários sinais chegam a antena receptora com diferenças de fase que fazem elas se somarem de forma destrutiva o que gera causa uma recepção de má qualidade do sinal original, este efeito pode também gerar areas de sombras do sinal. Os diversos sinais refletidos podem também se somar de forma construtiva melhorando a recepção do sinal em alguns pontos do espaço.
+O desvanecimento é causado quando várias cópias de um sinal, que percorreram vários caminhos, chegam à antena receptora com diferenças de fase, que fazem se somarem de forma destrutiva, causando uma recepção de má qualidade do sinal original, este efeito pode também gerar áreas de sombra do sinal. Os diversos sinais refletidos podem também se somar de forma construtiva melhorando a recepção do sinal em alguns pontos do espaço.
 
-Os múltiplos caminhos que o sinal percorre no ambiente devido às reflexões e espalhamentos fazem com que alguns sinais cheguem ao receptor em tempos diferentes realizando o efeito de espalhamento de atraso. O espalhamento de Doppler é análogo ao espalhamento de atraso de tempo porém no espectro da frequência e ocorre principalmente quando o receptor do sinal está em movimento.
+O espalhamento de atraso ocorre quando o sinal irradiado pela antena percorre caminhos diferentes e chegam ao receptor intervalos diferentes. Causando que a recepção do sinal seja duplicada ou ocorra uma interferência destrutiva como no caso do desvanecimento.
+
+No espalhamento de Doppler é observado uma diferença na frequência da portadora e é causado principalmente pela mobilidade do receptor em relação ao transmissor. Quando o receptor está se movendo, aumenta a quantidade de percursos que o sinal pode percorrer e fatores como frequência da portadora, velocidade, prédios e carros podem influenciar na ocorrência do efeito Doppler.
 
 
 \subsection*{Sombreamento}
-O efeito de sombreamento é definido como areas onde sinal recebido possui uma baixa potência devido a obstruções entre o transmissor e o receptor. Onde a recepção dos sinais é dada principalmente por reflexões do sinal, sendo que os múltiplos caminhos que o sinal podem percorrer para chegar no local do receptor podem ter uma efeito negativo na recepção do sinal.
+O efeito de sombreamento é definido como áreas onde sinal recebido apresenta baixa potência devida a obstruções entre o transmissor e o receptor. Onde a recepção dos sinais acontece principalmente, por reflexões do sinal, sendo que os múltiplos caminhos que o sinal pode percorrer para chegar no local do receptor, podem ter uma efeito negativo na recepção do sinal.
 
 
 \section{Padrões e tecnologias de comunicação para redes LPWAN}
 \label{padrõesSF}
-Segundo Tanembaum em \cite{tanembaum2011}, sem coordenação e cooperação entre as fabricantes de dispositivos haveria o caos completo onde não seria possível a interoperabilidade de sistemas. Sistemas IoT, como demonstrado em \cite{sotres2017practical}, podem ser constituídas de sistemas diferentes com vários dispositivos. Portanto a padronização das telecomunicações são imprescindíveis atualmente. Permitindo dispositivos de diferentes fabricantes consigam se comunicar, não importando quem produziu a placa de rede, os cabos, roteadores ou comutadores.
+Segundo Tanembaum em \cite{tanembaum2011}, sem coordenação e cooperação entre fabricantes de dispositivos, não seria possível a interoperabilidade de sistemas. Sistemas IoT, como demonstrado em \cite{sotres2017practical}, podem ser constituídas de sistemas com vários dispositivos diferentes. Portanto, a padronização das telecomunicações são imprescindíveis, permitindo que dispositivos de diferentes fabricantes consigam se comunicar, não importando quem produziu a placa de rede, os cabos, roteadores ou comutadores.
 
 \subsection{LoRa}
-LoRa, abreviação para Long Range, é uma tecnologia que utiliza o padrão LoRaWAN e um protocolo de acesso ao meio de mesmo nome. Modula sinais sub-GHz na faixa ISM utilizando uma técnica de modulação  privada chamada \emph{Chirp Spread Spectrum}. que espalha um sinal de banda curta por todo um canal de banda larga, esta técnica possibilita uma maior resistência a interferências e torna mais difícil detectar ou obstruir o canal de comunicação. A taxa de transferência pode variar de 300 bits/s a até 50 kbits/s, dependendo do fator de espalhamento utilizado na comunicação. A carga útil máxima de uma mensagem é 243 bytes \cite{mekki2019comparative}.
+LoRa, abreviação para Long Range, é uma tecnologia que utiliza o padrão LoRaWAN e um protocolo de acesso ao meio de mesmo nome. Utiliza uma técnica de modulação proprietária da SemTech baseada na técnica de modulação CSS, \emph{Chirp Spread Spectrum}, Essa técnica espalha um sinal de faixa estreita em um canal de banda larga, tornando o sinal mais resistente a interferências, mais difícil de se detectar por outros dispositivos que estejam sensoreando o canal de comunicação e mais resistente a obstruções no canal de comunicação. Utiliza as faixas ISM de 868 MHz, 915MHz e 433MHz na Europa, America do Norte e Asia, respectivamente. A taxa de transmissão pode variar de 300 \emph{bit}/s a até 50 k\emph{bit}/s, dependendo do fator de espalhamento utilizado na comunicação. A carga útil máxima de uma mensagem é 243 \emph{bytes} \cite{mekki2019comparative}.
 
-A tecnologia LoRa é desenvolvida pela empresa estadunidense SemTech e o padrão LoRaWAN é mantido pelo consorcio de empresas chamado LoRa Alliance.
+A tecnologia LoRa é desenvolvida pela empresa estadunidense SemTech e o padrão LoRaWAN é mantido pelo consórcio de empresas chamado LoRa Alliance.
 
 \subsection{NB-IoT}
-NarrowBand IoT é uma tecnologia especificada na versão 13 do 3GPP. Esta tecnologia opera na faixa de frequência celular(LTE e GSM), modulando os sinais utilizando a técnica QPSK. Utiliza faixas de frequência não ocupadas da faixa de frequência LTE. Seu protocolo é baseado em uma versão simplificada do protocolo LTE, que reduz as funcionalidades do LTE para melhor se adequar sua utilização para IoT, por exemplo, funções como monitoramento da qualidade do sinal ou conectividade dupla não são utilizadas, visando diminuir o uso de energia e aumentar a vida útil da bateria. Possui taxa transferência máxima de 200 kbits/s e seu payload máximo é de 1600 bytes.
+NarrowBand IoT é uma tecnologia especificada na versão 13 do 3GPP. Esta tecnologia opera na faixa de frequência celular(LTE e GSM), modulando os sinais utilizando a técnica QPSK, Quadrature Phase Shift Keying(Modulação por Deslocamento de Fase em Quadratura). Utiliza faixas de frequência não ocupadas no LTE. Seu protocolo é uma versão simplificada do protocolo LTE, com menos funcionalidades que o LTE, para melhor se adequar sua utilização para IoT, por exemplo, funções como monitoramento da qualidade do sinal ou conectividade dupla não são utilizadas, visando diminuir o uso de energia e aumentar a vida útil da bateria. Apresenta taxa transmissão máxima de 200 k\emph{bits}/s e sua carga útil máxima é de 1600 \emph{bytes}.
 
 \subsection{SigFox}
-SigFox é uma tecnologia que não possui padronização oficial e é mantida pela empresa homônima. Os nós finais conectados a esta rede enviam para as estações radio-base mensagens utilizando a modulação BPSK utilizando bandas de frequência ultra-estreitas, até 100 Hz, na faixa de frequência ISM. Como utiliza uma faixa de frequência ultra estreita é bastante eficiente energeticamente e bastante resistente à interferência. Porém, não pode oferecer taxas de transferência acima de 100 bits/s.
+SigFox é uma tecnologia que não possui padronização oficial e é mantida pela empresa homônima. Os nós finais conectados a esta rede enviam para as estações radio base mensagens utilizando a modulação BPSK, Binary Phase Shift Keying(Modulação por Deslocamento de Fase Binaria) utilizando bandas de frequência ultra-estreitas, até 100 Hz, na faixa de frequência ISM. Como utiliza uma faixa de frequência ultra estreita é eficiente energeticamente e resistente à interferência. Porém, não apresenta oferecer taxas de transmissão acima de 100 \emph{bit}/s.
 
-A empresa SigFox oferece uma solução com conectividade ponta a ponta, o que significa que os dados entre o nó final são transmitidos para as estações rádio-base e vão diretamente para os servidores da empresa. Sendo possível apenas o envio de 140 mensagens por dia e cada mensagem enviada pode ter um payload máximo de 12 bytes.
+A empresa SigFox oferece uma solução com conectividade ponta a ponta, o que significa que os dados entre o nó final são transmitidos para as estações rádio-base e vão diretamente para os servidores da empresa. Sendo possível apenas o envio de 140 mensagens por dia e cada mensagem enviada pode ter um payload máximo de 12 \emph{bytes}.
 
 \subsection{IEEE 802.15.4}
-O padrão IEEE 802.15.4 define em seu texto, camadas físicas e de acesso ao meio utilizando a faixa ISM sub-GHz e 2.4 GHz, utilizando, respectivamente, as modulações BPSK e O-QPSK. Possuindo uma taxa de transferência máxima de 250 kbits/s utilizando a faixa de frequência de 2.4 GHz com um tamanho máximo de payload de 127 bytes \cite{munoz2018overview} \cite{gomes2017estimaccao}. Este padrão é utilizado como base para a utilização do ZigBee.
+No padrão IEEE 802.15.4 são definidas camadas físicas e de acesso ao meio utilizando as faixas ISM abaixo de 1GHz e 2,4 GHz, com as modulações BPSK e O-QPSK, Offset Quadrature Phase Shift Keying(Modulação por Deslocamento de Fase em Quadratura Deslocada), respectivamente. Com taxa de transmissão máxima de 250 k\emph{bit}/s utilizando a faixa de frequência de 2,4 GHz com um tamanho máximo de payload de 127 \emph{bytes} \cite{munoz2018overview} \cite{gomes2017estimaccao}. Este padrão é utilizado como base do ZigBee.
 
 \subsection*{Emenda 'g'}
-Em 2015 foi proposto uma revisão que incorpora uma novo esquema de modulações para permitir uma melhor volatilidade entre a faixa de comunicação, ocupação da largura de banda, taxa de transferência de dados e confiabilidade da comunicação para melhor se adequar com a aplicação. O padrão então foi adotado como uma emenda ao padrão de 2003, definindo assim o padrão IEEE 802.15.4g que incluia as modulações SUN(Redes de Utilidades Inteligentes, Smart Utility Network) \cite{tuset2020reliability}.
+Em 2015 foi proposta uma revisão do padrão IEEE 802.15.4 com novos esquemas de modulação com parâmetros de operação predefinidos para permitir uma melhor troca de faixa de comunicação, ocupação da largura de banda, taxa de transmissão de dados e confiabilidade da comunicação para melhor se adequar aos requisitos da aplicação. Assim, foi definido o padrão IEEE 802.15.4g que inclui as modulações SUN, \emph{Smart Utility Network}(Redes de Utilidades Inteligentes) \cite{tuset2020reliability}.
 
-A seguir uma visão geral das modulações SUN de acordo apresentado em \cite{tuset2020reliability}:
+A seguir é apresentada uma visão geral das modulações:
 
 \subsubsection*{SUN-FSK}
-A técnica de modulação digital FSK ou Chaveamento de Mudança de Frequência, \emph{Frequency Shift Keying}, altera a frequência, mantendo a amplitude constante, da portadora de acordo com um sinal digital e os dígitos de informação são transmitidos através do chaveamento de diferentes frequências \cite{lathi2012}.
+A técnica de modulação digital FSK, \emph{Frequency Shift Keying}(Chaveamento de Mudança de Frequência), altera a frequência, mantendo a amplitude da portadora constante, e os \emph{bits} de informação são transmitidos por meio do chaveamento de diferentes frequências \cite{lathi2012}.
 
-Foi incluída no padrão devido a sua eficiência e compatibilidade com sistemas legado. Possui 3 modos de operação para cada uma das faixas de frequência definidas no padrão e possui parâmetros de canal e de modulação, nos quais é possível definir o tipo de modulação, o espaçamento do canal e o índice de modulação. Estes parâmetros definem uma faixa de taxa de transferência de 50 kbits/s a até 50 kbits/s.
+Foi incluída no padrão por a sua eficiência e compatibilidade com sistemas legados. Apresenta 3 modos de operação para cada uma das faixas de frequência definidas no padrão e possui parâmetros de canal e de modulação, em que é possível definir o tipo de modulação, a largura de banda do canal e o índice de modulação. Estes parâmetros definem a taxa de transmissão de 50 k\emph{bit}/s a até 50 k\emph{bit}/s.
 
 \subsubsection*{SUN-OQPSK}
-Originalmente no padrão IEEE 802.15.4 foi adicionado a técnica de modulação DSSS-OQPSK, Direct Sequence Spread Spectrum Offset Quadrature Phase Shift Keying, que se trata de uma técnica de modulação que utiliza do chaveamento de fase, em um angulo de 90º, do sinal da portadora para transmitir dois bits por vez e em seguida utilizando a técnica de espalhamento espectral de sequencia direta espalha o sinal em uma ampla faixa de frequência utilizando uma sequência aleatória de alta taxa de bits. Estas técnicas visam aumentar a taxa de transferência e aumentar a robustez da transmissão, principalmente tornando o sinal imune a interferência de faixa estreita, ruídos e diminuindo os efeitos de desvanecimento por múltiplos caminhos \cite{goldsmith2005wireless}.
+Originalmente, no padrão IEEE 802.15.4 foi adicionada a técnica de modulação DSSS-OQPSK, \emph{Direct Sequence Spread Spectrum Offset Quadrature Phase Shift Keying}(Modulação por Deslocamento de Fase em Quadratura Deslocada com Espalhamento Espectral de Sequência Direta), que se trata de uma técnica de modulação que utiliza chaveamento de fase, em um ângulo de 90$^{\circ}$, do sinal da portadora para transmitir dois \emph{bits} por vez e em seguida utilizando a técnica de espalhamento espectral de sequência direta espalha o sinal em uma ampla faixa de frequência utilizando uma sequência aleatória de alta taxa de \emph{bits}. Essas técnicas visam aumentar a taxa de transmissão e aumentar a robustez da transmissão, principalmente, tornando o sinal resiliente a interferência de faixa estreita, ruídos e diminuindo os efeitos de desvanecimento por múltiplos caminhos \cite{goldsmith2005wireless}.
 
-Esta modulação está presente no texto original do padrão e foi estendida nesta emenda para adicionar bandas de frequência e suportar diferentes fatores de espalhamentos para conseguir atingir taxas de transferência entre 6.25 kbits/s a até 500 kbits/s.
+Essa modulação está presente no texto original do padrão e foi estendida nesta emenda para adicionar bandas de frequência e suportar diferentes fatores de espalhamentos para conseguir atingir taxas de transmissão entre 6,25 k\emph{bit}/s a até 500 k\emph{bit}/s.
 
 \subsubsection*{SUN-OFDM}
-O esquema de modulação de OFDM ou Multiplexação Ortogonal por Divisão de Frequência, \emph{Orthogonal Frequency Division Multiplexing}, divide os dados a serem transmitidos em sub-canais ortogonais centrados em  sub-portadoras com frequências diferentes. Estas sub-portadoras são comprimidas em uma faixa de frequência podendo assim melhor utilizar a largura de banda disponível e como é possível enviar dados por cada uma das sub-portadoras é possível também ter uma elevada taxa de transferência. As frequência de cada sub-portadora se sobrepõem, porém cada uma destas estão ortogonais as suas subjacentes garantindo que não haja interferência entre si \cite{rappaport2009}\cite{goldsmith2005wireless}.
+O esquema de modulação de OFDM, \emph{Orthogonal Frequency Division Multiplexing}(Multiplexação Ortogonal por Divisão de Frequência), divide os dados a serem transmitidos em sub-canais ortogonais centrados em  sub-portadoras com frequências diferentes. Essas sub-portadoras são comprimidas em uma faixa de frequência podendo o uso da largura de banda disponível. Como é possível enviar dados por cada uma das sub-portadoras, é possível também ter uma elevada taxa de transmissão. As frequências de cada sub-portadora se sobrepõem, porém cada delas é ortogonal às suas subjacentes, garantindo que não haja interferência entre elas \cite{rappaport2009}\cite{goldsmith2005wireless}.
 
-Esta modulação consegue prover altas taxas de transferência e maiores faixas de comunicação, enquanto consegue lidar com interferência e propagação por multi-caminho. Utiliza diferentes Esquemas de Modulação e Codificação para alternar em modulações, como BPSK, QPSK e 16-QAM, e esquemas de repetição de frequência para prover uma faixa de taxa de transferência entre 50 kbits/s a até 800 kbits/s em um canal com a largura de banda que varia entre 200kHz e 1,2MHz.
+Esta modulação consegue prover altas taxas de transmissão e maiores faixas de comunicação, enquanto consegue lidar com interferência e propagação por múltiplos caminhos. Utiliza diferentes esquemas de modulação e codificação para alternar entre modulações, como BPSK, QPSK e 16-QAM, e esquemas de repetição de frequência para prover uma faixa de taxa de transmissão entre 50 k\emph{bits}/s a até 800 k\emph{bits}/s em um canal com a largura de banda que varia entre 200kHz e 1,2MHz.
 
 \subsubsection*{Diversidade de Modulação}
-Segundo Rappaport em \cite{rappaport2009}, diversidade é uma técnica utilizada para compensar os danos no canal de atenuação. Melhorando  a qualidade do enlace de comunicações sem fio sem alterar a interface de ar comum, sem aumentar a potencia ou a largura de banda transmitida.
+Segundo Rappaport em \cite{rappaport2009}, diversidade é uma técnica utilizada para compensar os danos da atenuação do canal melhorando a qualidade do enlace de comunicações sem fio sem alterar a interface aérea, sem aumentar a potência ou a largura de banda transmitida.
 
-A ideia por trás de diversidade é que diferentes sinais serão enviados por diferentes caminhos e portanto, dificilmente, sofreram das mesmas complicações, aumentando assim a probabilidade de receber um sinal com menor quantidade de erros \cite{goldsmith2005wireless}. Normalmente, são utilizadas técnicas de diversidade aumentando o número de antenas receptoras ou utilizando múltiplos canais de comunicação.
+A ideia de diversidade é que diferentes sinais são enviados por diferentes caminhos e, portanto, dificilmente, sofreram das mesmas complicações, aumentando a probabilidade de receber um sinal com menor quantidade de erros \cite{goldsmith2005wireless}. Normalmente, são utilizadas técnicas de diversidade aumentando o número de antenas receptoras ou utilizando múltiplos canais de comunicação.
 
-Como demonstrado pelos autores em \cite{gomes2020improving} é possível utilizar as diferentes modulações do padrão IEEE 802.15.4g SUN para criar um esquema de diversidade de modulação, ou seja, utilizar as diferentes modulações do padrão para mensagens podendo utilizar modulações especificas de acordo com as variações do ambiente ou enviar repetições da mensagem em mais de uma modulação, então, podendo aumentar melhorar a qualidade do enlace.
+Como demonstrado pelos autores em \cite{gomes2020improving} é possível utilizar as diferentes modulações do padrão IEEE 802.15.4g SUN para criar um esquema de diversidade de modulação, ou seja, utilizar as diferentes modulações do padrão de acordo com as variações do ambiente ou enviar repetições da mensagem com mais de uma modulação, podendo melhorar a qualidade do enlace.
 
-\section{Parâmetros para avaliação da confiabilidade do enlace sem fio}
+\section{Parâmetros para Avaliação da Confiabilidade do Enlace Sem Fio}
 \label{paramSF}
-Algumas métricas são utilizadas para medir a qualidade de um enlace sem fio, algumas estão mais relacionadas a camada física, como RSSI, e outras estão mais relacionadas a camada de aplicação como PDR. Estas serão melhor detalhadas abaixo.
+Algumas métricas são utilizadas para medir a qualidade de um enlace sem fio, algumas estão mais relacionadas à camada física, como RSSI, \emph{Received Signal Strength Indicator}(Indicador da Força do Sinal Recebido) e CCA, \emph{Clear Channel Assessment}(Verificação do Canal Limpo), ou mais relacionadas a camada de aplicação como o PDR, \emph{Packet Delivery Ratio}, Taxa de Entrega de Pacotes. Estas métricas são detalhadas a seguir.
 \subsection*{RSSI}
-\emph{Received Signal Strength Indicator}, Indicador da Força do Sinal Recebido em tradução livre, é uma medida da energia total presente em um sinal de rádio recebido. RSSI é um valor relativo e pode variar de acordo com a fabricante do transceptor de rádio \cite{UNDERSTANDING_RSSI}. Geralmente o valor de RSSI é apresentado em números negativos que vão de -100 até 0, onde valores próximos de -100 são sinais de baixa qualidade e sinais com valores próximos a 0 são de ótima qualidade.
+RSSI é uma medida da energia de um sinal de rádio recebido. O RSSI é um valor relativo e pode variar de acordo com a fabricante do transceptor de rádio \cite{UNDERSTANDING_RSSI}. O valor de RSSI é apresentado -100dB até 0dB, os maiores valores, próximos a 0dB, significam uma boa qualidade do sinal recebido e valores menores, próximos a 100dB, significa sinais de baixa qualidade.
 
 \subsection*{PDR}
-\emph{Packed Delivery Ratio}, Taxa de Entrega de Pacotes, é um indicador de camada de aplicação que relaciona a quantidade de pacotes recebidos pelo receptor pela quantidade de pacotes enviados pelo transmissor. O PDR pode ser um valor importante para medir um enlace de dados, pois dependendo da aplicação há uma taxa minima de entrega de pacotes, por exemplo, algumas aplicações industriais necessitam de um PDR superior a 99.9\%
+PDR é um indicador de camada de aplicação que relaciona a quantidade de pacotes recebidos pelo receptor com a quantidade de pacotes enviados pelo transmissor. Dependendo da aplicação, há uma taxa mínima de entrega de pacotes, por exemplo,  aplicações industriais de alta capacidade necessitam de um PDR superior a 99,9\%.
 
 \subsection*{CCA}
-\emph{Clear Channel Assessment}, Avaliação do Canal Limpo, é uma forma de verificar o canal antes da transmissão, afim de detectar se ele está em uso. Obtido através da verificação da energia presente no canal e é medido em dBm. Caso o valor medido esteja acima de um limiar pré-determinado o transmissor não pode transmitir e esperará um tempo aleatório em milissegundos para verificar novamente o canal. Este parâmetro faz parte do protocolo CSMA citado na seção \ref{osi}.
+CCA é uma forma de verificar o canal antes da transmissão, a fim de detectar se ele está em uso. Obtido a partir da verificação da energia no canal, é medido em dBm. Caso o valor medido esteja acima de um limiar pré-determinado o transmissor não pode transmitir e espera um tempo aleatório em milissegundos para verificar novamente o canal. Este parâmetro faz parte do protocolo CSMA, citado na Seção \ref{osi}.
 
 \section{Trabalhos relacionados}
 \refact{Em \cite{tuset2020dataset} os autores do artigo realizaram um experimento para analisar o comportamento das modulações SUN do padrão IEEE 802.15.4g em um cenário industrial. Em  \cite{munoz2018overview} os autores realizaram um estudo aprofundado sobre a modulação SUN-OFDM no ambiente predial, demonstrando, entre outras coisas, que a modulação SUN-OFDM nas faixas de frequência sub-GHz se é mais vantajosa de utilizar que a modulação OQPSK do padrão IEEE 802.15.4.}
