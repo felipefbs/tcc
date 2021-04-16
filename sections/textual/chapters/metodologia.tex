@@ -1,13 +1,13 @@
 \chapter{Experimento}
 \label{experimento}
 
-Nesta seção será apresentada como foi realizado o experimento de implementação de uma RSSF em um ambiente de Smart Building, utilizando a implementação do padrão IEEE 802.15.4g SUN dos dispositivos OpenMote-B. A finalidade deste experimento é avaliar as performance da rede analisando valores de RSSI e PDR obtidos.
+Nesta seção é apresentado o experimento de implementação de uma RSSF em um ambiente de Smart Building, utilizando a implementação do padrão IEEE 802.15.4g SUN dos dispositivos OpenMote-B. A finalidade deste experimento é avaliar as performance da rede analisando valores de RSSI e PDR obtidos.
 
-O experimento foi realizado em um dos prédios do campus Campina Grande do IFPB, Instituto Federal de Educação, Ciência e Tecnologia da Paraíba. Sendo este constituído principalmente de salas de escritório e de alguns laboratórios, possuindo 4 andares separados por pisos de concreto. Este cenário é particularmente desafiador para um enlace sem fio pois não é possível ter uma linha de visada entre o transmissor e o receptor além de apresentar muito ocorrência de propagação por múltiplos caminhos e pode apresentar fácilmente áreas de sombreamentos de sinais.
+O experimento foi realizado em um dos prédios do campus Campina Grande do IFPB, Instituto Federal de Educação, Ciência e Tecnologia da Paraíba. Sendo este constituído principalmente de salas de escritório e de alguns laboratórios, possuindo 4 andares separados por pisos de concreto. Além desse cenário ser particularmente desafiador para um enlace sem fio pois não é possível ter uma linha de visada entre o transmissor, as paredes e pisos facilitam a ocorrência de propagação por múltiplos caminhos e a possibilidade áreas de sombreamentos de sinais.
 
 \section{Visão Geral}
 \label{subsec:visaogeral}
-A rede foi composta por 11 dispositivos transmissores, denominado pelo restante do texto como Tx, que enviavam três replicas de mensagens, uma replica para cada modulação do padrão IEEE 802.15.4g SUN. Três receptores, denominado pelo restante do texto como Rx, foram configurados para receber mensagens em apenas uma das modulações do padrão. Os dispositivos Rx, conectados a um computador, enviavam as mensagens recebidas pelo rádio para a porta serial. O computador utiliza um sistema operacional baseado em GNU/Linux e executa um script Python que lê as mensagens seriais enviadas pelos dispositivos Rx, estruturava os dados no formato JSON e os persistia no banco de dados InfluxDB. A figura \ref{fig:rede_visão_geral} representa uma visão geral do funcionamento da rede.
+A rede foi composta por 11 dispositivos transmissores, denominado pelo restante do texto como Tx, que enviavam nove replicas de mensagens, três para cada modulação do padrão IEEE 802.15.4g SUN. Três receptores, denominado pelo restante do texto como Rx, foram configurados para receber mensagens em apenas uma das modulações do padrão. Os dispositivos Rx, conectados a um computador, enviavam as mensagens recebidas pelo rádio para a porta serial. O computador utiliza um sistema operacional baseado em GNU/Linux e executa um \emph{script Python} que lê as mensagens seriais enviadas pelos dispositivos Rx, estruturava e persistia no banco de dados InfluxDB. A figura \ref{fig:rede_visão_geral} representa uma visão geral do funcionamento da rede.
 
 \begin{figure}[h]
     \begin{center}
@@ -29,13 +29,13 @@ Os dispositivos Tx foram espalhados pelos quatro andares do prédio, posicionado
     \end{center}
 \end{figure}
 
-\section{Openmote B}
-O OpenMote B é um hardware de desenvolvimento e prototipação de plataformas IoT. Contém o processador SoC, \emph{System-on-Chip}(Sistema em um \emph{Chip}), CC2535 da Texas Instruments, constituído de um ARM Cortex-M3, com 32 K\emph{bytes} de memoria RAM e 512 K\emph{bytes} de memoria Flash. Neste processador também vem embarcado um transceptor com suporte ao padrão IEEE 802.15.4 que utiliza a modulação DSSS-OQPSK na faixa ISM de 2,4GHz. Possui também o transceptor AT86RF215 da ATMEL que implementa as três configurações do padrão IEEE 802.15.4g nas faixas ISM abaixo das faixas 1GHz e na faixa ISM 2,4GHz \cite{openmoteb-userguide}.
+\section{OpenMote B}
+O OpenMote B é um hardware de desenvolvimento e prototipação de plataformas IoT. Contém o processador SoC, \emph{System-on-Chip}(Sistema em um \emph{Chip}), CC2535 da Texas Instruments, constituído de um ARM Cortex-M3, com 32 K\emph{bytes} de memoria RAM e 512 K\emph{bytes} de memoria Flash. Embarcado neste processador, há um transceptor com suporte ao padrão IEEE 802.15.4 que utiliza a modulação DSSS-OQPSK na faixa ISM de 2,4GHz. Junto com o processador, o OpenMote B vem com um transceptor AT86RF215 da ATMEL que implementa as três modulações do padrão IEEE 802.15.4g nas faixas de frequência ISM abaixo das frequências de 1GHz e na faixa ISM 2,4GHz \cite{openmoteb-userguide}.
 
 Para a realização do experimento, o código base do firmware dos dispositivos está presente no repositório \cite{openmoteb-firmware}. Foram realizadas alterações ao código base e estão disponíveis no repositório \cite{openmoteb-gcompi}.
 
 \section{Transmissão dos dados}
-Os dispositivos foram configurados para realizar, a cada minuto, três ciclos de envio de mensagens, como representado na figura \ref{fig:ciclo_envio}, em cada ciclo é transmitido três mensagens, uma para cada modulação do padrão. A cada envio de mensagem o dispositivo espera 50 ms e a cada ciclo de envio o dispositivo espera 100 ms, do primeiro para o segundo ciclo, ou 200 ms, do segundo para o terceiro ciclo. Ao realizar os três ciclos de transmissão, o dispositivo entra em modo \emph{sleep} por 58250 ms totalizando assim 60 segundos para o envio de nove mensagens, cada transmissão (com uma carga útil de 32 \emph{bytes}) leva um total de 100 ms, para a taxa de transmissão de 50 k\emph{bit}/s.
+Os dispositivos foram configurados para realizar, a cada minuto, três ciclos de envio de mensagens, como representado na figura \ref{fig:ciclo_envio}, em cada ciclo é transmitido três mensagens, uma para cada modulação do padrão. A cada envio de mensagem o dispositivo espera 50 ms. Entre cada ciclo de envio o dispositivo espera 100 ms, do primeiro para o segundo ciclo, e 200 ms, do segundo para o terceiro ciclo. Ao realizar os três ciclos de transmissão, o dispositivo entra em modo espera por 58250 ms totalizando assim 60 segundos para o envio de nove mensagens, cada transmissão, com uma carga útil de 32 \emph{bytes}, leva um total de 100 ms, para a taxa de transmissão de 50 k\emph{bit}/s.
 
 \begin{figure}[h]
     \centering
@@ -108,6 +108,8 @@ Os dispositivos Rx foram configurados para, a cada sinal recebido, verificar o v
 No computador conectado, as mensagens serial recebidas são capturadas por um \emph{script Python}. Cada mensagem recebida é extraída do envelope HDLC e se não ocorrer problemas, os \emph{bytes} da mensagem são lidos e armazenados numa estrutura chave-valor da linguagem chamada dicionario. Cada chave é um dos campo citado na seção \ref{table:estruturaTx} e o RSSI adicionado pelo dispositivo Rx. Nesta mesma estrutura são adicionados alguns valores de controle, por exemplo, a quantidade de pacotes seriais recebidos e extraídos corretamente pelo HDLC. E alguns campos relativos ao banco de dados, como a tabela no qual os dados serão armazenados.
 
 Com todos os dados estruturados em um dicionario, eles são enviados utilizando uma biblioteca de funções que facilita a comunicação com o banco de dados. No qual, utiliza-se uma função para enviar os dados estruturados para o banco de dados. O banco de dados utilizado foi o InfluxDB, um banco de dados não-relacional de series temporais otimizado para armazenar dados com marcas temporais, ou seja, os dados armazenados estão relacionados a um intervalo especifico \cite{influxData}.
+
+O código do \emph{script Python} está disponível no repositório \cite{openmoteb-serialReader}.
 
 % \begin{lstlisting}[language=Python,tabsize=2]
 %     data = [
