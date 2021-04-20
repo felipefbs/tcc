@@ -1,18 +1,18 @@
 \chapter{Fundamentação Teórica}
 \label{fundamentacao}
-Nesta seção são abordados os conceitos fundamentais utilizados neste trabalho e necessários para melhor entendimento do experimento.
+Nesta Seção são abordados os conceitos fundamentais utilizados neste trabalho e necessários para melhor entendimento do experimento.
 
 \section{Classificação de Redes}
 \label{classRedes}
-Segundo Tanembaum, em \cite{tanembaum2011}, redes de telecomunicações são classificadas, comumente, de acordo com sua escala de abrangência. A seguir são apresentadas algumas das classificações de redes sem fio (figura \ref{fig:tecnologias_redes_semfiof}) mais relevantes para o escopo deste trabalho.
+Segundo Tanembaum, em \cite{tanembaum2011}, redes de telecomunicações são classificadas, comumente, de acordo com sua escala de abrangência. A seguir são apresentadas algumas das classificações de redes sem fio (Figura \ref{fig:tecnologias_redes_semfiof}) mais relevantes para o escopo deste trabalho.
 
 \begin{figure}[ht]
-      \begin{center}
-            \caption{Tecnologias de Redes Sem Fio}
-            \includegraphics[width=10cm]{./sections/textual/chapters/images/tecnologias_redes_semfio.png}\\
-            Imagem retirada do livro Sistemas de Comunicação Sem Fio \cite{rochol2018sistemas}.
-            \label{fig:tecnologias_redes_semfiof}
-      \end{center}
+	\begin{center}
+		\caption{Tecnologias de Redes Sem Fio}
+		\includegraphics[width=10cm]{./sections/textual/chapters/images/tecnologias_redes_semfio.png}\\
+		Imagem retirada do livro Sistemas de Comunicação Sem Fio \cite{rochol2018sistemas}.
+		\label{fig:tecnologias_redes_semfiof}
+	\end{center}
 \end{figure}
 
 \subsection{Classificação de Redes Sem Fio: Escala de Abrangência}
@@ -29,7 +29,7 @@ Atualmente o padrão IEEE 802.11 utiliza de duas faixas de frequência não lice
 \subsubsection*{Redes Celulares de Telefonia e Dados}
 Estas redes abrangem diversos sistemas de telefonia conectados e ganharam bastante popularidade nas últimas décadas devido, principalmente, à redução de custos e aumento nas taxas de transmissão oferecidas pelas operadoras. Exemplos mais recentes de telefonia celular são GSM, EDGE e LTE que fornecem a segunda, terceira e quarta geração(2G, 3G e 4G) de telefonia celular, respectivamente.
 
-Como abordado na seção \ref{padrõesSF}, há aplicações que utilizam infraestrutura GSM e LTE para aplicações de RSSF \cite{rochol2018sistemas}.
+Como abordado na Seção \ref{padrõesSF}, há aplicações que utilizam infraestrutura GSM e LTE para aplicações de RSSF \cite{rochol2018sistemas}.
 
 
 \subsubsection*{Redes de Longa Distância com Baixo Consumo Energético - LPWAN}
@@ -37,21 +37,21 @@ Em algumas aplicações IoT há requisitos muito específicos como atuação por
 
 Dispositivos que implementam redes de baixo consumo energético ganharam popularidade na indústria e nas comunidades de pesquisa pois estabelecem comunicação sem fio de longas distâncias, de centenas de metros até alguns poucos quilômetros, com baterias que podem durar anos com uma única carga \cite{mekki2019comparative}.
 
-A utilização desse tipo de rede se tornou fundamental para a implementação de RSSFs, oferecendo confiabilidade e baixo custo de implantação e manutenção. Na seção \ref{padrõesSF} são apresentados alguns dos principais padrões e tecnologias utilizadas nessas redes.
+A utilização desse tipo de rede se tornou fundamental para a implementação de RSSFs, oferecendo confiabilidade e baixo custo de implantação e manutenção. Na Seção \ref{padrõesSF} são apresentados alguns dos principais padrões e tecnologias utilizadas nessas redes.
 
 \section{Modelo de Camadas OSI}
 \label{osi}
 O modelo de referência para Interconexão de Sistemas Abertos, \emph{Open Systems Interconnection}, ou apenas modelo OSI, foi um passo para a padronização de redes de computadores. No modelo há sete camadas com funções bem definidas. A comunicação entre camadas é abstraída e se dá através de interfaces, ou seja, uma camada não tem acesso direto às camadas subjacentes, informação chega até ela no padrão pré-definido.
 
-Para este trabalho será mais relevante a apresentação apenas das camadas 1 e 2 (figura \ref{fig:modelo_osi_1e2})  física e de enlace, respectivamente, e suas subcamadas do modelo OSI de forma generalizada de acordo o apresentado por Tanembaum em \cite{tanembaum2011} e por Rochol em \cite{rochol2018sistemas}.
+Para este trabalho será mais relevante a apresentação apenas das camadas 1 e 2 (Figura \ref{fig:modelo_osi_1e2})  física e de enlace, respectivamente, e suas subcamadas do modelo OSI de forma generalizada de acordo o apresentado por Tanembaum em \cite{tanembaum2011} e por Rochol em \cite{rochol2018sistemas}.
 
 \begin{figure}[ht]
-      \begin{center}
-            \caption{Camada Física e Camada de Enlace do Modelo OSI}
-            \includegraphics[width=10cm]{./sections/textual/chapters/images/modelo_osi_1e2.png}\\
-            Imagem retirada do livro Sistemas de Comunicação Sem Fio \cite{rochol2018sistemas}.
-            \label{fig:modelo_osi_1e2}
-      \end{center}
+	\begin{center}
+		\caption{Camada Física e Camada de Enlace do Modelo OSI}
+		\includegraphics[width=10cm]{./sections/textual/chapters/images/modelo_osi_1e2.png}\\
+		Imagem retirada do livro Sistemas de Comunicação Sem Fio \cite{rochol2018sistemas}.
+		\label{fig:modelo_osi_1e2}
+	\end{center}
 \end{figure}
 
 
@@ -60,15 +60,15 @@ A camada física, de acordo \cite{tanembaum2011}, é uma abstração do meio fí
 
 Na sub-camada de convergência de transmissão é feita a codificação de canal, para obter confiabilidade na transmissão dos dados mesmo considerando as características problemáticas do canal de rádio frequência. Algumas funções implementadas nessa camada são descritas a seguir:
 \begin{itemize}
-      \item Embaralhamento do fluxo de \emph{bits}:
+	\item Embaralhamento do fluxo de \emph{bits}:
 
-            Garante que os \emph{bits} 1 e 0 tenham a mesma probabilidade antes de serem enviados para transmissão. Ao realizar essa função, a utilização do canal é otimizada.
-      \item Controle de erros:
+	      Garante que os \emph{bits} 1 e 0 tenham a mesma probabilidade antes de serem enviados para transmissão. Ao realizar essa função, a utilização do canal é otimizada.
+	\item Controle de erros:
 
-            Utilização de técnicas para detectar e corrigir erros da transmissão. Por exemplo, adicionando alguns \emph{bits} à mensagem original e utiliza-los para detectar se algum bit da mensagem original foi modificado, podendo ser necessário uma retransmissão, ou talvez corrigir a mensagem recebida.
-      \item Entrelaçamento de \emph{bits}:
+	      Utilização de técnicas para detectar e corrigir erros da transmissão. Por exemplo, adicionando alguns \emph{bits} à mensagem original e utiliza-los para detectar se algum bit da mensagem original foi modificado, podendo ser necessário uma retransmissão, ou talvez corrigir a mensagem recebida.
+	\item Entrelaçamento de \emph{bits}:
 
-            Uma técnica que utiliza algoritimos de distribuição temporal dos \emph{bits} da mensagem para espalhar a concentração de erros ao longo da sequência de \emph{bits}. Tornando mais eficiente a utilização das técnicas de controle de erros. Esses algorítimos são pré-definidos no transmissor e no receptor.
+	      Uma técnica que utiliza algoritimos de distribuição temporal dos \emph{bits} da mensagem para espalhar a concentração de erros ao longo da sequência de \emph{bits}. Tornando mais eficiente a utilização das técnicas de controle de erros. Esses algorítimos são pré-definidos no transmissor e no receptor.
 \end{itemize}
 
 A segunda sub-camada da camada física corresponde às funcionalidades do transceptor de dados que depende do meio em que são implementadas. Transceptores mais simples, como modems ou regeneradores de sinais, utilizam protocolos e modulações para a transmissão/recepção do sinal mais simples como a codificação por pulsos. E alguns transceptores mais complexos que permitem maiores taxas de transmissão, múltiplos usuários e maior robustez a efeitos negativos no sinal rádio, possuem sistemas, geralmente com vários subsistemas, mais complexos utilizando diversos esquemas de modulação ao mesmo tempo, por exemplo o esquema de modulação OFDM, \emph{Orthogonal Frequency Division Multiplexing}(Multiplexação Ortogonal por Divisão de Frequência).
@@ -76,9 +76,9 @@ A segunda sub-camada da camada física corresponde às funcionalidades do transc
 
 Há várias técnicas de transmissão e recepção de dados, porém, é possível agrupá-las em três classes, que são apresentadas a seguir em ordem crescente de complexidade:
 \begin{enumerate}
-      \item Técnicas de codificação por pulsos(ou modulação de banda base);
-      \item Processos de modulação de um ou mais parâmetros de portadora única;
-      \item Processo de modulação e transmissão utilizando múltiplas portadoras. Essas portadoras podem ser caracterizadas no domínio da frequência, utilizando múltiplas portadoras do tipo OFDM, Multiplexação por Divisão em Frequências Ortogonais. Ou podem ser caracterizadas no domínio do tempo como como ocorre no CDMA, Acesso Múltiplo por Divisão em Código, em que diferentes códigos ortogonais são aplicados simultaneamente sobre uma portadora digital gerando vários espectros ao redor de uma única portadora analógica, técnica também conhecida como espalhamento espectral.
+	\item Técnicas de codificação por pulsos(ou modulação de banda base);
+	\item Processos de modulação de um ou mais parâmetros de portadora única;
+	\item Processo de modulação e transmissão utilizando múltiplas portadoras. Essas portadoras podem ser caracterizadas no domínio da frequência, utilizando múltiplas portadoras do tipo OFDM, Multiplexação por Divisão em Frequências Ortogonais. Ou podem ser caracterizadas no domínio do tempo como como ocorre no CDMA, Acesso Múltiplo por Divisão em Código, em que diferentes códigos ortogonais são aplicados simultaneamente sobre uma portadora digital gerando vários espectros ao redor de uma única portadora analógica, técnica também conhecida como espalhamento espectral.
 \end{enumerate}
 
 \subsection{Camada de Enlace}
@@ -169,11 +169,12 @@ Como demonstrado pelos autores em \cite{gomes2020improving} é possível utiliza
 \section{Parâmetros para Avaliação da Confiabilidade do Enlace Sem Fio}
 \label{paramSF}
 Algumas métricas são utilizadas para medir a qualidade de um enlace sem fio, algumas estão mais relacionadas à camada física, como RSSI, \emph{Received Signal Strength Indicator}(Indicador da Força do Sinal Recebido) e CCA, \emph{Clear Channel Assessment}(Verificação do Canal Limpo), ou mais relacionadas a camada de aplicação como o PDR, \emph{Packet Delivery Ratio}, Taxa de Entrega de Pacotes. Estas métricas são detalhadas a seguir.
+
 \subsection*{RSSI}
-RSSI é uma medida da energia de um sinal de rádio recebido. O RSSI é um valor relativo e pode variar de acordo com a fabricante do transceptor de rádio \cite{UNDERSTANDING_RSSI}. O valor de RSSI é apresentado -100dB até 0dB, os maiores valores, próximos a 0dB, significam uma boa qualidade do sinal recebido e valores menores, próximos a 100dB, significa sinais de baixa qualidade.
+RSSI é uma medida da energia de um sinal de rádio recebido. O RSSI é um valor relativo e pode variar de acordo com a fabricante do transceptor de rádio \cite{UNDERSTANDING_RSSI}. O valor de RSSI é -100dB até 0dB, os maiores valores, próximos a 0dB, significam uma boa qualidade do sinal recebido e valores menores, próximos a -100dB, significam sinais de baixa qualidade.
 
 \subsection*{PDR}
-PDR é um indicador de camada de aplicação que relaciona a quantidade de pacotes recebidos pelo receptor com a quantidade de pacotes enviados pelo transmissor. Dependendo da aplicação, há uma taxa mínima de entrega de pacotes, por exemplo,  aplicações industriais de alta capacidade necessitam de um PDR superior a 99,9\%.
+PDR é um indicador de camada de aplicação que relaciona a quantidade de pacotes recebidos pelo receptor com a quantidade de pacotes enviados pelo transmissor. Dependendo da aplicação, há uma taxa mínima de entrega de pacotes requeridas, por exemplo, aplicações industriais com requisitos críticos de confiabilidade necessitam de um PDR superior a 99,9\%.
 
 \subsection*{CCA}
 CCA é uma forma de verificar o canal antes da transmissão, a fim de detectar se ele está em uso. Obtido a partir da verificação da energia no canal, é medido em dBm. Caso o valor medido esteja acima de um limiar pré-determinado o transmissor não pode transmitir e espera um tempo aleatório em milissegundos para verificar novamente o canal. Este parâmetro faz parte do protocolo CSMA, citado na Seção \ref{osi}.
@@ -185,4 +186,4 @@ Em \cite{munoz2018evaluation} os autores, a partir de um experimento realizado e
 
 Em  \cite{munoz2018overview} os autores comparam dois esquemas de modulação em cenário de \emph{Smart Building}. Foi utilizado a modulação O-QPSK(IEEE 802.15.4) na faixa de 2,4GHz e a modulação OFDM(IEEE 802.15.4g SUN) nas faixas ISM abaixo de 1GHz. Os resultados deste trabalho indicam que o OFDM tem maior alcance mesmo em altas taxas de transmissão, 800k\emph{bits}/s e pode ter menor consumo energético comparado ao O-QPSK nas faixas ISM de 2.4GHz.
 
-Em \cite{wang2017performance} os autores, a partir de uma implementação RSSF de transceptores LoRa, estudaram como o PDR é afetado pela distância, potência de transmissão, tamanho da carga útil, angulo da antena, horario e condições climaticas. E analisaram que 99\% dos pacotes perdidos ocorrem com até três retransmissões.
+Em \cite{wang2017performance} os autores, a partir de uma implementação RSSF de transceptores LoRa, estudaram como o PDR é afetado pela distância, potência de transmissão, tamanho da carga útil, angulo da antena, horário e condições climáticas. E analisaram que 99\% dos pacotes perdidos ocorrem com até três retransmissões.

@@ -4,11 +4,11 @@
 A Internet das Coisas, mais conhecida pelo seu acrônimo em inglês IoT(\emph{Internet of Things}), foi cunhada pelo engenheiro britânico Kevin Ashton no final dos anos 1990 onde ele, trabalhando para a empresa multinacional P\&G(Procter \& Gamble), pensou na possibilidade de que os produtos da empresa estivessem munidos de identificadores e capazes de estabelecer comunicação através da Internet, que na época estava se estabelecendo, criando assim uma rede em que as coisas estivessem conectadas \cite{KA_IOT}. Assim, os computadores se tornariam capazes de rastrear e identificar tudo, podendo reduzir desperdícios, minimizar custos e identificar o momento certo quando substituir ou reparar um produto \cite{lopezIOT}.
 
 \begin{figure}[ht]
-    \centering
-    \caption{Internet of Things (IoT)}
-    \includegraphics[width=10cm]{./sections/textual/chapters/images/intro_iot.jpg}\\
-    Retirado do site http://sentrybrasil.com.br/cursos/internet-das-coisas-vai-revolucionar-o-mercado/
-    \label{fig:iotimg}
+      \centering
+      \caption{Internet of Things (IoT)}
+      \includegraphics[width=10cm]{./sections/textual/chapters/images/intro_iot.jpg}\\
+      Retirado do site http://sentrybrasil.com.br/cursos/internet-das-coisas-vai-revolucionar-o-mercado/
+      \label{fig:iotimg}
 \end{figure}
 
 IoT é um conceito que vem ganhado força ao longo dos anos, graças ao estudo, prototipação e desenvolvimento de diversas protocolos e tecnologias. Os pontos chave para o seu desenvolvimento foram a miniaturização de processadores e sensores; melhoramento de baterias e otimização do uso destas; definição de novos protocolos de rede; e aumento da robustez de protocolos de comunicação sem-fio.
@@ -19,15 +19,15 @@ Atualmente há diversas aplicações de IoT, há implementações em larga escal
 
 A implementação de uma aplicação IoT necessita de uma rede de nós sensores distribuídos, geralmente conectados a um nó central, conhecido como nó \emph{gateway}, que tem por finalidade encaminhar os dados coletados para processamento. Para tal implementação existe duas abordagens clássicas: conexões cabeadas entre os nós da rede e a utilização de redes sem fio \cite{gomes2017estimaccao}. Como vantagem em relação às redes sem fio, as conexões cabeadas apresentam maior confiabilidade na conexão. Em contrapartida, a utilização de redes sem fio se destaca, em relação às redes cabeadas, nos quesitos de flexibilidade, custo de implantação, facilidade e rapidez na implementação e na manutenção \cite{gungor2009industrial}.
 
-As Redes de Sensores Sem Fio(RSSF), representado na figura \ref{fig:rssf}, se destacam na implementação de aplicações IoT, há porém ainda desafios para uma implementação robusta de comunicações sem fio, pois o meio de transmissão é caótico e pouco confiável. Interferências, ruídos, sombreamento e propagação por múltiplos percurso no meio podem ocasionar altas taxas de perda de pacote e alta latência \cite{gomes2017estimaccao}.
+As Redes de Sensores Sem Fio(RSSF), representado na Figura \ref{fig:rssf}, se destacam na implementação de aplicações IoT, há porém ainda desafios para uma implementação robusta de comunicações sem fio, pois o meio de transmissão é caótico e pouco confiável. Interferências, ruídos, sombreamento e propagação por múltiplos percurso no meio podem ocasionar altas taxas de perda de pacote e alta latência \cite{gomes2017estimaccao}.
 
 \begin{figure}[ht]
-    \begin{center}
-        \caption{RSSF - Topologia Estrela}
-        \includegraphics[width=10cm]{./sections/textual/chapters/images/intro_rssf.png}\\
-        Fonte autoral
-        \label{fig:rssf}
-    \end{center}
+      \begin{center}
+            \caption{RSSF - Topologia Estrela}
+            \includegraphics[width=10cm]{./sections/textual/chapters/images/intro_rssf.png}\\
+            Fonte autoral
+            \label{fig:rssf}
+      \end{center}
 \end{figure}
 
 Para contornar os desafios da comunicação sem fio, padrões e tecnologias foram desenvolvidos. Um dos principais órgãos na padronização em telecomunicações é o Instituto de Engenheiros Eletricistas e Eletrônicos, \emph{Institute of Electrical and Electronics Engineers}, mais conhecido pela sigla IEEE. Por exemplo, para redes locais, o Wi-Fi, baseado no padrão IEEE 802.11, se tornou uma tecnologia confiável que pode apresentar altas taxas de transmissão com baixa latência. Em redes de curto alcance, o Bluetooth, baseado no padrão IEEE 802.15.1, se tornou comum na vida das pessoas com seu uso para conexão de fones de ouvido, teclados e mouses sem fio. Estes padrões, apesar de bem estabelecidos no mercado, possuem alguns problemas para o desenvolvimento de RSSF, que geralmente requerem múltiplos dispositivos espalhados e, principalmente, sem acesso fácil a uma fonte contínua de energia.
@@ -52,9 +52,9 @@ Coletar e analisar as informações das transmissões de uma RSSF realizadas com
 \subsection{Objetivos Específicos}
 \label{subsec:objespecificos}
 \begin{itemize}
-    \item Implementar uma RSSF utilizando transceptores que implementam as modulações do IEEE 802.15.4g;
-    \item Coletar os dados das transmissões realizadas;
-    \item Avaliar o desempenho da rede implementada, a partir da análise dos dados coletados.
+      \item Implementar uma RSSF utilizando transceptores que implementam as modulações do IEEE 802.15.4g;
+      \item Coletar os dados das transmissões realizadas;
+      \item Avaliar o desempenho da rede implementada, a partir da análise dos dados coletados.
 \end{itemize}
 
 
@@ -69,10 +69,10 @@ Para alcançar tais objetivos, foram realizados os seguintes passos:
 % analise dos dados
 
 \begin{itemize}
-    \item Estudo e implementação dos dispositivos: Entender o funcionamento dos dispositivos que utilizam o código-fonte presente em \cite{openmoteb-firmware}. E a realização de alterações no código-fonte para a aplicação proposta;
-    \item Desenvolvimento do \emph{gateway}: Criar \emph{scripts} para utilização de um computador como gateway da rede, capaz de coletar os dados das transmissões e persisti-los em um banco de dados;
-    \item Execução do experimento: Distribuir os nós transmissores pelo prédio, conectar os nós receptores ao gateway e deixar as transmissões acontecerem;
-    \item Análise dos resultados: Uma vez que os dados foram gerados, realizar analises a partir deles. Estas analises serão apresentadas no capitulo X.
+      \item Estudo e implementação dos dispositivos: Entender o funcionamento dos dispositivos que utilizam o código-fonte presente em \cite{openmoteb-firmware}. E a realização de alterações no código-fonte para a aplicação proposta;
+      \item Desenvolvimento do \emph{gateway}: Criar \emph{scripts} para utilização de um computador como gateway da rede, capaz de coletar os dados das transmissões e persisti-los em um banco de dados;
+      \item Execução do experimento: Distribuir os nós transmissores pelo prédio, conectar os nós receptores ao gateway e deixar as transmissões acontecerem;
+      \item Análise dos resultados: Uma vez que os dados foram gerados, realizar analises a partir deles. Estas analises serão apresentadas no capitulo X.
 \end{itemize}
 
 % \section{Organização do Documento}
