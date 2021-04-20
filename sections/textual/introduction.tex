@@ -1,7 +1,7 @@
 \chapter[Introdução]{Introdução}
 \label{cap:intro}
 
-A Internet das Coisas mais conhecida pelo seu acrônimo em inglês IoT(\emph{Internet of Things}), foi cunhada pelo engenheiro britânico Kevin Ashton no final dos anos 1990 onde ele, trabalhando para a empresa multinacional P\&G(Procter \& Gamble), pensou na possibilidade de que os produtos da empresa estivessem munidos de identificadores e capazes de estabelecer comunicação através da Internet, que na época estava se estabelecendo, criando assim uma rede em que as coisas estivessem conectadas \cite{KA_IOT}. Assim, os computadores se tornariam capazes de rastrear e identificar tudo, podendo reduzir desperdícios, minimizar custos e identificar o momento certo quando substituir ou reparar um produto \cite{lopezIOT}.
+A Internet das Coisas, mais conhecida pelo seu acrônimo em inglês IoT(\emph{Internet of Things}), foi cunhada pelo engenheiro britânico Kevin Ashton no final dos anos 1990 onde ele, trabalhando para a empresa multinacional P\&G(Procter \& Gamble), pensou na possibilidade de que os produtos da empresa estivessem munidos de identificadores e capazes de estabelecer comunicação através da Internet, que na época estava se estabelecendo, criando assim uma rede em que as coisas estivessem conectadas \cite{KA_IOT}. Assim, os computadores se tornariam capazes de rastrear e identificar tudo, podendo reduzir desperdícios, minimizar custos e identificar o momento certo quando substituir ou reparar um produto \cite{lopezIOT}.
 
 \begin{figure}[ht]
     \centering
@@ -17,7 +17,7 @@ Atualmente há diversas aplicações de IoT, há implementações em larga escal
 
 % Após o termo ser cunhado em 1999, foram necessários anos de evolução tecnológica para a atual popularidade do conceito. Por exemplo, a criação da plataforma de desenvolvimento de hardware aberta Arduino em 2005 \cite{OC_ARDUINO}, tornou fácil o estudo e a prototipação de itens de baixo custo. \ff{adicionar exemplos como o IPv6, baterias e os protocolos de Sem Fio}
 
-A implementação de uma aplicação IoT necessita de uma rede de nós sensores distribuídas, geralmente conectadas a um nó central, conhecido como nó \emph{gateway}, que tem por finalidade encaminhar os dados coletados para processamento. Para tal implementação existe duas abordagens clássicas: conexões cabeadas entre os nós da rede e a utilização de redes sem fio \cite{gomes2017estimaccao}. Como vantagem em relação às redes sem fio, as conexões cabeadas apresentam maior confiabilidade na conexão. Em contrapartida, a utilização de redes sem fio se destaca, em relação à redes cabeadas, nos quesitos de flexibilidade, custo de implantação, facilidade e rapidez na implementação e na manutenção \cite{gungor2009industrial}.
+A implementação de uma aplicação IoT necessita de uma rede de nós sensores distribuídos, geralmente conectados a um nó central, conhecido como nó \emph{gateway}, que tem por finalidade encaminhar os dados coletados para processamento. Para tal implementação existe duas abordagens clássicas: conexões cabeadas entre os nós da rede e a utilização de redes sem fio \cite{gomes2017estimaccao}. Como vantagem em relação às redes sem fio, as conexões cabeadas apresentam maior confiabilidade na conexão. Em contrapartida, a utilização de redes sem fio se destaca, em relação às redes cabeadas, nos quesitos de flexibilidade, custo de implantação, facilidade e rapidez na implementação e na manutenção \cite{gungor2009industrial}.
 
 As Redes de Sensores Sem Fio(RSSF), representado na figura \ref{fig:rssf}, se destacam na implementação de aplicações IoT, há porém ainda desafios para uma implementação robusta de comunicações sem fio, pois o meio de transmissão é caótico e pouco confiável. Interferências, ruídos, sombreamento e propagação por múltiplos percurso no meio podem ocasionar altas taxas de perda de pacote e alta latência \cite{gomes2017estimaccao}.
 
@@ -38,7 +38,7 @@ Tendo em vista este problema energético, alguns padrões foram desenvolvidos pa
 \label{sec:justificativa}
 Em \cite{tuset2020dataset} os autores implementaram uma RSSF utilizando as modulações propostas na emenda ``g'' do padrão IEEE 802.15.4. O experimento foi realizado em um cenário industrial, durando 99 dias e gerou um conjunto de dados que foi utilizado para averiguar a confiabilidade da rede e, nesse caso, propor mecanismos de diversidade de modulação que, como mostrado em \cite{gomes2020improving}, podem melhorar a taxa de entrega de pacotes.
 
-O cenário industrial apresenta diversos problemas, principalmente relacionados à interferência e propagação por múltiplos caminhos. Diferentes ambientes possuem diferentes problemas em relação a comunicação via rádio. Então, neste trabalho é proposto para analisar a comunicação sem fio de transceptores do padrão IEEE 802.15.4g SUN em um ambiente predial, também denominado neste texto como \emph{Smart Building}, que possui como principal fonte de problemas para a comunicação a falta de linha de visada. Deve ser estudado as características da RSSF a partir da verificação da taxa de entrega de pacotes e verificar sua viabilidade de implementação com a tecnologia utilizada.
+O cenário industrial apresenta diversos problemas, principalmente relacionados à interferência e propagação por múltiplos caminhos. Diferentes ambientes possuem diferentes problemas em relação a comunicação via rádio. Então, este trabalho tem como objetivo analisar a comunicação sem fio de transceptores do padrão IEEE 802.15.4g SUN em um ambiente predial, também denominado neste texto como \emph{Smart Building}, que possui como principal fonte de problemas para a comunicação a falta de linha de visada. Deve ser estudado as características da RSSF a partir da verificação da taxa de entrega de pacotes e verificar sua viabilidade de implementação com a tecnologia utilizada.
 
 \section{Objetivos}
 \label{sec:objetivos}
@@ -54,7 +54,7 @@ Coletar e analisar as informações das transmissões de uma RSSF realizadas com
 \begin{itemize}
     \item Implementar uma RSSF utilizando transceptores que implementam as modulações do IEEE 802.15.4g;
     \item Coletar os dados das transmissões realizadas;
-    \item Avaliar a performance da rede implementada, a partir da analise dos dados coletados. 
+    \item Avaliar o desempenho da rede implementada, a partir da análise dos dados coletados.
 \end{itemize}
 
 
