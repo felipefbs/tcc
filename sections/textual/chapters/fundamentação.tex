@@ -56,7 +56,7 @@ Para este trabalho será mais relevante a apresentação apenas das camadas 1 e 
 
 
 \subsection{Camada Física}
-A camada física é uma abstração do meio físico de comunicação por onde trafegam os sinais do transmissor para o receptor definindo que sinais utilizar para os \emph{bits} 0 e 1; a duração de um bit; se a transmissão pode ser realizada nos dois sentidos ao mesmo tempo ou um de cada vez. São consideradas duas sub-camadas: de convergência de transmissão do nível físico e a sub-camada dependente do meio.
+A camada física, de acordo \cite{tanembaum2011}, é uma abstração do meio físico de comunicação por onde trafegam os sinais do transmissor para o receptor definindo que sinais utilizar para os \emph{bits} 0 e 1; a duração de um bit; se a transmissão pode ser realizada nos dois sentidos ao mesmo tempo ou um de cada vez. De acordo Rochol em \cite{rochol2018sistemas} são consideradas duas sub-camadas: de convergência de transmissão do nível físico e a sub-camada dependente do meio.
 
 Na sub-camada de convergência de transmissão é feita a codificação de canal, para obter confiabilidade na transmissão dos dados mesmo considerando as características problemáticas do canal de rádio frequência. Algumas funções implementadas nessa camada são descritas a seguir:
 \begin{itemize}
@@ -71,7 +71,7 @@ Na sub-camada de convergência de transmissão é feita a codificação de canal
             Uma técnica que utiliza algoritimos de distribuição temporal dos \emph{bits} da mensagem para espalhar a concentração de erros ao longo da sequência de \emph{bits}. Tornando mais eficiente a utilização das técnicas de controle de erros. Esses algorítimos são pré-definidos no transmissor e no receptor.
 \end{itemize}
 
-A segunda sub-camada da camada física corresponde às funcionalidades do transceptor de dados que depende do meio em que são implementadas. Transceptores mais simples, como modems ou regeneradores de sinais, utilizam protocolos e modulações para a transmissão/recepção do sinal mais simples como a codificação por pulsos. E alguns transceptores mais complexos que permitem maiores taxas de transmissão, múltiplos usuários e maior robustez a efeitos negativos no sinal rádio, possuem sistemas, geralmente com vários subsistemas, mais complexos utilizando diversos esquemas de modulação ao mesmo tempo, por exemplo o esquema de modulação OFDM.
+A segunda sub-camada da camada física corresponde às funcionalidades do transceptor de dados que depende do meio em que são implementadas. Transceptores mais simples, como modems ou regeneradores de sinais, utilizam protocolos e modulações para a transmissão/recepção do sinal mais simples como a codificação por pulsos. E alguns transceptores mais complexos que permitem maiores taxas de transmissão, múltiplos usuários e maior robustez a efeitos negativos no sinal rádio, possuem sistemas, geralmente com vários subsistemas, mais complexos utilizando diversos esquemas de modulação ao mesmo tempo, por exemplo o esquema de modulação OFDM, \emph{Orthogonal Frequency Division Multiplexing}(Multiplexação Ortogonal por Divisão de Frequência).
 
 
 Há várias técnicas de transmissão e recepção de dados, porém, é possível agrupá-las em três classes, que são apresentadas a seguir em ordem crescente de complexidade:
@@ -82,7 +82,7 @@ Há várias técnicas de transmissão e recepção de dados, porém, é possíve
 \end{enumerate}
 
 \subsection{Camada de Enlace}
-A principal função implementada nessa camada é aumentar a garantia de que os \emph{bits} trafeguem na camada física livre de erros de transmissão. Esta camada faz com que o transmissor separe os dados e transmita cada parte de forma sequencial. Caso algum destas partes, ou quadros, da mensagem apresente erro, então pode ser retransmitida. Na camada de enlace há duas sub-camadas: de convergência de serviço e de acesso ao meio.
+A principal função implementada nessa camada, segundo Rochol em \cite{rochol2018sistemas}, é aumentar a garantia de que os \emph{bits} trafeguem na camada física livre de erros de transmissão. Esta camada faz com que o transmissor separe os dados e transmita cada parte de forma sequencial. Caso algum destas partes, ou quadros, da mensagem apresente erro, então pode ser retransmitida. Na camada de enlace há duas sub-camadas: de convergência de serviço e de acesso ao meio.
 
 A sub-camada de convergência de serviço estabelece os requisitos de Qualidade de Serviço, \emph{Quality of Service}(QoS), da aplicação, como taxa de transmissão, atraso máximo de pacotes e taxa minima de perda de pacotes.
 
