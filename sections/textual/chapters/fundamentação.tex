@@ -10,7 +10,7 @@ Segundo Tanembaum, em \cite{tanembaum2011}, redes de telecomunicações são cla
 	\begin{center}
 		\caption{Tecnologias de Redes Sem Fio}
 		\includegraphics[width=10cm]{./sections/textual/chapters/images/tecnologias_redes_semfio.png}\\
-		Imagem retirada do livro Sistemas de Comunicação Sem Fio \cite{rochol2018sistemas}.
+		Fonte: adaptada de \cite{rochol2018sistemas}.
 		\label{fig:tecnologias_redes_semfiof}
 	\end{center}
 \end{figure}
@@ -48,7 +48,7 @@ Para este trabalho é mais relevante a apresentação das camadas 1 e 2 (Figura 
 	\begin{center}
 		\caption{Camada Física e Camada de Enlace do Modelo OSI}
 		\includegraphics[width=10cm]{./sections/textual/chapters/images/modelo_osi_1e2.png}\\
-		Imagem retirada do livro Sistemas de Comunicação Sem Fio \cite{rochol2018sistemas}.
+		Fonte: adaptada de \cite{rochol2018sistemas}.
 		\label{fig:modelo_osi_1e2}
 	\end{center}
 \end{figure}
@@ -115,7 +115,6 @@ No espalhamento de Doppler é observada uma diferença na frequência da portado
 
 
 \subsection{Sombreamento}
-\todo{add images}
 O efeito de sombreamento é definido como áreas onde sinal recebido apresenta baixa potência devida a obstruções entre o transmissor e o receptor, onde a recepção dos sinais acontece principalmente, por reflexões do sinal, sendo que os múltiplos caminhos que o sinal pode percorrer para chegar no local do receptor, podem ter uma efeito negativo na recepção do sinal.
 
 
@@ -145,19 +144,49 @@ Em 2015 foi proposta uma revisão do padrão IEEE 802.15.4 com novos esquemas de
 A seguir é apresentada uma visão geral das modulações:
 
 \subsubsection{SUN-FSK}
-A técnica de modulação digital FSK, \emph{Frequency Shift Keying} (Chaveamento de Mudança de Frequência), altera a frequência, mantendo a amplitude da portadora constante, e os \emph{bits} de informação são transmitidos por meio do chaveamento de diferentes frequências \cite{lathi2012}.
+A técnica de modulação digital FSK, \emph{Frequency Shift Keying} (Chaveamento de Mudança de Frequência), altera a frequência, mantendo a amplitude da portadora constante, e os \emph{bits} de informação são transmitidos por meio do chaveamento de diferentes frequências \cite{lathi2012}. O esquema de modulação é demonstrado na Figura \ref{fig:fsk}.
 
 Foi incluída no padrão por sua eficiência e compatibilidade com sistemas legados. Apresenta 3 modos de operação para cada uma das faixas de frequência definidas no padrão e possui parâmetros de canal e de modulação, em que é possível definir o tipo de modulação, a largura de banda do canal e o índice de modulação. Estes parâmetros definem a taxa de transmissão de 50 k\emph{bit}/s a até 200 k\emph{bit}/s.
 
+\begin{figure}[ht]
+	\begin{center}
+		\caption{Esquema de Modulação FSK}
+		\includegraphics[width=7cm]{./sections/textual/chapters/images/Fsk.png}\\
+		Fonte: adaptada de \cite{figFSK}
+		\label{fig:fsk}
+	\end{center}
+\end{figure}
+
+
 \subsubsection{SUN-OQPSK}
+\label{oqpsk}
 Originalmente, ao padrão IEEE 802.15.4 foi adicionada a técnica de modulação DSSS-OQPSK, \emph{Direct Sequence Spread Spectrum Offset Quadrature Phase Shift Keying} (Modulação por Deslocamento de Fase em Quadratura Deslocada com Espalhamento Espectral de Sequência Direta), que se trata de uma técnica de modulação que utiliza chaveamento de fase, em um ângulo de 90$^{\circ}$, do sinal da portadora para transmitir dois \emph{bits} por vez e em seguida utilizando a técnica de espalhamento espectral de sequência direta espalha o sinal em uma ampla faixa de frequência utilizando uma sequência aleatória de alta taxa de \emph{bits}. Essas técnicas visam aumentar a taxa de transmissão e aumentar a robustez da transmissão, principalmente, tornando o sinal resiliente a interferência de faixa estreita, ruídos e diminuindo os efeitos de desvanecimento por múltiplos caminhos \cite{goldsmith2005wireless}.
 
 Essa modulação está presente no texto original do padrão e foi estendida nesta emenda para adicionar bandas de frequência e suportar diferentes fatores de espalhamentos para conseguir atingir taxas de transmissão entre 6,25 k\emph{bit}/s a até 500 k\emph{bit}/s.
 
+\begin{figure}[ht]
+	\begin{center}
+		\caption{Esquema de Modulação FSK}
+		\includegraphics[width=7cm]{./sections/textual/chapters/images/Fsk.png}\\
+		Fonte: \todo{}
+		\label{fig:fsk}
+	\end{center}
+\end{figure}
+
+
 \subsubsection{SUN-OFDM}
-O esquema de modulação de OFDM, \emph{Orthogonal Frequency Division Multiplexing} (Multiplexação Ortogonal por Divisão de Frequência), divide os dados a serem transmitidos em sub-canais ortogonais centrados em  sub-portadoras com frequências diferentes. Essas sub-portadoras são comprimidas em uma faixa de frequência de acordo com a largura de banda disponível. Como é possível enviar dados por cada uma das sub-portadoras, é possível também ter uma elevada taxa de transmissão. As frequências de cada sub-portadora se sobrepõem, cada delas é ortogonal às suas subjacentes, garantindo que não haja interferência entre elas \cite{rappaport2009}\cite{goldsmith2005wireless}.
+O esquema de modulação de OFDM, \emph{Orthogonal Frequency Division Multiplexing} (Multiplexação Ortogonal por Divisão de Frequência), divide os dados a serem transmitidos em sub-canais ortogonais centrados em  sub-portadoras com frequências diferentes. Essas sub-portadoras são comprimidas em uma faixa de frequência de acordo com a largura de banda disponível. Como é possível enviar dados por cada uma das sub-portadoras, é possível também ter uma elevada taxa de transmissão. As frequências de cada sub-portadora se sobrepõem, cada delas é ortogonal, como demonstrado na Figura \ref{fig:ofdm}, às suas subjacentes, garantindo que não haja interferência entre elas \cite{rappaport2009}\cite{goldsmith2005wireless}.
 
 Esta modulação consegue prover altas taxas de transmissão e maiores faixas de comunicação, enquanto consegue lidar com interferência e propagação por múltiplos caminhos. Utiliza diferentes esquemas de modulação e codificação para alternar entre modulações, como BPSK, QPSK e 16-QAM, e esquemas de repetição de frequência para prover uma faixa de taxa de transmissão entre 50 k\emph{bits}/s a até 800 k\emph{bits}/s em um canal com a largura de banda que varia entre 200kHz e 1,2MHz.
+
+\begin{figure}[ht]
+	\begin{center}
+		\caption{Sub-Portadoras Sobrepostas Ortogonalmente}
+		\includegraphics[width=12cm]{./sections/textual/chapters/images/ofdm.jpg}\\
+		Fonte: copiada de \cite{figOFDM}
+		\label{fig:ofdm}
+	\end{center}
+\end{figure}
 
 \subsubsection*{Diversidade de Modulação}
 Segundo Rappaport em \cite{rappaport2009}, diversidade é uma técnica utilizada para compensar os danos da atenuação do canal melhorando a qualidade do enlace de comunicações sem fio sem alterar a interface aérea, sem aumentar a potência ou a largura de banda transmitida.
@@ -170,13 +199,13 @@ Como demonstrado pelos autores em \cite{gomes2020improving} é possível utiliza
 \label{paramSF}
 Algumas métricas são utilizadas para medir a qualidade de um enlace sem fio, algumas estão mais relacionadas à camada física, como RSSI, \emph{Received Signal Strength Indicator} (Indicador da Força do Sinal Recebido) e CCA, \emph{Clear Channel Assessment} (Verificação do Canal Limpo), ou mais relacionadas a camada de aplicação como o PDR, \emph{Packet Delivery Ratio}, Taxa de Entrega de Pacotes. Estas métricas são detalhadas a seguir.
 
-\subsection*{RSSI}
+\subsection{RSSI}
 RSSI é uma medida da energia de um sinal de rádio recebido. O RSSI é um valor relativo e pode variar de acordo com a fabricante do transceptor de rádio \cite{UNDERSTANDING_RSSI}. O valor de RSSI vária de -100dB até 0dB, os maiores valores, próximos a 0dB, significam uma boa qualidade do sinal recebido e valores menores, próximos a -100dB, significam sinais de baixa qualidade.
 
-\subsection*{PDR}
+\subsection{PDR}
 PDR é um indicador de camada de aplicação que relaciona a quantidade de pacotes recebidos pelo receptor com a quantidade de pacotes enviados pelo transmissor. Dependendo da aplicação, há uma taxa mínima de entrega de pacotes requeridas, por exemplo, aplicações industriais com requisitos críticos de confiabilidade necessitam de um PDR superior a 99,9\%.
 
-\subsection*{CCA}
+\subsection{CCA}
 CCA é uma forma de verificar o canal antes da transmissão, a fim de detectar se ele está em uso. Obtido a partir da verificação da energia no canal, é medido em dBm. Caso o valor medido esteja acima de um limiar pré-determinado o transmissor não pode transmitir e espera um tempo aleatório em milissegundos para verificar novamente o canal. Este parâmetro faz parte do protocolo CSMA, citado na Seção \ref{osi}.
 
 \section{Trabalhos relacionados}

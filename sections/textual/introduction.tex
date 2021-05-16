@@ -3,7 +3,16 @@
 
 A Internet das Coisas, mais conhecida pelo seu acrônimo em inglês IoT (\emph{Internet of Things}), foi cunhada pelo engenheiro britânico Kevin Ashton no final dos anos 1990 onde ele, trabalhando para a empresa multinacional P\&G (Procter \& Gamble), pensou na possibilidade de que os produtos da empresa estivessem munidos de identificadores e capazes de estabelecer comunicação através da Internet, que na época estava se estabelecendo, criando assim uma rede em que as coisas estivessem conectadas \cite{KA_IOT}. Assim, os computadores se tornariam capazes de rastrear e identificar tudo, podendo reduzir desperdícios, minimizar custos e identificar o momento certo quando substituir ou reparar um produto \cite{lopezIOT}.
 
-IoT é um conceito que vem ganhado força ao longo dos anos, graças ao estudo, prototipação e desenvolvimento de diversos protocolos e tecnologias. Os pontos chave para o seu desenvolvimento foram a miniaturização de processadores e sensores; melhoramento e otimização do uso de baterias; definição de novos protocolos de rede e aumento da robustez de protocolos de comunicação sem fio.
+IoT, como a interconexão de dispositivos, representada na Figura \ref{fig:iot}, vem ganhado força ao longo dos anos, graças ao estudo, prototipação e desenvolvimento de diversos protocolos e tecnologias. Os pontos chave para o seu desenvolvimento foram a miniaturização de processadores e sensores; melhoramento e otimização do uso de baterias; definição de novos protocolos de rede e aumento da robustez de protocolos de comunicação sem fio.
+
+\begin{figure}[ht]
+      \begin{center}
+            \caption{RSSF - Topologia Estrela}
+            \includegraphics[width=10cm]{./sections/textual/chapters/images/iot.png}\\
+            Fonte: copiada de \cite{figIoT}
+            \label{fig:iot}
+      \end{center}
+\end{figure}
 
 Atualmente há diversas aplicações de IoT, há implementações em larga escala como cidades inteligentes conforme descrito em \cite{sotres2017practical}, como em Santander na Espanha onde foram implementados por toda a cidade diversos nós com múltiplos sensores, afim de disponibilizar uma plataforma de testes. Há também aplicações de \emph{smart campus} como a apresentada em \cite{wang2017performance} com uma rede de sensores sem fio para verificar a qualidade do ar. Há aplicações de saúde como em \cite{zhang2015remote}, com coleta e análise em tempo real de informações de pressão sanguínea e massa corporal do paciente, para verificar a probabilidade do paciente ter um evento de insuficiência cardíaca, utilizando técnicas de aprendizado de máquina.
 
@@ -11,16 +20,7 @@ Atualmente há diversas aplicações de IoT, há implementações em larga escal
 
 A implementação de uma aplicação IoT necessita de uma rede de nós sensores distribuídos, geralmente conectados a um nó central, conhecido como nó \emph{gateway}, que tem por finalidade encaminhar os dados coletados para processamento. Para tal implementação existe duas abordagens clássicas: conexões cabeadas entre os nós da rede e a utilização de redes sem fio \cite{gomes2017estimaccao}. Como vantagem em relação às redes sem fio, as conexões cabeadas apresentam maior confiabilidade na conexão. Em contrapartida, a utilização de redes sem fio se destaca, em relação às redes cabeadas, nos quesitos de flexibilidade, custo de implantação, facilidade e rapidez na implementação e na manutenção \cite{gungor2009industrial}.
 
-As Redes de Sensores Sem Fio(RSSF), como topologia representado na Figura \ref{fig:rssf}, se destacam na implementação de aplicações IoT, porém, há desafios para uma implementação robusta de comunicações sem fio, pois o meio de transmissão é caótico e pouco confiável. Interferências, ruídos, sombreamento e propagação por múltiplos percursos no meio podem ocasionar altas taxas de perda de pacotes e alta latência \cite{gomes2017estimaccao}.
-
-\begin{figure}[ht]
-      \begin{center}
-            \caption{RSSF - Topologia Estrela}
-            \includegraphics[width=10cm]{./sections/textual/chapters/images/intro_rssf.png}\\
-            Fonte: autoral.
-            \label{fig:rssf}
-      \end{center}
-\end{figure}
+As Redes de Sensores Sem Fio(RSSF) se destacam na implementação de aplicações IoT, porém, há desafios para uma implementação robusta de comunicações sem fio, pois o meio de transmissão é caótico e pouco confiável. Interferências, ruídos, sombreamento e propagação por múltiplos percursos no meio podem ocasionar altas taxas de perda de pacotes e alta latência \cite{gomes2017estimaccao}.
 
 Para contornar os desafios da comunicação sem fio, padrões e tecnologias foram desenvolvidos. Um dos principais órgãos na padronização em telecomunicações é o Instituto de Engenheiros Eletricistas e Eletrônicos, \emph{Institute of Electrical and Electronics Engineers}, mais conhecido pela sigla IEEE. Por exemplo, para redes locais, o Wi-Fi, baseado no padrão IEEE 802.11, se tornou uma tecnologia confiável que pode apresentar altas taxas de transmissão com baixa latência. Em redes de curto alcance, o Bluetooth, baseado no padrão IEEE 802.15.1, se tornou comum na vida das pessoas com seu uso para conexão de fones de ouvido, teclados e mouses sem fio. Estes padrões, apesar de bem estabelecidos no mercado, possuem alguns problemas para o desenvolvimento de RSSF, que geralmente requerem múltiplos dispositivos espalhados e, principalmente, sem acesso fácil a uma fonte contínua de energia.
 
@@ -66,7 +66,3 @@ Para alcançar tais objetivos, foram realizados os seguintes passos:
       \item Execução do experimento: Distribuir os nós transmissores pelo prédio, conectar os nós receptores ao gateway e coletar dados;
       \item Análise dos resultados: Com os dados gerados, realizar sua análises, que é apresentada no capitulo \ref{resultados}.
 \end{itemize}
-
-% \section{Organização do Documento}
-% \label{sec:organizacao}
-% \todo{A ser feito quando o documento tiver pronto}

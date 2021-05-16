@@ -3,7 +3,27 @@
 
 Nesta Seção é apresentado o experimento de implementação de uma RSSF em um ambiente de \emph{Smart Building}, utilizando a implementação do padrão IEEE 802.15.4g SUN dos dispositivos OpenMote-B \cite{tuset2020dataset}. A finalidade deste experimento é avaliar o desempenho da rede analisando valores de PDR e RSSI obtidos.
 
-O experimento foi realizado em um dos prédios do campus Campina Grande do IFPB, Instituto Federal de Educação, Ciência e Tecnologia da Paraíba. O prédio é constituído, principalmente, de salas de escritório e de alguns laboratórios, possuindo 4 andares separados por pisos de concreto. Além desse cenário ser particularmente desafiador para um enlace sem fio, pois, não é possível ter uma linha de visada entre o transmissor e o receptor, e as paredes e pisos facilitam a ocorrência de propagação por múltiplos caminhos, com possibilidade de áreas de sombreamento de sinais.
+O experimento foi realizado em um dos prédios do campus Campina Grande do IFPB, Instituto Federal de Educação, Ciência e Tecnologia da Paraíba (Figura \ref{fig:predioExt}). O prédio é constituído, principalmente, de salas de escritório (Figura \ref{fig:ifpbSala}) , possuindo 4 andares separados por pisos de concreto. Além desse cenário ser particularmente desafiador para um enlace sem fio, pois, não é possível ter uma linha de visada entre o transmissor e o receptor, e as paredes e pisos facilitam a ocorrência de propagação por múltiplos caminhos, com possibilidade de áreas de sombreamento de sinais.
+
+
+\begin{figure}[h]
+  \centering
+  \caption{Prédio dos Professores, Campus Campina Grande.}
+  \begin{subfigure}{.5\textwidth}
+    \centering
+    \caption{Imagem Externa do Prédio.}
+    \includegraphics[width=\textwidth]{./sections/textual/chapters/images/ifpb_predio.jpg}
+    \label{fig:predioExt}
+  \end{subfigure}
+  \begin{subfigure}{.4\textwidth}
+    \centering
+    \caption{Salas do Prédio.}
+    \includegraphics[width=\textwidth]{./sections/textual/chapters/images/ifpb_sala.jpg}\\
+    \label{fig:ifpbSala}
+  \end{subfigure}
+  {\\Fonte: copiada de \cite{figIFPB}}
+  \label{fig:test}
+\end{figure}
 
 \section{Visão Geral}
 \label{subsec:visaogeral}
@@ -13,18 +33,18 @@ A rede é composta por 11 dispositivos transmissores, denominados no restante do
   \begin{center}
     \caption{Visão Geral da Rede.}
     \includegraphics[width=0.8\textwidth]{./sections/textual/chapters/images/rede_visão_geral.png}\\
-    Fonte autoral.
+    Fonte: autoral.
     \label{fig:rede_visão_geral}
   \end{center}
 \end{figure}
 
-Os dispositivos Tx foram posicionados nos quatro andares do prédio, em canaletas, como demonstrado na Figura \ref{fig:tx_canaleta}, e no interior de uma sala. Os dispositivos Rx foram colocados no interior do laboratório do GComPI, presente no primeiro piso do prédio.
+Os dispositivos Tx foram posicionados nos quatro pisos do prédio, em canaletas, como demonstrado na Figura \ref{fig:tx_canaleta}, e no interior de uma sala. Os dispositivos Rx foram colocados no interior do laboratório do GComPI, presente no primeiro piso do prédio.
 
 \begin{figure}[h]
   \begin{center}
     \caption{Exemplo de Posicionamento dos Dispositivos Tx.}
     \includegraphics[width=10cm]{./sections/textual/chapters/images/tx_canaleta.jpg}\\
-    Fonte autoral.
+    Fonte: autoral.
     \label{fig:tx_canaleta}
   \end{center}
 \end{figure}
@@ -35,13 +55,13 @@ O OpenMote B é um \emph{hardware} de desenvolvimento e prototipação de plataf
 O código-fonte do \emph{firmware} dos dispositivos está presente no repositório em \cite{openmoteb-firmware}. Nele foram realizadas alterações que estão disponíveis no repositório em \cite{openmoteb-gcompi}.
 
 \section{Transmissão dos dados}
-Os dispositivos foram configurados para realizar, a cada minuto, três ciclos de envio de mensagens, como representado na Figura \ref{fig:ciclo_envio}. Em cada ciclo são transmitidas três mensagens, uma para cada modulação do padrão. A cada envio de mensagem, o dispositivo pausa por 50 ms. Entre cada ciclo de envio o dispositivo pausa por 100 ms, do primeiro para o segundo ciclo, e 200 ms, do segundo para o terceiro ciclo. Ao realizar os três ciclos de transmissão, o dispositivo entra em modo de espera por 58250 ms totalizando assim 60 segundos para o envio de nove mensagens, cada transmissão, com uma carga útil de 32 \emph{bytes}, leva um total de 100 ms, para a taxa de transmissão de 50 k\emph{bit}/s.
+Os dispositivos foram configurados para realizar transmissões de acordo ciclos de execução, como representado na Figura \ref{fig:ciclo_envio}. Em cada ciclo, o dispositivo envia três mensagens, uma mensagem para cada modulação, com um intervalo de 50~ms entre as transmissões. Entre os ciclos de envio é realizado uma pausa de 100~ms, entre o primeiro e o segundo ciclo, ou 200~ms, entre o segundo e terceiro ciclo. Ao realizar três ciclos, o dispositivo entra em modo de espera por 58250~ms. Cada mensagem possui um total de 32~\emph{bytes} de informação, com a taxa de 50~k\emph{bits}/s, leva cerca de 100~ms para a transmissão. Os três ciclos de transmissão e pausas levam, no total, 1 minuto para ser completo.
 
 \begin{figure}[h]
   \centering
   \caption{Ciclo de Envio de Mensagens.}
   \includegraphics[width=\textwidth]{./sections/textual/chapters/images/metodo_ciclo_envio.png}\\
-  Fonte autoral.
+  Fonte: autoral.
   \label{fig:ciclo_envio}
 \end{figure}
 
@@ -80,27 +100,28 @@ Para completar os 32 \emph{bytes} de carga útil cada mensagem foi preenchida co
 Na Tabela \ref{table:config} estão descritas as configurações de operação de cada modulação.
 \begin{table}[h!]
   \centering
+  \caption{Configurações utilizadas de cada modulação.}
   \begin{tabular}{|c c c c|}
     \hline
-    Modulação & SUN-FSK & SUN-OQPSK & SUN-OFDM \\ [0.5ex]
+    Modulação & SUN-FSK                     & SUN-OQPSK         & SUN-OFDM \\ [0.5ex]
     \hline\hline
-    \makecell{Taxa de                          \\transmissão(K\emph{bit}/s)    } & 50      & 50                       & 50       \\\hline
-    \makecell{Tipo de                          \\Modulação                     } & BFSK    & OQPSK                    & BPSK     \\\hline
-    \makecell{Índice de                        \\Modulação                   } & 1.0     & N/A                      & N/A      \\\hline
-    \makecell{Taxa de \emph{Chips}             \\(k\emph{chips}/s) } &   N/A      & 100                      & N/A      \\\hline
-    \makecell{Modo de                          \\Espalhamento                  } & N/A     & \makecell{SHR:(32,1)-DSS            \\ PHR:(8,1)-DSS\\ PSDU:none} & N/A      \\\hline
-    \makecell{Frequência                       \\Central (MHz)              } & 902,2   & 904                      & 902,8    \\\hline
-    \makecell{Largura de                       \\banda do canal                                                               \\(MHz)        } & 0,2     & 2                     & 0,8      \\\hline
-    \makecell{Canais                           \\disponíveis                    } & 129     & 12                       & 31       \\\hline
-    \makecell{Potência de                      \\Transmissão (dBm)         } & 15      & 15                       & 9        \\\hline
-    \makecell{Sensibilidade de                 \\Recepção (dBm)       } & -114    & -116                     & -111     \\\hline
-    \makecell{Limiar do CCA                    \\(dBm)                   } & -94     & -93                      & -91      \\ \hline
+    \makecell{Taxa de                                                      \\transmissão(K\emph{bit}/s)    } & 50      & 50                       & 50       \\\hline
+    \makecell{Tipo de                                                      \\Modulação                     } & BFSK    & OQPSK                    & BPSK     \\\hline
+    \makecell{Índice de                                                    \\Modulação                   } & 1,0     & N/A                      & N/A      \\\hline
+    \makecell{Taxa de \emph{Chips}                                         \\(k\emph{chips}/s) } &   N/A      & 100                      & N/A      \\\hline
+    \makecell{Modo de                                                      \\Espalhamento                  } & N/A     & \makecell{SHR:(32,1)-DSS            \\ PHR:(8,1)-DSS\\ PSDU:none} & N/A      \\\hline
+    \makecell{Frequência                                                   \\Central (MHz)              } & 863,125   & 868,3                      & 863,425    \\\hline
+    \makecell{Largura de                                                   \\banda do canal                                                               \\(MHz)        } & 0,2     & 1,3                     & 0,8      \\\hline
+    \makecell{Canais                                                       \\disponíveis                    } & 129     & 12                       & 31       \\\hline
+    \makecell{Potência de                                                  \\Transmissão (dBm)         } & 15      & 15                       & 9        \\\hline
+    \makecell{Sensibilidade de                                             \\Recepção (dBm)       } & -114    & -116                     & -111     \\\hline
+    \makecell{Limiar do CCA                                                \\(dBm)                   } & -94     & -93                      & -91      \\ \hline
+    Notas     & FEC\footnotemark Habilitado & \makecell{Taxa de            \\Codificação: 1/2} & \makecell{Taxa de Codificação: 1/2\\Repetição de Frequência: 4x} \\ \hline
     \hline
   \end{tabular}
-  \caption{Configurações utilizadas de cada modulação.}
+  \footnotetext{{\emph{Forward Error Correction}(Código de Correção de Erro)}}
   \label{table:config}
 \end{table}
-
 
 \section{Recepção e Persistência dos dados}
 Os dispositivos Rx foram configurados para, a cada sinal recebido, verificar o valor de RSSI da transmissão e concatenar este valor na sequência de bytes recebida. A sequência é envelopada utilizando o protocolo HDLC, \emph{High-Level Data Link Control} (Controle de Enlace de Dados de Alto Nível, em tradução livre), este protocolo torna a transmissão serial mais robusta e facilita a leitura dos dados na serial no receptor \cite{tanembaum2011}. Então, essa sequência é transmitida pela porta serial para o computador no qual os dispositivos Rx estão conectados.
