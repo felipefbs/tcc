@@ -2,7 +2,7 @@
 \label{resultados}
 
 \section{Dados Obtidos}
-Os dados armazenados foram extraídos do banco de dados em um arquivo no formato CSV, \emph{Comma Separated Values}(Valores Separados por Virgula), o arquivo possui as mesmas informações apresentadas na Seção \ref{experimento} e contém um total de 462.065 linhas, a Figura \ref{fig:csv_example} ilustra as primeiras linhas do arquivo CSV. A partir deste arquivo CSV, foi gerado onze novos arquivos, um para cada dispositivo Tx, que possui apenas o identificador do pacote, o horário da transmissão e quais tentativas de transmissão foram bem sucedidas, a Figura \ref{fig:second_csv_example} ilustra este arquivo, no qual o número ``1'' significa uma tentativa de transmissão bem sucedida e o número ``0'' significa que não foi recebido a mensagem com daquela modulação com aquele identificado.
+Os dados armazenados foram extraídos do banco de dados em um arquivo no formato CSV, \emph{Comma Separated Values} (Valores Separados por Vírgula), o arquivo apresenta as informações descritas na Seção \ref{experimento} e contém um total de 462.065 linhas. Na Figura \ref{fig:csv_example} são ilustradas as primeiras linhas do arquivo CSV. A partir do arquivo CSV, foram gerados onze novos arquivos, um para cada dispositivo Tx, contendo o identificador do pacote, o horário da transmissão e quais tentativas de transmissão foram bem sucedidas. Na Figura \ref{fig:second_csv_example} é ilustrado um desses arquivos, em que o número ``1'' significa uma tentativa de transmissão bem sucedida e o número ``0'' significa que não foi recebida a mensagem com a modulação daquele identificador.
 
 
 \begin{figure}[h]
@@ -23,12 +23,12 @@ Os dados armazenados foram extraídos do banco de dados em um arquivo no formato
       \label{fig:test}
 \end{figure}
 
-Todos os arquivos CSV e scripts utilizados para a analise de dados estão disponíveis no repositório \cite{wisun-traces}.
+Todos os arquivos CSV e scripts utilizados para a análise de dados estão disponíveis no repositório \cite{wisun-traces}.
 
 \section{Valores de PDR}
-A partir dos onze arquivos com as tentativas de transmissão, foi calculado o PDR de cada cada modulação, para cada um dos dispositivos Tx em cada uma das três transmissões realizadas. Na Tabela \ref{table:pdr} estão detalhados os valores de PDR para cada dispositivo, modulação e transmissão. Os dispositivos ``D'' e ``H'' foram posicionados no primeiro piso, os dispositivos ``A'', ``B'' e ``C'' foram posicionados no segundo piso, os grupos formados pelos dispositivos ``E'', ``F'' e ``G'' e ``I'', ``J'' e ``K'' foram posicionados no terceiro e quarto piso do prédio, respectivamente.
+A partir dos onze arquivos com as tentativas de transmissão, foi calculado o PDR de cada modulação, para cada um dos dispositivos Tx em cada uma das três transmissões realizadas. Na Tabela \ref{table:pdr} estão detalhados os valores de PDR para cada dispositivo, modulação e transmissão. \refact{Os dispositivos ``D'' e ``H'' foram posicionados no primeiro piso, os dispositivos ``A'', ``B'' e ``C'' foram posicionados no segundo piso, os grupos formados pelos dispositivos ``E'', ``F'' e ``G'' e ``I'', ``J'' e ``K'' foram posicionados no terceiro e quarto piso do prédio, respectivamente.}
 
-Importante destacar, as mensagens enviadas pela modulação SUN-OFDM pelo dispositivo ``H'' possui um menor valor de PDR do que os dispositivos próximos, mesmo estando no proximo ao Rx, provavelmente devido a efeitos de sombreamento, no qual as diversas replicas de sinais propagados por múltiplos caminhos até o receptor realizem uma soma destrutiva proxima ao receptor causando problemas na recepção de sinal, este efeito é perceptível também em outros dispositivos. No dispositivo ``K'' é observado que os valores de PDR são maiores que os outros dispositivos do mesmo andar, neste caso, provavelmente, o fato do dispositivo Tx está posicionado em uma sala diretamente acima do receptor facilitou a propagação do sinal criando, proximo ao receptor, uma área que os sinais que percorreram múltiplos caminhos onde o sinal tenha uma melhor recepção.
+Importante destacar, as mensagens enviadas pela modulação SUN-OFDM pelo dispositivo ``H'' apresentam um menor valor de PDR do que de outros dispositivos, mesmo estando próximo ao Rx, provavelmente devido a efeitos de sombreamento, em que diversas réplicas de sinais propagados por múltiplos caminhos até o receptor realizam uma soma destrutiva próxima ao receptor, causando problemas na recepção de sinal. Este efeito é perceptível também em outros dispositivos. No dispositivo ``K'', observa-se que os valores de PDR são maiores que de outros dispositivos do mesmo andar, nesse caso, provavelmente, o fato do dispositivo Tx está posicionado em uma sala diretamente acima do receptor facilitou a propagação do sinal, criando próximo ao receptor, uma área em que os sinais que percorreram múltiplos caminhos resultem em uma melhor recepção.
 
 \begin{table}[ht]
       \centering
@@ -54,11 +54,49 @@ Importante destacar, as mensagens enviadas pela modulação SUN-OFDM pelo dispos
       \label{table:pdr}
 \end{table}
 
-Observando os dados da Figura \ref{fig:pdr_andar} a modulação SUN-OQPSK se destaca em relação as outras. Como apresentado na Seção \ref{padrõesSF} as modulações SUN-OQPSK e SUN-OFDM possuem maior robustez a interferências e efeitos negativos da propagação por múltiplos caminhos, porém, como apresentado na Tabela \ref{table:config}, a modulação SUN-OQPSK possui maior potência de transmissão comparado ao SUN-OFDM, devido a limitações de \emph{hardware}. Logo, é de se esperar que a modulação SUN-OQPSK possua melhores valores de PDR.
+\begin{table}[ht]
+      \centering
+      \caption{Valores de PDR para cada dispositivo.}
+      \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+            \hline
+            ID         & \multicolumn{3}{c|}{\textbf{SUN-FSK}} & \multicolumn{3}{c|}{\textbf{SUN-OQPSK}} & \multicolumn{3}{c|}{\textbf{SUN-OFDM}}                                                                                                       \\ \cline{2-10}
+                       & \textbf{P$_1$}                        & \textbf{P$_2$}                          & \textbf{P$_3$}                         & \textbf{P$_1$} & \textbf{P$_2$} & \textbf{P$_3$} & \textbf{P$_1$} & \textbf{P$_2$} & \textbf{P$_3$} \\ \hline
+            \texttt{D} & -99.68                                & -99.52                                  & -99.62                                 & -90.39         & -90.42         & -90.38         & -98.54         & -98.20         & -98.67         \\ \hline
+            \texttt{H} & -106.05                               & -105.97                                 & -106.05                                & -90.75         & -90.78         & -90.76         & -108.36        & -108.37        & -108.19        \\ \hline
+            \texttt{A} & -98.31                                & -98.29                                  & -98.30                                 & -81.76         & -81.76         & -81.76         & -103.01        & -103.18        & -103.01        \\ \hline
+            \texttt{B} & -100.27                               & -100.26                                 & -100.28                                & -88.96         & -89.13         & -89.15         & -101.32        & -101.36        & -101.11        \\ \hline
+            \texttt{C} & -109.06                               & -108.67                                 & -109.07                                & -91.13         & -91.14         & -91.11         & -106.81        & -106.88        & -106.68        \\ \hline
+            \texttt{E} & -105.77                               & -105.65                                 & -105.74                                & -86.88         & -86.89         & -86.88         & -106.06        & -106.13        & -105.92        \\ \hline
+            \texttt{F} & -104.92                               & -104.83                                 & -104.90                                & -86.23         & -86.26         & -86.22         & -108.02        & -108.01        & -107.87        \\ \hline
+            \texttt{G} & -111.42                               & -111.50                                 & -111.70                                & -104.36        & -104.38        & -104.32        & -112.80        & -112.80        & -112.80        \\ \hline
+            \texttt{I} & -112.21                               & -112.20                                 & -112.18                                & -105.09        & -105.11        & -105.10        & N/A            & N/A            & N/A            \\ \hline
+            \texttt{J} & -112.00                               & -113.00                                 & N/A                                    & -106.62        & -106.68        & -106.59        & -112.56        & -112.56        & -112.54        \\ \hline
+            \texttt{K} & -101.33                               & -101.30                                 & -101.33                                & -90.29         & -90.34         & -90.32         & -109.19        & -109.26        & -109.16        \\ \hline
+            % \textbf{Média} & -105.55                               & -105.56                                 & -95.38                                 & -92.95         & -92.99         & -92.96         & -96.97         & -96.98         & -96.90         \\ \hline
+            % \makecell{\textbf{Desvio}                                                                                                                                                                                                                       \\\textbf{Padrão}} & 5.16                                  & 5.30                                    & 31.99                                  & 8.42           & 8.42           & 8.41           & 32.46          & 32.47          & 32.44          \\ \hline
+      \end{tabular}
+      \label{table:rssi}
+\end{table}
 
+% D = -99.68 & -99.52 & -99.62 & -90.39 & -90.42 & -90.38 & -98.54 & -98.20 & -98.67
+% H = -106.05 & -105.97 & -106.05 & -90.75 & -90.78 & -90.76 & -108.36 & -108.37 & -108.19
+% A = -98.31 & -98.29 & -98.30 & -81.76 & -81.76 & -81.76 & -103.01 & -103.18 & -103.01
+% B = -100.27 & -100.26 & -100.28 & -88.96 & -89.13 & -89.15 & -101.32 & -101.36 & -101.11
+% C = -109.06 & -108.67 & -109.07 & -91.13 & -91.14 & -91.11 & -106.81 & -106.88 & -106.68
+% E = -105.77 & -105.65 & -105.74 & -86.88 & -86.89 & -86.88 & -106.06 & -106.13 & -105.92
+% F = -104.92 & -104.83 & -104.90 & -86.23 & -86.26 & -86.22 & -108.02 & -108.01 & -107.87
+% G = -111.42 & -111.50 & -111.70 & -104.36 & -104.38 & -104.32 & -112.80 & -112.80 & -112.80
+% I = -112.21 & -112.20 & -112.18 & -105.09 & -105.11 & -105.10 & -0.00 & -0.00 & -0.00
+% J = -112.00 & -113.00 & -0.00 & -106.62 & -106.68 & -106.59 & -112.56 & -112.56 & -112.54
+% K = -101.33 & -101.30 & -101.33 & -90.29 & -90.34 & -90.32 & -109.19 & -109.26 & -109.16
+
+Observando os gráficos na Figura \ref{fig:pdr_andar}, a modulação SUN-OQPSK se destaca em relação ás outras. Como apresentado na Seção \ref{padrõesSF}, as modulações SUN-OQPSK e SUN-OFDM apresentam maior robustez a interferências e efeitos negativos da propagação por múltiplos caminhos. Porém, como apresentado na Tabela \ref{table:config}, a modulação SUN-OQPSK apresenta maior potência de transmissão comparada à SUN-OFDM, devido a limitações de \emph{hardware}. Logo, espera-se que a modulação SUN-OQPSK apresente melhores valores de PDR.
+
+\todo{explicar melhor os elementos dos gráficos}
 
 \begin{figure}[ht!]
       \centering
+      \caption{Valores de PDR para cada piso.}
       \begin{subfigure}{.4\textwidth}
             \centering
             \caption{Primeiro Piso.}
@@ -83,7 +121,6 @@ Observando os dados da Figura \ref{fig:pdr_andar} a modulação SUN-OQPSK se des
             \includegraphics[width=\textwidth]{./sections/textual/chapters/images/mod_4_floor.png}
             \label{fig:piso4}
       \end{subfigure}
-      \caption{Valores de PDR para cada piso.}
       \label{fig:pdr_andar}
 \end{figure}
 
