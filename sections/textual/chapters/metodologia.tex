@@ -22,12 +22,12 @@ O experimento foi realizado em um dos prédios do campus Campina Grande do IFPB,
     \label{fig:ifpbSala}
   \end{subfigure}
   {\\Fonte: copiada de \cite{figIFPB}}
-  \label{fig:test}
+  \label{fig:campuscg}
 \end{figure}
 
 \section{Visão Geral}
 \label{subsec:visaogeral}
-A rede é composta por 11 dispositivos transmissores, denominados no restante do texto de Tx, que enviam nove réplicas de mensagens, três para cada modulação do padrão IEEE 802.15.4g SUN. Três receptores, chamados no restante do texto de Rx, foram configurados para receber mensagens em apenas uma das modulações do padrão. Os dispositivos Rx enviam as mensagens recebidas via rádio por uma porta serial para um computador que utiliza um sistema operacional de base GNU/Linux, o Linux Mint 19 e executa um \emph{script Python} que lê as mensagens seriais enviadas pelos dispositivos Rx, estrutura e persiste os dados em um banco de dados InfluxDB. Na Figura \ref{fig:rede_visão_geral} é representada uma visão geral do funcionamento da rede.
+A rede é composta por 11 dispositivos transmissores, denominados no restante do texto de Tx, que enviam nove réplicas de mensagens, três para cada modulação do padrão IEEE 802.15.4g SUN. Três receptores, chamados no restante do texto de Rx, foram configurados para receber mensagens em apenas uma das modulações do padrão, sendo que cada Rx recebe pacotes em uma modulação diferente. Os dispositivos Rx enviam as mensagens recebidas via rádio por uma porta serial para um computador que utiliza um sistema operacional de base GNU/Linux, o Linux Mint 19 e executa um \emph{script Python} que lê as mensagens seriais enviadas pelos dispositivos Rx, estrutura e persiste os dados em um banco de dados InfluxDB. Na Figura \ref{fig:rede_visão_geral} é representada uma visão geral do funcionamento da rede.
 
 \begin{figure}[h]
   \begin{center}
@@ -55,7 +55,7 @@ O OpenMote B é um \emph{hardware} de desenvolvimento e prototipação de plataf
 O código-fonte do \emph{firmware} dos dispositivos está presente no repositório em \cite{openmoteb-firmware}. Nele foram realizadas alterações que estão disponíveis no repositório em \cite{openmoteb-gcompi}.
 
 \section{Transmissão dos dados}
-Os dispositivos foram configurados para realizar transmissões de acordo ciclos de execução, como representado na Figura \ref{fig:ciclo_envio}. Em cada ciclo, o dispositivo envia três mensagens, uma mensagem para cada modulação, com um intervalo de 50~ms entre as transmissões. Entre os ciclos de envio é realizado uma pausa de 100~ms, entre o primeiro e o segundo ciclo, ou 200~ms, entre o segundo e terceiro ciclo. Ao realizar três ciclos, o dispositivo entra em modo de espera por 58250~ms. Cada mensagem possui um total de 32~\emph{bytes} de informação, com a taxa de 50~k\emph{bits}/s, leva cerca de 100~ms para a transmissão. Os três ciclos de transmissão e pausas levam, no total, 1 minuto para ser completo.
+Os dispositivos foram configurados para realizar transmissões de acordo com ciclos de execução, como representado na Figura \ref{fig:ciclo_envio}. Em cada ciclo, o dispositivo envia três mensagens, uma mensagem para cada modulação, com um intervalo de 50~ms entre as transmissões. Entre os ciclos de envio é realizada uma pausa de 100~ms, entre o primeiro e o segundo ciclo, ou 200~ms, entre o segundo e terceiro ciclo. Ao realizar três ciclos, o dispositivo entra em modo de espera por 58250~ms. Cada mensagem possui um total de 32~\emph{bytes} de informação, com a taxa de 50~k\emph{bits}/s, leva cerca de 100~ms para a transmissão. Os três ciclos de transmissão e pausas levam, no total, 1 minuto para ser completo.
 
 \begin{figure}[h]
   \centering
@@ -72,8 +72,8 @@ Cada mensagem transmitida é constituída dos seguintes campos:
   \item Identificador de pacote: um campo de 8 \emph{bytes} que registra um contador que é também a identificação do pacote;
   \item Identificador da modulação: um campo de 1 \emph{byte} que registra em qual modulação o pacote foi enviado;
   \item Identificador de Pacote do Transmissor: um campo de 1 \emph{byte} que registra em qual dos ciclos de transmissão (ciclo um, dois ou três) o pacote foi enviado;
-  \item Quantidade de Tentativas do CSMA: um campo de 1 \emph{byte} que registra quantas vezes o transmissor sensoriou o canal de radiofrequência antes de realizar a transmissão, o valor pode ser de 1 até 3, caso chegue na terceira tentativa o dispositivo não realiza a transmissão;
-  \item Valor de RSSI do transmissor: um campo de 1 \emph{byte} que registra o valor de energia do canal. Se o valor estiver acima do valor apresentado no campo ``Limiar do CCA'' na Tabela \ref{table:config}, o dispositivo espera um tempo aleatório, em milissegundos, e realiza outra tentativa de transmissão.
+  \item Quantidade de Tentativas do CSMA: um campo de 1 \emph{byte} que registra quantas vezes o transmissor sensoriou o canal de radiofrequência antes de realizar a transmissão, o valor pode ser de 1 até 3, caso chegue na terceira tentativa e o canal não for acessado, o dispositivo não realiza a transmissão;
+  \item Valor de RSSI do CCA: um campo de 1 \emph{byte} que registra o valor de energia do canal. Se o valor estiver acima do valor apresentado no campo ``Limiar do CCA'' na Tabela \ref{table:config}, o dispositivo espera um tempo aleatório, em milissegundos, e realiza outra tentativa de transmissão.
 \end{itemize}
 
 Para completar os 32 \emph{bytes} de carga útil cada mensagem foi preenchida com 14 \emph{bytes}.
@@ -103,28 +103,27 @@ Na Tabela \ref{table:config} estão descritas as configurações de operação d
   \caption{Configurações utilizadas de cada modulação.}
   \begin{tabular}{|c c c c|}
     \hline
-    Modulação & SUN-FSK                     & SUN-OQPSK         & SUN-OFDM \\ [0.5ex]
+    Modulação & SUN-FSK        & SUN-OQPSK         & SUN-OFDM \\ [0.5ex]
     \hline\hline
-    \makecell{Taxa de                                                      \\transmissão(K\emph{bit}/s)    } & 50      & 50                       & 50       \\\hline
-    \makecell{Tipo de                                                      \\Modulação                     } & BFSK    & OQPSK                    & BPSK     \\\hline
-    \makecell{Índice de                                                    \\Modulação                   } & 1,0     & N/A                      & N/A      \\\hline
-    \makecell{Taxa de \emph{Chips}                                         \\(k\emph{chips}/s) } &   N/A      & 100                      & N/A      \\\hline
-    \makecell{Modo de                                                      \\Espalhamento                  } & N/A     & \makecell{SHR:(32,1)-DSS            \\ PHR:(8,1)-DSS\\ PSDU:none} & N/A      \\\hline
-    \makecell{Frequência                                                   \\Central (MHz)              } & 863,125   & 868,3                      & 863,425    \\\hline
-    \makecell{Largura de                                                   \\banda do canal                                                               \\(MHz)        } & 0,2     & 1,3                     & 0,8      \\\hline
-    \makecell{Canais                                                       \\disponíveis                    } & 129     & 12                       & 31       \\\hline
-    \makecell{Potência de                                                  \\Transmissão (dBm)         } & 15      & 15                       & 9        \\\hline
-    \makecell{Sensibilidade de                                             \\Recepção (dBm)       } & -114    & -116                     & -111     \\\hline
-    \makecell{Limiar do CCA                                                \\(dBm)                   } & -94     & -93                      & -91      \\ \hline
-    Notas     & FEC\footnotemark Habilitado & \makecell{Taxa de            \\Codificação: 1/2} & \makecell{Taxa de Codificação: 1/2\\Repetição de Frequência: 4x} \\ \hline
+    \makecell{Taxa de                                         \\transmissão(K\emph{bit}/s)    } & 50      & 50                       & 50       \\\hline
+    \makecell{Tipo de                                         \\Modulação                     } & BFSK    & OQPSK                    & BPSK     \\\hline
+    \makecell{Índice de                                       \\Modulação                   } & 1,0     & N/A                      & N/A      \\\hline
+    \makecell{Taxa de \emph{Chips}                            \\(k\emph{chips}/s) } &   N/A      & 100                      & N/A      \\\hline
+    \makecell{Modo de                                         \\Espalhamento                  } & N/A     & \makecell{SHR:(32,1)-DSS            \\ PHR:(8,1)-DSS\\ PSDU:none} & N/A      \\\hline
+    \makecell{Frequência                                      \\Central (MHz)              } & 863,125   & 868,3                      & 863,425    \\\hline
+    \makecell{Largura de                                      \\banda do canal                                                               \\(MHz)        } & 0,2     & 1,3                     & 0,8      \\\hline
+    \makecell{Canais                                          \\disponíveis                    } & 129     & 12                       & 31       \\\hline
+    \makecell{Potência de                                     \\Transmissão (dBm)         } & 15      & 15                       & 9        \\\hline
+    \makecell{Sensibilidade de                                \\Recepção (dBm)       } & -114    & -116                     & -111     \\\hline
+    \makecell{Limiar do CCA                                   \\(dBm)                   } & -94     & -93                      & -91      \\ \hline
+    Notas     & FEC Habilitado & \makecell{Taxa de            \\Codificação: 1/2} & \makecell{Taxa de Codificação: 1/2\\Repetição de Frequência: 4x} \\ \hline
     \hline
   \end{tabular}
-  \footnotetext{{\emph{Forward Error Correction}(Código de Correção de Erro)}}
   \label{table:config}
 \end{table}
 
 \section{Recepção e Persistência dos dados}
-Os dispositivos Rx foram configurados para, a cada sinal recebido, verificar o valor de RSSI da transmissão e concatenar este valor na sequência de bytes recebida. A sequência é envelopada utilizando o protocolo HDLC, \emph{High-Level Data Link Control} (Controle de Enlace de Dados de Alto Nível, em tradução livre), este protocolo torna a transmissão serial mais robusta e facilita a leitura dos dados na serial no receptor \cite{tanembaum2011}. Então, essa sequência é transmitida pela porta serial para o computador no qual os dispositivos Rx estão conectados.
+Os dispositivos Rx foram configurados para, a cada pacote recebido, verificar o valor de RSSI durante a recepção e concatenar este valor na sequência de bytes recebida. A sequência é envelopada utilizando o protocolo HDLC, \emph{High-Level Data Link Control} (Controle de Enlace de Dados de Alto Nível, em tradução livre), este protocolo torna a transmissão serial mais robusta e facilita a leitura dos dados na serial no receptor \cite{tanembaum2011}. Então, essa sequência é transmitida pela porta serial para o computador no qual os dispositivos Rx estão conectados.
 
 No computador conectado, as mensagens recebidas são processadas por  meio de um \emph{script Python}. Cada mensagem recebida é extraída do envelope HDLC e se não ocorrer problemas, os \emph{bytes} da mensagem são lidos e armazenados numa estrutura chave-valor da linguagem \emph{Python}, chamada dicionário. Cada chave é um dos campos citados na Seção \ref{table:estruturaTx} e o RSSI adicionado pelo dispositivo Rx. Nessa estrutura são adicionados alguns valores de controle, por exemplo, a quantidade de pacotes seriais recebidos e extraídos corretamente pelo HDLC, e alguns campos relativos ao banco de dados, como a Tabela em que os dados serão armazenados.
 

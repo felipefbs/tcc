@@ -8,20 +8,21 @@ Os dados armazenados foram extraídos do banco de dados em um arquivo no formato
 \begin{figure}[h]
       \centering
       \caption{Dados do experimento.}
-      \begin{subfigure}{.4\textwidth}
+      \begin{subfigure}{.8\textwidth}
             \centering
             \caption{Exemplo das Colunas do Arquivo CSV.}
             \includegraphics[width=\textwidth]{./sections/textual/chapters/images/csv_example.png}
             \label{fig:csv_example}
       \end{subfigure}
-      \begin{subfigure}{.4\textwidth}
+      \\
+      \begin{subfigure}{.8\textwidth}
             \centering
             \caption{Exemplo do Arquivo com as Tentativas de Transmissão.}
             \includegraphics[width=\textwidth]{./sections/textual/chapters/images/second_csv_example.png}
             \label{fig:second_csv_example}
       \end{subfigure}
-      Fonte: autoral.
-      \label{fig:test}
+      \\Fonte: autoral.
+      \label{fig:camposCSV}
 \end{figure}
 
 Todos os arquivos CSV e scripts utilizados para a análise de dados estão disponíveis no repositório \cite{wisun-traces}.
@@ -32,7 +33,7 @@ Todos os arquivos CSV e scripts utilizados para a análise de dados estão dispo
 % \todo{Comparar o PDRxRSSI}\\
 % \todo{Desvanecimento}
 
-Os onze arquivos com as tentativas de transmissão foram computador e a partir disso foi calculado o PDR de cada modulação, estes valores são apresentados nas tabelas \ref{table:pdr1}, \ref{table:pdr2}, \ref{table:pdr3} e \ref{table:pdr4} apresentam os valores de PDR dos dispositivos agrupados por piso. Foi calculado também os valores de RSSI médios das transmissões recebidas, os valores, em dBm, são apresentados nas tabelas \ref{table:rssi1}, \ref{table:rssi2}, \ref{table:rssi3} e \ref{table:rssi4}
+Os onze arquivos com as tentativas de transmissão foram computador e a partir disso foi calculado o PDR de cada modulação, estes valores são apresentados nas tabelas \ref{table:pdr1}, \ref{table:pdr2}, \ref{table:pdr3} e \ref{table:pdr4}, e apresentam os valores de PDR dos dispositivos agrupados por piso. Foi calculado também os valores de RSSI médios das transmissões recebidas, os valores, em dBm, são apresentados nas tabelas \ref{table:rssi1}, \ref{table:rssi2}, \ref{table:rssi3} e \ref{table:rssi4}.
 
 \begin{table}
       \caption{Primeiro Piso}
@@ -67,7 +68,7 @@ Os onze arquivos com as tentativas de transmissão foram computador e a partir d
       \label{tab:table1}
 \end{table}
 
-Importante destacar que os dispositivos Rx estavam no primeiro piso do prédio, o mesmo nível dos dispositivos ``D'' e ``H''. Mas os dispositivos Tx deste piso apresentam um menor desempenho a nível de aplicação (PDR) em relação aos dispositivos do segundo piso. Os valores de RSSI dos dispositivos presentes nos dois pisos não apresenta uma grande divergência, então, é deduzido que a diferença de valores de PDR é causada por áreas de sombreamento de sinal transmitido nos arredores dos receptores que levam a uma alta taxa de erros de \emph{bits} nas mensagens, tornando difícil o uso, por exemplo, de Códigos de Correção de Erros o que leva a perda do pacote.
+Importante destacar que os dispositivos Rx estavam no primeiro piso do prédio, o mesmo nível dos dispositivos ``D'' e ``H''. Mas os dispositivos Tx deste piso apresentam um menor desempenho a nível de aplicação (PDR) em relação aos dispositivos do segundo piso. Os valores de RSSI dos dispositivos presentes nos dois pisos não apresenta uma grande divergência, então, é deduzido que a diferença de valores de PDR é causada por áreas de sombreamento de sinal transmitido nos arredores dos receptores que levam a uma alta taxa de erros de \emph{bits} nas mensagens, tornando difícil o uso, por exemplo, de FEC, \emph{Forward Error Correction} (Códigos de Correção de Erros) o que leva a perda do pacote.
 
 \begin{table}
       \caption{Segundo Piso}
@@ -244,7 +245,7 @@ O motivo da modulação SUN-OFDM obter um pior desempenho, nos valores de PDR, e
 
 Os gráficos apresentados na Figura \ref{fig:pdr_andar}, mostram a média dos valores de PDR por piso de acordo com as modulações e o ciclo de transmissão. \refact{A linha preta} mostra os valores mínimos e máximos de PDR do piso.
 
-Observando os gráficos da Figura \ref{fig:pdr_andar}, a modulação SUN-OQPSK se destaca em relação ás outras. Como apresentado na Seção \ref{padrõesSF}, as modulações SUN-OQPSK e SUN-OFDM apresentam maior robustez a interferências e efeitos negativos da propagação por múltiplos caminhos. Porém, como apresentado na Tabela \ref{table:config}, a modulação SUN-OQPSK apresenta maior potência de transmissão e maior largura de banda do canal, o que garante, junto com a técnica de modulação do DSSS-OQPSK, Seção \ref{oqpsk}, melhor aproveitamento do canal de transmissão e, consequentemente, uma melhor recepção do sinal.
+Observando os gráficos da Figura \ref{fig:pdr_andar}, a modulação SUN-OQPSK se destaca em relação às outras. Como apresentado na Seção \ref{padrõesSF}, as modulações SUN-OQPSK e SUN-OFDM apresentam maior robustez a interferências e efeitos negativos da propagação por múltiplos caminhos. Porém, como apresentado na Tabela \ref{table:config}, a modulação SUN-OQPSK apresenta maior potência de transmissão e maior largura de banda do canal, o que garante, junto com a técnica de modulação do DSSS-OQPSK, Seção \ref{oqpsk}, melhor aproveitamento do canal de transmissão e, consequentemente, uma melhor recepção do sinal.
 
 \begin{figure}[ht!]
       \centering
