@@ -2,20 +2,19 @@
 \label{resultados}
 
 \section{Dados Obtidos}
-Os dados armazenados foram extraídos do banco de dados em um arquivo no formato CSV, \emph{Comma Separated Values} (Valores Separados por Vírgula), o arquivo apresenta as informações descritas na Seção \ref{experimento} e contém um total de 462.065 linhas. Na Figura \ref{fig:csv_example} são ilustradas as primeiras linhas do arquivo CSV. A partir do arquivo CSV, foram gerados onze novos arquivos, um para cada dispositivo Tx, contendo o identificador do pacote, o horário da transmissão e quais tentativas de transmissão foram bem sucedidas. Na Figura \ref{fig:second_csv_example} é ilustrado um desses arquivos, em que o número ``1'' significa uma tentativa de transmissão bem sucedida e o número ``0'' significa que não foi recebida a mensagem com a modulação daquele identificador.
+Os dados armazenados foram extraídos do banco de dados em um arquivo no formato CSV, \emph{Comma Separated Values} (Valores Separados por Vírgula). O arquivo apresenta as informações descritas na Seção \ref{experimento} e contém um total de 462.065 linhas. Na Figura \ref{fig:csv_example} são ilustradas as primeiras linhas do arquivo CSV. A partir do arquivo CSV, foram gerados onze novos arquivos, um para cada dispositivo Tx, contendo o identificador do pacote, o horário da transmissão e quais tentativas de transmissão foram bem sucedidas. Na Figura \ref{fig:second_csv_example} é ilustrado um desses arquivos, em que o número ``1'' significa uma tentativa de transmissão bem sucedida e o número ``0'' significa que não foi recebida a mensagem com a modulação daquele identificador.
 
 
-\begin{figure}[h]
+\begin{figure}[H]
       \centering
       \caption{Dados do experimento.}
-      \begin{subfigure}{.8\textwidth}
+      \begin{subfigure}{.45\textwidth}
             \centering
             \caption{Exemplo das Colunas do Arquivo CSV.}
             \includegraphics[width=\textwidth]{./sections/textual/chapters/images/csv_example.png}
             \label{fig:csv_example}
       \end{subfigure}
-      \\
-      \begin{subfigure}{.8\textwidth}
+      \begin{subfigure}{.45\textwidth}
             \centering
             \caption{Exemplo do Arquivo com as Tentativas de Transmissão.}
             \includegraphics[width=\textwidth]{./sections/textual/chapters/images/second_csv_example.png}
@@ -33,9 +32,9 @@ Todos os arquivos CSV e scripts utilizados para a análise de dados estão dispo
 % \todo{Comparar o PDRxRSSI}\\
 % \todo{Desvanecimento}
 
-Os onze arquivos com as tentativas de transmissão foram computador e a partir disso foi calculado o PDR de cada modulação, estes valores são apresentados nas tabelas \ref{table:pdr1}, \ref{table:pdr2}, \ref{table:pdr3} e \ref{table:pdr4}, e apresentam os valores de PDR dos dispositivos agrupados por piso. Foi calculado também os valores de RSSI médios das transmissões recebidas, os valores, em dBm, são apresentados nas tabelas \ref{table:rssi1}, \ref{table:rssi2}, \ref{table:rssi3} e \ref{table:rssi4}.
+Os onze arquivos com as tentativas de transmissão foram computados e a partir disso foi calculado o PDR de cada modulação, esses valores são apresentados nas Tabelas \ref{table:pdr1}, \ref{table:pdr2}, \ref{table:pdr3} e \ref{table:pdr4}, e apresentam os valores de PDR dos dispositivos agrupados por piso. Foram calculados também os valores de RSSI médios das transmissões recebidas, os valores, em dBm, são apresentados nas Tabelas \ref{table:rssi1}, \ref{table:rssi2}, \ref{table:rssi3} e \ref{table:rssi4}.
 
-\begin{table}
+\begin{table}[H]
       \caption{Primeiro Piso}
       \begin{subtable}{\textwidth}
             \begin{center}
@@ -68,9 +67,9 @@ Os onze arquivos com as tentativas de transmissão foram computador e a partir d
       \label{tab:table1}
 \end{table}
 
-Importante destacar que os dispositivos Rx estavam no primeiro piso do prédio, o mesmo nível dos dispositivos ``D'' e ``H''. Mas os dispositivos Tx deste piso apresentam um menor desempenho a nível de aplicação (PDR) em relação aos dispositivos do segundo piso. Os valores de RSSI dos dispositivos presentes nos dois pisos não apresenta uma grande divergência, então, é deduzido que a diferença de valores de PDR é causada por áreas de sombreamento de sinal transmitido nos arredores dos receptores que levam a uma alta taxa de erros de \emph{bits} nas mensagens, tornando difícil o uso, por exemplo, de FEC, \emph{Forward Error Correction} (Códigos de Correção de Erros) o que leva a perda do pacote.
+Importante destacar que os dispositivos Rx estavam no primeiro piso do prédio, o mesmo nível dos dispositivos ``D'' e ``H''. Mas os dispositivos Tx deste piso apresentam um menor desempenho a nível de aplicação (PDR) em relação aos dispositivos do segundo piso. Os valores de RSSI dos dispositivos presentes nos dois pisos não apresenta uma grande divergência, então, é deduzido que a diferença de valores de PDR é causada por áreas de sombreamento de sinal transmitido, causada pela propagação por múltiplos caminhos, nos arredores. Ocasionando maior chance de erros na recepção do sinal, alterando os bits recebidos tornando difícil o uso, por exemplo, de FEC, \emph{Forward Error Correction} (Códigos de Correção de Erros) o que leva a perda do pacote.
 
-\begin{table}
+\begin{table}[H]
       \caption{Segundo Piso}
       \begin{subtable}{\textwidth}
             \begin{center}
@@ -105,7 +104,7 @@ Importante destacar que os dispositivos Rx estavam no primeiro piso do prédio, 
       \label{tab:table1}
 \end{table}
 
-\begin{table}
+\begin{table}[H]
       \caption{Terceiro Piso}
       \begin{subtable}{\textwidth}
             \begin{center}
@@ -145,7 +144,7 @@ Os dados obtidos dos dispositivos presentes no quarto piso do prédio mostram qu
 
 O motivo da modulação SUN-OFDM obter um pior desempenho, nos valores de PDR, em relação as outras modulações no dispositivo ``K'' é atribuída ao desvanecimento do sinal já que, de acordo com a Tabela \ref{table:config}, a modulação possui o menor valor de potência de transmissão das três modulações.
 
-\begin{table}
+\begin{table}[H]
       \caption{Quarto Piso}
       \begin{subtable}{\textwidth}
             \begin{center}
@@ -243,11 +242,11 @@ O motivo da modulação SUN-OFDM obter um pior desempenho, nos valores de PDR, e
 % J = -112.00 & -113.00 & -0.00 & -106.62 & -106.68 & -106.59 & -112.56 & -112.56 & -112.54
 % K = -101.33 & -101.30 & -101.33 & -90.29 & -90.34 & -90.32 & -109.19 & -109.26 & -109.16
 
-Os gráficos apresentados na Figura \ref{fig:pdr_andar}, mostram a média dos valores de PDR por piso de acordo com as modulações e o ciclo de transmissão. \refact{A linha preta} mostra os valores mínimos e máximos de PDR do piso.
+Os gráficos apresentados na Figura \ref{fig:pdr_andar}, mostram a média dos valores de PDR por piso de acordo com as modulações e o ciclo de transmissão. As linhas de erro mostra os valores mínimos e máximos de PDR do piso.
 
 Observando os gráficos da Figura \ref{fig:pdr_andar}, a modulação SUN-OQPSK se destaca em relação às outras. Como apresentado na Seção \ref{padrõesSF}, as modulações SUN-OQPSK e SUN-OFDM apresentam maior robustez a interferências e efeitos negativos da propagação por múltiplos caminhos. Porém, como apresentado na Tabela \ref{table:config}, a modulação SUN-OQPSK apresenta maior potência de transmissão e maior largura de banda do canal, o que garante, junto com a técnica de modulação do DSSS-OQPSK, Seção \ref{oqpsk}, melhor aproveitamento do canal de transmissão e, consequentemente, uma melhor recepção do sinal.
 
-\begin{figure}[ht!]
+\begin{figure}[H]
       \centering
       \caption{Valores de PDR para cada piso.}
       \begin{subfigure}{.4\textwidth}
